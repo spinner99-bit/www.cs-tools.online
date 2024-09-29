@@ -49,9 +49,18 @@
 <script src="script2.js"></script>
 
 <script>
-    if (window.location.pathname === '/tipsgame.html') {
-      window.history.replaceState({}, '', '/TipsGame');
+    document.addEventListener("DOMContentLoaded", function() {
+        const currentPath = window.location.pathname;
+
+     // 检查路径是否以 .html 结尾
+     if (currentPath.endsWith('.html')) {
+           // 将 .html 去掉
+           const newPath = currentPath.slice(0, -5);
+        
+           // 使用 History API 改变 URL 而不刷新页面
+           history.replaceState(null, '', newPath);
     }
+});
     </script>
 
 </body>
