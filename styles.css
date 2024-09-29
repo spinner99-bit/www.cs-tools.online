@@ -1,0 +1,352 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    background-color: #f0f0f0;;
+}
+
+body, html{
+    height: 100%;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* 菜单按钮样式 */
+.menuBtnC {
+    cursor: pointer;
+}
+
+.menuBtnC i{
+    font-size: 45px;
+    font-weight: 900;
+}
+
+.userInfoR{
+    display: flex;
+}
+
+.welcome-message{
+    font-size: 16px;
+    font-weight: 900;
+    align-content: center;
+}
+
+.logout-btn{
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+}
+
+.logout-btn i{
+    font-size: 40px;
+}
+
+/* 样式：隐藏的侧边栏 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -400px; /* 初始位置为隐藏 */
+    width: 230px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transition: left 0.3s ease; /* 动画效果 */
+}
+
+/* 侧边栏显示时 */
+.sidebar.active {
+    left: 0; /* 显示时的左侧位置 */
+}
+
+.sideBarTopCont{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.close-btn{
+    padding: 0;
+}
+
+.sideBarTopCont i{
+    font-size: 40px;
+}
+
+.sideBarTopCont h2{
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+.bxs-wallet-alt, .bxs-game, .bxs-cog, .bxs-error-alt {
+    font-size: 20px;
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+.sidebar a {
+    color: white;
+    font-size: 16px;
+    font-weight: 900;
+    display: block;
+    padding: 5px 0 5px 20px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: #555;
+}
+
+.gameLogTable {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.5);
+}
+
+.gameLogTable th{
+    color: white;
+}
+
+.gameLogTable td{
+    background-color: white;
+}
+
+.gameLogTable th, td {
+    border: 1px solid #f1f1f1;
+    padding: 8px;
+    text-align: center;
+}
+
+.red-text {
+    color: #dd4b39 !important;
+    font-weight: 700;
+}
+
+.bg-gray {
+    background-color: #d2d6de !important;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.gameLogLoading{
+    text-align: center;
+    color: black;
+    font-weight: 900;
+    margin-top: 40px;
+}
+
+.bx-loader{
+	-webkit-animation: spin 3s linear infinite;
+	-moz-animation: spin 3s linear infinite;
+	animation: spin 3s linear infinite;
+}
+
+.gameLogLoading i{
+    text-align: center;
+    color: black;
+    font-size: 200px;
+}
+
+.slcProPle{
+    text-align: center;
+    color: black;
+    margin-bottom: 0;
+}
+
+.slcProPle p{
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.gameLogSelBtn {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.game-button {
+    width: 80px;
+    height: 30px;
+    margin: 0 2.5px;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+
+.game-button.selected {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid black;
+}
+
+.header-918Kiss th { background-color: #605ca8; }
+.header-Mega888 th { background-color: #3c8dbc; }
+.header-Pussy888 th { background-color: #3c8dbc; }
+.header-918Kaya th { background-color: #ff9800; }
+.header-Xe88 th { background-color: #9c27b0; }
+.header-Evo888 th { background-color: #2196f3; }
+
+#loading {
+    display: none;
+    font-size: 16px;
+}
+
+.refreshBtnCover{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.refresh-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.refresh-btn:hover {
+    background-color: #0056b3;
+}
+
+.game-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.game-item {
+    width: auto;
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.game-title {
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+.game-box {
+    width: 300px;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: left;
+    padding: 10px;
+}
+
+.game-box:hover {
+    background-color: #e1e1e1;
+}
+
+.game-box.copied {
+    background-color: #32CD32	;
+}
+
+.game-box.maintenance {
+    background-color: red;  /* Maintenance 状态的背景色为红色 */
+    color: white;  /* 文字颜色为白色 */
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.copied-text {
+    font-size: 12px;
+    font-weight: 900;
+    color: green;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.game-content {
+    display: block;
+    white-space: pre-line;  /* 保持换行 */
+}
+
+.reportDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.reportForm {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 1.0);
+    width: 400px;
+    height: auto;
+    text-align: center;
+}
+
+.reportForm h2{
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.reportForm textarea {
+    width: 350px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.sendReportBtn {
+    padding: 10px 30px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sendReportBtn:hover {
+    background-color: #0056b3;
+}
+
+#reportResponseMessage {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 900;
+    color: green;
+}
+
+.copyRight{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    bottom: 0;
+}
+
+.copyRight p{
+    font-size: 14px;
+    font-weight: 900;
+}
