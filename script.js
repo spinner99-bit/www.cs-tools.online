@@ -138,7 +138,7 @@ function loadGameLog(game, button) {
                 win: '-',
                 beginMoney: beginMoneyForRow13,
                 endMoney: (parseFloat(beginMoneyForRow13) - Math.floor(parseFloat(lastRow.endMoney))).toFixed(2), // 这一行的 BeginMoney - 上一行的 EndMoney
-                dateTime: new Date(lastRow.dateTime.getTime() + (Math.random() * (120 - 20) + 20) * 60000) // 随机增加 20 到 120 分钟
+                dateTime: new Date(lastRow.dateTime.getTime() + (Math.random() * (30 - 2) + 2) * 60000) // 随机增加 2 到 30 分钟
             };
             tableData.push(row13);
 
