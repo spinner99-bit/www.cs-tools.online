@@ -26,8 +26,8 @@
   <script src="script0.js"></script>
 
   <script>
-    if (window.location.pathname === '/login.html') {
-      window.history.replaceState({}, '', '/Login');
+    if (window.location.pathname === '/index.html') {
+      window.history.replaceState({}, '', '/Main');
     }
     </script>
 
