@@ -6,8 +6,8 @@ const tableData = [];
         const headerDiv = document.getElementById('header');
 
         if (!username) {
-            // 如果未登录，跳转到 login.html
-            window.location.href = 'login.html';
+            // 如果未登录，跳转到 index.html
+            window.location.href = 'index.html';
         } else {
             // 如果已登录，显示欢迎信息和登出按钮
             const welcomeMessage = `Welcome, ${username}`;
@@ -29,7 +29,7 @@ const tableData = [];
         localStorage.removeItem('option2');
 
         // 跳转回登录页面
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
 
 function loadGameLog(game, button) {
