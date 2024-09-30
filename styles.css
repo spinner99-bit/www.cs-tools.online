@@ -118,6 +118,7 @@ header{
 
 .gameLogTable td{
     background-color: white;
+    color: #5f5f5f;
 }
 
 .gameLogTable th, td {
@@ -226,6 +227,7 @@ header{
 }
 
 .game-list {
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
