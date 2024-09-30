@@ -6,7 +6,7 @@ const tableData = [];
         const headerDiv = document.getElementById('header');
 
         if (!username) {
-            // 如果未登录，跳转到 index.html
+            // 如果未登录，跳转到 login.html
             window.location.href = 'login.html';
         } else {
             // 如果已登录，显示欢迎信息和登出按钮
