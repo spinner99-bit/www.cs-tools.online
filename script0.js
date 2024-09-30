@@ -34,8 +34,8 @@ async function submitLogin() {
     localStorage.setItem('number2', result.number2);
     localStorage.setItem('option2', result.option2);
 
-    // 登录成功后跳转到 gametips.html
-    window.location.href = 'tipsgame.html';
+    // 登录成功后跳转到 index.html
+    window.location.href = 'index.html';
   } else {
         // 如果登录失败，显示错误信息
         document.getElementById('loginMessage').textContent = result.message || "Login failed, please try again.";
