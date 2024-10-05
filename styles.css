@@ -109,7 +109,7 @@ header{
     width: 80%;
     border-collapse: collapse;
     margin: 20px auto;
-    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.5);
+    border: 2px solid #e2e2e2;
 }
 
 .gameLogTable th{
@@ -188,7 +188,26 @@ header{
     transition: background-color 0.5s;
 }
 
+.rst-button {
+    width: 80px;
+    height: 30px;
+    margin: 0 2.5px;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+
 .game-button.selected {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid black;
+}
+
+.rst-button.active {
     background-color: #007bff;
     color: white;
     border: 2px solid black;
@@ -351,4 +370,94 @@ header{
 .copyRight p{
     font-size: 14px;
     font-weight: 900;
+}
+
+.Resit-Cover{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+}
+
+.content-mbb1{
+    font-family: "Lato", "Calibri", Helvetica, Arial, sans-serif;
+    justify-content: space-between;
+    width: 650px;
+}
+
+.mbb-top-green{
+    background-color: #389a6e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 20px;
+    padding-bottom: 40px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top: 0.5px solid #e2e2e2;
+    border-left: 0.5px solid #e2e2e2;
+    border-right: 0.5px solid #e2e2e2;
+}
+
+.mbb-top-left{
+    display: flex;
+}
+
+.mbb-name{
+    font-weight: 700;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.mbb-acc, .mbb-amount{
+    font-size: 13px;
+}
+
+.mbb-tick{
+    color: white;
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.mbb-add-favourite{
+    width: auto;
+    height: 50px;
+}
+
+.mbb-detail-cover{
+    font-size: 17px;
+    color: #171717;
+    padding: 10px 0;
+    border-top: 2px solid #ffc83d;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: white;
+    border-left: 0.5px solid #e2e2e2;
+    border-right: 0.5px solid #e2e2e2;
+    border-bottom: 0.5px solid #e2e2e2;
+}
+
+.mbb-detail-cover span{
+    color: #7D7D7D;
+}
+
+.mbb-per-detail{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+
+.mbb-bottom-detail{
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: white;
+    margin-top: 3px;
+    border-radius: 7px;
+    border: 0.5px solid #e2e2e2;
+}
+
+.mbb-bottom-detail span{
+    color: #DA4747;
 }
