@@ -58,6 +58,7 @@ header{
     background-color: #333;
     color: white;
     transition: left 0.3s ease; /* 动画效果 */
+    z-index: 1000; /* 确保在最上层 */
 }
 
 /* 侧边栏显示时 */
@@ -86,7 +87,7 @@ header{
     margin-left: 20px;
 }
 
-.bxs-wallet-alt, .bxs-game, .bxs-cog, .bxs-error-alt {
+.bxs-wallet-alt, .bxs-game, .bxs-cog, .bxs-error-alt, .bxs-image {
     font-size: 20px;
     font-weight: 900;
     margin-right: 5px;
@@ -460,4 +461,24 @@ header{
 
 .mbb-bottom-detail span{
     color: #DA4747;
+}
+
+.img-container {
+    position: relative; /* 使容器相对定位 */
+    display: inline-block; /* 让图片和按钮并排显示 */
+    margin: 10px; /* 添加间距 */
+}
+
+.delete-button {
+    position: absolute; /* 绝对定位 */
+    top: 5px; /* 距离顶部 5px */
+    right: 5px; /* 距离右侧 5px */
+    background: none; /* 移除默认背景 */
+    border: none; /* 移除默认边框 */
+    cursor: pointer; /* 鼠标悬停时显示为指针 */
+    color: #ff0000; /* 你可以更改为想要的颜色 */
+}
+
+.delete-button i {
+    font-size: 16px; /* 可根据需要调整图标大小 */
 }
