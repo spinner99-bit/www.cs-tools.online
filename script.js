@@ -184,6 +184,35 @@ const tableData = [];
             });
     }
 
+// 获取所有按钮和内容容器
+const buttons = document.querySelectorAll('.rst-button'); // 修改选择器
+const containers = document.querySelectorAll('.content, .content-mbb1'); // 匹配所有内容容器
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        // 移除所有按钮的 'active' 类
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        // 为点击的按钮添加 'active' 类
+        button.classList.add('active');
+
+        // 获取目标容器的 ID
+        const target = button.getAttribute('data-target');
+
+        // 隐藏所有内容容器
+        containers.forEach(container => {
+            container.style.display = 'none';
+        });
+
+        // 显示目标容器
+        document.getElementById(target).style.display = 'block';
+    });
+});
+
+// 默认选中第一个按钮
+document.querySelector('.rst-button').classList.add('active');
+document.getElementById('mbb1-1').style.display = 'block'; // 默认显示第一个内容
+
     // 页面加载时，自动检查登录状态并加载游戏列表
     window.onload = function() {
         checkLoginStatus();
