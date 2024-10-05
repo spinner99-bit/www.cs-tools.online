@@ -30,6 +30,9 @@
     <a href="tipsgame.html"><i class='bx bxs-game' ></i>Tips Game</a>
     <a href="index.html"><i class='bx bxs-cog'></i>Settings</a>
     <a href="report.html"><i class='bx bxs-error-alt' ></i>Report Problem</a>
+    <div id="avatarMenu">
+        <a href="girls.html"><i class='bx bxs-error-alt' ></i>Girls Avatar</a>
+    </div>
 </div>
 
 <div class="reportDiv">
@@ -51,16 +54,21 @@
     document.addEventListener("DOMContentLoaded", function() {
         const currentPath = window.location.pathname;
 
-     // 检查路径是否以 .html 结尾
-     if (currentPath.endsWith('.html')) {
-           // 将 .html 去掉
-           const newPath = currentPath.slice(0, -5);
-        
-           // 使用 History API 改变 URL 而不刷新页面
-           history.replaceState(null, '', newPath);
-    }
-});
-    </script>
+        // 检查路径是否以 .html 结尾
+        if (currentPath.endsWith('.html')) {
+            const newPath = currentPath.slice(0, -5);
+            history.replaceState(null, '', newPath);
+        }
+
+        // 判断用户是否为 admin
+        const loggedInUser = localStorage.getItem("username"); // 假设存储了用户名
+        if (loggedInUser === "admin") {
+            document.getElementById("avatarMenu").style.display = "block";
+        } else {
+            document.getElementById("avatarMenu").style.display = "none";
+        }
+    });
+</script>
 
 </body>
 </html>
