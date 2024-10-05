@@ -14,7 +14,7 @@
             const welcomeMessage = `Welcome, ${username}`;
             headerDiv.innerHTML = `
                 <div class="welcome-message">${welcomeMessage}</div>
-                <button class="logout-btn" onclick="logout()"><i class='bx bx-log-out' ></i></button>
+                <button class="logout-btn" onclick="logout()"><i class='bx bx-log-out-circle'></i></button>
             `;
         }
     }
