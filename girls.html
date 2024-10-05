@@ -37,14 +37,14 @@
     </div>
 </div>
 
-<h1>Upload Your Photo</h1>
-<form id="uploadForm" enctype="multipart/form-data">
-    <input type="file" name="photo" id="photoInput" accept="image/*" required>
-    <button type="submit" id="uploadBtn">Upload</button>
-</form>
+<div class="girls-all-cover">
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="photo" id="photoInput" accept="image/*" required>
+        <button type="submit" id="uploadBtn">Upload</button>
+    </form>
 
-<h2>Photo Gallery</h2>
-<div id="photoGallery"></div>
+    <div id="photoGallery"></div>
+</div>
 
 <footer class="copyRight">
     <p>Copyright © 2024 WWW.CS-TOOLS.ONLINE All Rights Reserved.</p>
@@ -164,8 +164,8 @@ async function fetchImages() {
                 const img = document.createElement('img');
                 img.src = url;
                 img.alt = itemRef.name;
-                img.style.width = '100px';
-                img.style.margin = '10px';
+                img.style.width = '300px';
+                img.style.margin = '5px';
 
                 imgContainer.appendChild(img);
 
