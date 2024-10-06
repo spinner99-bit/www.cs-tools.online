@@ -412,25 +412,17 @@ header{
     object-fit: cover; /* 确保图片覆盖容器而不变形 */
 }
 
-/* 为移动端进行优化 */
-@media (max-width: 768px) {
-    #photoGallery {
-        grid-template-columns: repeat(2, 1fr); /* 移动端展示 2 列 */
-    }
 
+/* 调整图片容器在小屏幕上的尺寸 */
+@media (max-width: 768px) {
     .img-container {
-        height: 300px; /* 移动端的图片容器高度减少 */
+        height: 300px; /* 适配小屏设备的图片容器高度 */
     }
 }
 
-/* 为小屏幕设备进一步优化 */
 @media (max-width: 480px) {
-    #photoGallery {
-        grid-template-columns: 1fr; /* 小屏幕展示 1 列 */
-    }
-
     .img-container {
-        height: 250px; /* 更小的图片容器高度 */
+        height: 250px; /* 更小屏幕设备的图片容器高度 */
     }
 }
 
