@@ -388,7 +388,8 @@ header{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;  /* 水平居中 */
-    align-items: center;  
+    align-items: center;
+    gap: 10px; /* 控制网格项之间的间距 */
 }
 
 .img-container {
@@ -409,6 +410,28 @@ header{
     max-width: 100%; /* 限制图片最大宽度 */
     height: auto; /* 自动高度，保持比例 */
     object-fit: cover; /* 确保图片覆盖容器而不变形 */
+}
+
+/* 为移动端进行优化 */
+@media (max-width: 768px) {
+    #photoGallery {
+        grid-template-columns: repeat(2, 1fr); /* 移动端展示 2 列 */
+    }
+
+    .img-container {
+        height: 300px; /* 移动端的图片容器高度减少 */
+    }
+}
+
+/* 为小屏幕设备进一步优化 */
+@media (max-width: 480px) {
+    #photoGallery {
+        grid-template-columns: 1fr; /* 小屏幕展示 1 列 */
+    }
+
+    .img-container {
+        height: 250px; /* 更小的图片容器高度 */
+    }
 }
 
 .delete-button {
