@@ -56,7 +56,100 @@
     
                     const gameTitle = document.createElement('div');
                     gameTitle.className = 'game-title';
-                    gameTitle.innerHTML = `Product Type : ${game.gameType}`;
+                    let imageURL = "";
+
+switch (game.gameType) {
+    case "918Kiss":
+        imageURL = "Element/GameLogo/918Kiss.png";
+        break;
+    case "Mega888":
+        imageURL = "Element/GameLogo/Mega888.png";
+        break;
+    case "Pussy888":
+        imageURL = "Element/GameLogo/Pussy888.png";
+        break;
+    case "Xe88":
+        imageURL = "Element/GameLogo/Xe88.png";
+        break;
+    case "Evo888":
+        imageURL = "Element/GameLogo/Evo888.png";
+        break;
+    case "918Kaya":
+        imageURL = "Element/GameLogo/918Kaya.png";
+        break;
+    case "Playboy2":
+        imageURL = "Element/GameLogo/Playboy2.png";
+        break;
+    case "Ace333":
+        imageURL = "Element/GameLogo/Ace333.png";
+        break;
+    case "Live22":
+        imageURL = "Element/GameLogo/Live22.png";
+        break;
+    case "Joker123":
+        imageURL = "Element/GameLogo/Joker123.png";
+        break;
+    case "Suncity":
+        imageURL = "Element/GameLogo/SunCity2.png";
+        break;
+    case "Great Wall":
+        imageURL = "Element/GameLogo/Greatwall99.png";
+        break;
+    case "JDB Slot":
+        imageURL = "Element/GameLogo/JDB-Gaming.png";
+        break;
+    case "UU Slots":
+        imageURL = "Element/GameLogo/UUSlots.png";
+        break;
+    case "Play N Go":
+        imageURL = "Element/GameLogo/PlaynGo.png";
+        break;
+    case "Wow Gaming":
+        imageURL = "Element/GameLogo/WowGaming.png";
+        break;
+    case "Realtime Gaming":
+        imageURL = "Element/GameLogo/RealtimeGaming.png";
+        break;
+    case "Pragmatic Slot":
+        imageURL = "Element/GameLogo/PragmaticPlay.png";
+        break;
+    case "Jili":
+        imageURL = "Element/GameLogo/Jili.png";
+        break;
+    case "Playtech":
+        imageURL = "Element/GameLogo/Playtech.png";
+        break;
+        case "Newtown":
+        imageURL = "Element/GameLogo/Newtown.png";
+        break;
+    case "Rollex11":
+        imageURL = "Element/GameLogo/Rollex11.png";
+        break;
+    case "Asia Gaming":
+        imageURL = "Element/GameLogo/AsiaGaming.png";
+        break;
+    case "Micro Gaming":
+        imageURL = "Element/GameLogo/MicroGaming.png";
+        break;
+    case "Spade Gaming":
+        imageURL = "Element/GameLogo/SpadeGaming.png";
+        break;
+    case "P Game Play":
+        imageURL = "Element/GameLogo/PGamePlay.png";
+        break;
+    case "V Power":
+        imageURL = "Element/GameLogo/VPower.png";
+        break;
+    case "Fa Chai":
+        imageURL = "Element/GameLogo/FaChai.png";
+        break;
+    default:
+        imageURL = "Element/GameLogo/default.png"; // 默认图片
+}
+
+// 更新 gameTitle 的内容为图片
+gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style="width: auto; height: 35px; margin: 5px 0;">`;
+
     
                     const gameBox = document.createElement('div');
                     gameBox.className = 'game-box';
