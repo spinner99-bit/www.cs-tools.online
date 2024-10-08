@@ -39,10 +39,12 @@
 </div>
 
 <div class="girls-all-cover">
-    <form id="uploadForm" enctype="multipart/form-data">
+    <form id="uploadForm" enctype="multipart/form-data" class="uploadFormDiv">
         <input type="file" name="photo" id="photoInput" accept="image/*" required>
         <button type="submit" id="uploadBtn">Upload</button>
     </form>
+
+    <div class="girl-count-image">ALREADY UPLOAD (<span id="countImg">0</span>) PICTURE</div>
 
     <div id="photoGallery"></div>
 </div>
@@ -121,36 +123,36 @@
 </script>
 
 <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-    import { getStorage, ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+import { getStorage, ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
 
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyCZAy16MZxiE9gI3uC-Z_cLFCrzwFrlEak",
-        authDomain: "my-first-project-831cd.firebaseapp.com",
-        projectId: "my-first-project-831cd",
-        storageBucket: "my-first-project-831cd.appspot.com",
-        messagingSenderId: "750869058743",
-        appId: "1:750869058743:web:971b1a14e9eb4aa0126932",
-    };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCZAy16MZxiE9gI3uC-Z_cLFCrzwFrlEak",
+    authDomain: "my-first-project-831cd.firebaseapp.com",
+    projectId: "my-first-project-831cd",
+    storageBucket: "my-first-project-831cd.appspot.com",
+    messagingSenderId: "750869058743",
+    appId: "1:750869058743:web:971b1a14e9eb4aa0126932",
+};
 
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
-    // 上传照片
-    document.getElementById('uploadForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const fileInput = document.getElementById("photoInput");
-        const file = fileInput.files[0];
-        const storageRef = ref(storage, 'images/' + file.name);
+// 上传照片
+document.getElementById('uploadForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fileInput = document.getElementById("photoInput");
+    const file = fileInput.files[0];
+    const storageRef = ref(storage, 'images/' + file.name);
 
-        uploadBytes(storageRef, file).then(() => {
-            alert("File uploaded successfully!");
-            fetchImages(); // 重新获取并显示图片
-        }).catch((error) => {
-            console.error("Upload failed:", error);
-        });
+    uploadBytes(storageRef, file).then(() => {
+        alert("File uploaded successfully!");
+        fetchImages(); // 重新获取并显示图片
+    }).catch((error) => {
+        console.error("Upload failed:", error);
     });
+});
 
 // 获取并显示所有照片
 async function fetchImages() {
@@ -191,29 +193,39 @@ async function fetchImages() {
                 console.error("Error getting download URL:", error);
             });
         });
+
+        // 更新图片总数
+        updateImageCount(res.items.length);
+
     } catch (error) {
         console.error("Error fetching images:", error);
     }
 }
 
-    // 删除照片
-    function deleteImage(itemRef) {
-        const confirmed = confirm("Are you sure you want to delete this photo?");
-        if (confirmed) {
-            deleteObject(itemRef).then(() => {
-                alert("File deleted successfully!");
-                fetchImages(); // 删除后重新获取并显示图片
-            }).catch((error) => {
-                console.error("Delete failed:", error);
-            });
-        }
-    }
+// 更新图片总数
+function updateImageCount(count) {
+    document.getElementById('countImg').textContent = count;
+}
 
-    // 页面加载时获取并显示图片
-    window.onload = function() {
-        checkLoginStatus();
-        fetchImages();
-    };
+// 删除照片
+function deleteImage(itemRef) {
+    const confirmed = confirm("Are you sure you want to delete this photo?");
+    if (confirmed) {
+        deleteObject(itemRef).then(() => {
+            alert("File deleted successfully!");
+            fetchImages(); // 删除后重新获取并显示图片
+        }).catch((error) => {
+            console.error("Delete failed:", error);
+        });
+    }
+}
+
+// 页面加载时获取并显示图片
+window.onload = function() {
+    checkLoginStatus();
+    fetchImages();
+};
+
 </script>
 
 </body>
