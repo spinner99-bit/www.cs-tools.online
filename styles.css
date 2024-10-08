@@ -377,10 +377,15 @@ header{
     justify-content: center;
 }
 
-.girls-all-cover form{
+.uploadFormDiv{
     justify-content: center;
     text-align: center;
-    margin-bottom: 50px;
+}
+
+.girl-count-image{
+    font-size: 20px;
+    font-weight: 900;
+    margin: 20px auto;
 }
 
 #photoGallery{
