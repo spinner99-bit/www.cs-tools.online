@@ -415,13 +415,13 @@ header{
 /* 调整图片容器在小屏幕上的尺寸 */
 @media (max-width: 768px) {
     .img-container {
-        height: 300px; /* 适配小屏设备的图片容器高度 */
+        height: 160px; /* 适配小屏设备的图片容器高度 */
     }
 }
 
 @media (max-width: 480px) {
     .img-container {
-        height: 250px; /* 更小屏幕设备的图片容器高度 */
+        height: 100px; /* 更小屏幕设备的图片容器高度 */
     }
 }
 
