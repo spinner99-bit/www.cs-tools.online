@@ -426,7 +426,7 @@ header{
 
 @media (max-width: 480px) {
     .img-container {
-        height: 100px; /* 更小屏幕设备的图片容器高度 */
+        height: 140px; /* 更小屏幕设备的图片容器高度 */
     }
 }
 
