@@ -90,7 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "918Kiss Html5": "Element/GameLogo/918KissHtml5.png",
         "V Power": "Element/GameLogo/VPower.png",
         "King855": "Element/GameLogo/King855.png",
-        "C8Play": "Element/GameLogo/C8Play.png"
+        "C8Play": "Element/GameLogo/C8Play.png",
+        "Lion King": "Element/GameLogo/LionKing.png"
       };
     
       async function fetchProducts() {
