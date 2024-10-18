@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Problem</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="Element/Icon.png">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="menuBtnC">
+        <i class='bx bx-menu'></i>
+    </div>
+    <div id="header" class="userInfoR">
+        <!-- 头部内容将根据用户登录状态动态插入 -->
+    </div>
+</header>
+
+<!-- 侧边栏菜单 -->
+<div class="sidebar" id="sidebar">
+    <div class="sideBarTopCont">
+        <h2>MENU</h2>
+        <button class="close-btn" id="closeSidebar">
+            <i class='bx bx-x'></i>
+        </button>
+    </div>
+    <a href="gamelog.html"><i class='bx bxs-wallet-alt'></i>Game Log & Resit</a>
+    <a href="tipsgame.html"><i class='bx bxs-game' ></i>Tips Game</a>
+    <a href="providers-link.html"><i class='bx bx-link-alt'></i>Providers Link</a>
+    <a href="index.html"><i class='bx bxs-cog'></i>Settings</a>
+    <a href="report.html"><i class='bx bxs-error-alt' ></i>Report Problem</a>
+    <div id="avatarMenu">
+        <a href="girls.html"><i class='bx bxs-image'></i>Girls Avatar</a>
+        <a href="manage-user.html"><i class='bx bxs-user-circle'></i>Manage User</a>
+        <a href="manage-link.html"><i class='bx bx-unlink'></i>Manage Link</a>
+    </div>
+</div>
+
+<div class="reportDiv">
+    <div class="reportForm">
+        <h2>Report a problem</h2>
+        <textarea id="messageInput" placeholder="Please fill in the problem you encountered here....." required></textarea>
+        <button onclick="sendMessage()" class="sendReportBtn">Send</button>
+        <p id="reportResponseMessage"></p>
+    </div>
+</div>
+
+<footer class="copyRight">
+    <p>Copyrght © 2024 WWW.CS-TOOLS.ONLINE All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

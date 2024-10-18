@@ -1,0 +1,655 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    background-color: #f0f0f0;;
+}
+
+body, html{
+    height: 100%;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* 菜单按钮样式 */
+.menuBtnC {
+    cursor: pointer;
+}
+
+.menuBtnC i{
+    font-size: 45px;
+    font-weight: 900;
+}
+
+.userInfoR{
+    display: flex;
+}
+
+.welcome-message{
+    font-size: 16px;
+    font-weight: 900;
+    align-content: center;
+}
+
+.logout-btn{
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+}
+
+.logout-btn i{
+    font-size: 40px;
+}
+
+/* 样式：隐藏的侧边栏 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -400px; /* 初始位置为隐藏 */
+    width: 230px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transition: left 0.3s ease; /* 动画效果 */
+    z-index: 1000; /* 确保在最上层 */
+}
+
+/* 侧边栏显示时 */
+.sidebar.active {
+    left: 0; /* 显示时的左侧位置 */
+}
+
+.sideBarTopCont{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.close-btn{
+    padding: 0;
+}
+
+.sideBarTopCont i{
+    font-size: 26px;
+}
+
+.sideBarTopCont h2{
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+.bxs-wallet-alt, .bxs-game, .bxs-cog, .bxs-error-alt, .bxs-image, .bx-link-alt, .bxs-user-circle, .bx-unlink {
+    font-size: 22px;
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+.sidebar a {
+    color: white;
+    font-size: 16px;
+    font-weight: 900;
+    display: block;
+    padding: 7px 0 7px 20px;
+    text-decoration: none;
+    display: flex;
+}
+
+.sidebar a:hover {
+    background-color: #555;
+}
+
+.gameLogTable {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    border: 2px solid #e2e2e2;
+}
+
+.gameLogTable th{
+    color: white;
+}
+
+.gameLogTable td{
+    background-color: white;
+    color: #5f5f5f;
+}
+
+.gameLogTable th, td {
+    border: 1px solid #f1f1f1;
+    padding: 8px;
+    text-align: center;
+}
+
+.red-text {
+    color: #dd4b39 !important;
+    font-weight: 700;
+}
+
+.bg-gray {
+    background-color: #d2d6de !important;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.gameLogLoading{
+    text-align: center;
+    color: black;
+    font-weight: 900;
+    margin-top: 40px;
+}
+
+.bx-loader{
+	-webkit-animation: spin 3s linear infinite;
+	-moz-animation: spin 3s linear infinite;
+	animation: spin 3s linear infinite;
+}
+
+.gameLogLoading i{
+    text-align: center;
+    color: black;
+    font-size: 200px;
+}
+
+.slcProPle{
+    text-align: center;
+    color: black;
+    margin-bottom: 0;
+}
+
+.slcProPle p{
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.gameLogSelBtn {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.game-button {
+    width: 80px;
+    height: 30px;
+    margin: 0 2.5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+
+.rst-button {
+    width: 80px;
+    height: 30px;
+    margin: 0 2.5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+
+.game-button.selected {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid black;
+}
+
+.rst-button.active {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid black;
+}
+
+.header-918Kiss th { background-color: #605ca8; }
+.header-Mega888 th { background-color: #3c8dbc; }
+.header-Pussy888 th { background-color: #3c8dbc; }
+.header-918Kaya th { background-color: #ff9800; }
+.header-Xe88 th { background-color: #9c27b0; }
+.header-Evo888 th { background-color: #2196f3; }
+
+#loading {
+    display: none;
+    font-size: 16px;
+}
+
+.refreshBtnCover{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.refresh-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.refresh-btn:hover {
+    background-color: #0056b3;
+}
+
+.game-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.game-item {
+    width: auto;
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 0 10px 10px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.game-title {
+    text-align: center;
+    align-content: center;
+}
+
+.game-box {
+    width: 300px;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: left;
+    padding: 10px;
+}
+
+.game-box:hover {
+    background-color: #e1e1e1;
+}
+
+.game-box.copied {
+    background-color: #32CD32	;
+}
+
+.game-box.maintenance {
+    background-color: red;  /* Maintenance 状态的背景色为红色 */
+    color: white;  /* 文字颜色为白色 */
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.copied-text {
+    font-size: 12px;
+    font-weight: 900;
+    color: green;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.game-content {
+    display: block;
+    white-space: pre-line;  /* 保持换行 */
+}
+
+.reportDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.reportForm {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 1.0);
+    width: 400px;
+    height: auto;
+    text-align: center;
+}
+
+.reportForm h2{
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.reportForm textarea {
+    width: 350px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.sendReportBtn {
+    padding: 10px 30px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sendReportBtn:hover {
+    background-color: #0056b3;
+}
+
+#reportResponseMessage {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 900;
+    color: green;
+}
+
+.copyRight{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    bottom: 0;
+}
+
+.copyRight p{
+    font-size: 14px;
+    font-weight: 900;
+}
+
+#products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 每行显示四个产品 */
+    gap: 10px; /* 产品之间的间距 */
+    padding: 10px;
+}
+
+.product {
+    text-align: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #f9f9f9;
+}
+
+.product img {
+    margin-top: 10px;
+    width: auto;
+    max-height: 40px;
+}
+
+.link-group {
+    margin: 10px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.link-group input {
+    width: 100%;
+    padding: 8px;
+    padding-right: 50px; /* 为按钮预留空间 */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.link-group button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 3px 5px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.link-group button i {
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.link-group label {
+    font-size: 12px;
+    text-align: right;
+    margin-right: 10px;
+    width: 100px;
+    display: inline-block;
+    color: #555;
+}
+
+.copy-btn:hover {
+    background-color: #2980b9;
+}
+
+@media screen and (max-width: 768px) {
+    #products {
+      grid-template-columns: repeat(2, 1fr); /* 屏幕小于768px时，每行显示两个产品 */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #products {
+      grid-template-columns: 1fr; /* 屏幕小于480px时，每行显示一个产品 */
+    }
+}
+
+.manage-link-full-cover{
+    display: flex;
+    justify-content: center;
+}
+
+.manage-link-container {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.manage-link-container th, .manage-link-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.manage-link-container th {
+    background-color: #f2f2f2;
+}
+.edit-button, .save-button {
+    cursor: pointer;
+    color: blue;
+    margin-right: 10px;
+}
+
+
+
+.girls-all-cover{
+    display: grid;
+    justify-content: center;
+}
+
+.uploadFormDiv{
+    justify-content: center;
+    text-align: center;
+}
+
+.girl-count-image{
+    font-size: 20px;
+    font-weight: 900;
+    margin: 20px auto;
+}
+
+#photoGallery{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;  /* 水平居中 */
+    align-items: center;
+}
+
+.img-container {
+    position: relative; /* 使容器相对定位 */
+    display: flex;      /* 使用 Flexbox */
+    flex-direction: column; /* 垂直排列图片和按钮 */
+    justify-content: center; /* 垂直居中 */
+    align-items: center; /* 水平居中 */
+    height: 370px; /* 容器高度 */
+    overflow: hidden;
+    text-align: center;
+    background-color: black;
+    margin: 5px; /* 添加一些外边距以避免重叠 */
+    border: 2px solid #e2e2e2;
+}
+
+.img-container img {
+    max-width: 100%; /* 限制图片最大宽度 */
+    height: auto; /* 自动高度，保持比例 */
+    object-fit: cover; /* 确保图片覆盖容器而不变形 */
+}
+
+.delete-button {
+    position: absolute; /* 绝对定位 */
+    top: 0; /* 距离顶部 5px */
+    right: -5px; /* 距离右侧 5px */
+    background: none; /* 移除默认背景 */
+    border: none; /* 移除默认边框 */
+    cursor: pointer; /* 鼠标悬停时显示为指针 */
+    color: #ff0000; /* 你可以更改为想要的颜色 */
+}
+
+.bxs-trash-alt{
+    font-size: 40px;
+}
+
+/* 调整图片容器在小屏幕上的尺寸 */
+@media (max-width: 768px) {
+    .img-container {
+        margin: 0;
+        height: 160px; /* 适配小屏设备的图片容器高度 */
+    }
+}
+
+@media (max-width: 480px) {
+    .img-container {
+        margin: 0;
+        height: 170px; /* 更小屏幕设备的图片容器高度 */
+    }
+    .delete-button{
+        top: 2px;
+        right: -10px;
+    }
+    .bxs-trash-alt{
+        font-size: 24px;
+    }
+    .copyRight p{
+        font-size: 10px;
+    }
+}
+
+.Resit-Cover{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+}
+
+.content-mbb1{
+    font-family: "Lato", "Calibri", Helvetica, Arial, sans-serif;
+    justify-content: space-between;
+    width: 650px;
+}
+
+.mbb-top-green{
+    background-color: #389a6e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 20px;
+    padding-bottom: 40px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top: 0.5px solid #e2e2e2;
+    border-left: 0.5px solid #e2e2e2;
+    border-right: 0.5px solid #e2e2e2;
+}
+
+.mbb-top-left{
+    display: flex;
+}
+
+.mbb-name{
+    font-weight: 700;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.mbb-acc, .mbb-amount{
+    font-size: 13px;
+}
+
+.mbb-tick{
+    color: white;
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.mbb-add-favourite{
+    width: auto;
+    height: 50px;
+}
+
+.mbb-detail-cover{
+    font-size: 17px;
+    color: #171717;
+    padding: 10px 0;
+    border-top: 2px solid #ffc83d;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: white;
+    border-left: 0.5px solid #e2e2e2;
+    border-right: 0.5px solid #e2e2e2;
+    border-bottom: 0.5px solid #e2e2e2;
+}
+
+.mbb-detail-cover span{
+    color: #7D7D7D;
+}
+
+.mbb-per-detail{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+
+.mbb-bottom-detail{
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: white;
+    margin-top: 3px;
+    border-radius: 7px;
+    border: 0.5px solid #e2e2e2;
+}
+
+.mbb-bottom-detail span{
+    color: #DA4747;
+}
