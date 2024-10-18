@@ -78,9 +78,9 @@
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${product.name || '未知产品'}</td>
-                <td contenteditable="false" class="editable" data-index="${index}">${product.download || '无链接'}</td>
-                <td contenteditable="false" class="editable" data-index="${index}">${product.web || '无链接'}</td>
-                <td contenteditable="false" class="editable" data-index="${index}">${product.kiosk || '无链接'}</td>
+                <td contenteditable="false" class="editable" data-index="${index}">${product.download || ''}</td>
+                <td contenteditable="false" class="editable" data-index="${index}">${product.web || ''}</td>
+                <td contenteditable="false" class="editable" data-index="${index}">${product.kiosk || ''}</td>
                 <td>
                     <span class="edit-button" onclick="editRow(${index})"><i class='bx bxs-edit'></i></span>
                     <span class="save-button" onclick="saveRow(${index})"><i class='bx bxs-save'></i></span>
