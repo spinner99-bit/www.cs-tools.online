@@ -85,7 +85,12 @@ document.addEventListener("DOMContentLoaded", function() {
         "SunCity2": "Element/GameLogo/SunCity2.png",
         "Greatwall99": "Element/GameLogo/Greatwall99.png",
         "Newtown": "Element/GameLogo/Newtown.png",
-        "Rollex11": "Element/GameLogo/Rollex11.png"
+        "Rollex11": "Element/GameLogo/Rollex11.png",
+        "918Kiss 2": "Element/GameLogo/918Kss2.png",
+        "918Kiss Html5": "Element/GameLogo/918KissHtml5.png",
+        "V Power": "Element/GameLogo/VPower.png",
+        "King855": "Element/GameLogo/King855.png",
+        "C8Play": "Element/GameLogo/C8Play.png"
       };
     
       async function fetchProducts() {
