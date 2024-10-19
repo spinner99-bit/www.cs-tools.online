@@ -38,6 +38,7 @@ async function submitLogin() {
   const result = await response.json();
   if (result.success) {
     localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
     localStorage.setItem('fullName', result.fullName);
     localStorage.setItem('phoneNumber', result.phoneNumber);
     localStorage.setItem('option1', result.option1);
