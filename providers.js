@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <div class="link-group">
               <label>Kiosk</label>
               <input type="text" value="${product.kiosk}" readonly id="kiosk-link-${product.name}">
-              <button class="copy-btn" onclick="copyLink('kiosk-link-${product.kiosk}')"><i class='bx bxs-copy'></i></button>
+              <button class="copy-btn" onclick="copyLink('kiosk-link-${product.name}')"><i class='bx bxs-copy'></i></button>
             </div>
           `;
     
