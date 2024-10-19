@@ -480,8 +480,6 @@ header{
     margin-right: 10px;
 }
 
-
-
 .girls-all-cover{
     display: grid;
     justify-content: center;
@@ -562,6 +560,59 @@ header{
     .copyRight p{
         font-size: 10px;
     }
+}
+
+.setting-full-cover{
+    display: flex;
+    justify-content: center;
+}
+
+.settings-container{
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+    border: 2px solid #ccc;
+    padding: 20px 40px;
+}
+
+.settings-container h2{
+    font-weight: 900;
+    margin: 0;
+}
+
+.setting-per-row{
+    margin: 10px 0;
+}
+
+.setting-per-row label{
+    text-align: center;
+    align-content: center;
+    width: 120px;
+    font-size: 14px;
+    color: black;
+    margin-right: 10px;
+}
+
+.setting-per-row input{
+    margin-top: 5px;
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 900;
+    color: black;
+}
+
+.setting-button-edit{
+    margin-top: 10px;
+    padding: 8px 20px;
+    font-weight: 900;
+    border-radius: 10px;
+    border: none;
+    background-color: #3498db;
+}
+
+.setting-button-edit:hover{
+    background-color: #2980b9;
 }
 
 .Resit-Cover{
