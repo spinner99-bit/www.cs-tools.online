@@ -405,7 +405,7 @@ header{
 .link-group input {
     width: 100%;
     padding: 8px;
-    padding-right: 50px; /* 为按钮预留空间 */
+    padding-right: 30px;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-right: 5px;
