@@ -255,11 +255,11 @@ header{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .game-item {
-    width: auto;
+    width: 300px;
     border: 1px solid #ccc;
     background-color: white;
     padding: 0 10px 10px 10px;
@@ -272,7 +272,7 @@ header{
 }
 
 .game-box {
-    width: 300px;
+    width: auto;
     height: 170px;
     display: flex;
     justify-content: center;
