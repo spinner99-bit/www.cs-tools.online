@@ -92,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "V Power": "Element/GameLogo/VPower.png",
         "King855": "Element/GameLogo/King855.png",
         "C8Play": "Element/GameLogo/C8Play.png",
-        "Lion King": "Element/GameLogo/LionKing.png"
+        "Lion King": "Element/GameLogo/LionKing.png",
+        "3Win8": "Element/GameLogo/3Win8.png"
       };
     
 // 加载产品信息的函数
