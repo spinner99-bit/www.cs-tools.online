@@ -95,49 +95,89 @@ document.addEventListener("DOMContentLoaded", function() {
         "Lion King": "Element/GameLogo/LionKing.png"
       };
     
-      async function fetchProducts() {
-        const response = await fetch(API_URL);
-        const products = await response.json();
-        
-        const productContainer = document.getElementById('products');
-        products.forEach(product => {
+// 加载产品信息的函数
+async function fetchProducts() {
+  // 显示加载动画，隐藏产品列表
+  document.getElementById('loading').style.display = 'grid';
+  document.getElementById('products').style.display = 'none';
+
+  try {
+      const response = await fetch(API_URL);
+      const products = await response.json();
+
+      const productContainer = document.getElementById('products');
+      products.forEach(product => {
           const productDiv = document.createElement('div');
           productDiv.classList.add('product');
-    
+
           // 获取对应的图片路径
           const imageUrl = imageMap[product.name] || ''; 
-    
+
           productDiv.innerHTML = `
-            <img src="${imageUrl}" alt="${product.name}">
-            <div class="link-group">
-              <label>Download</label>
-              <input type="text" value="${product.download}" readonly id="download-link-${product.name}">
-              <button class="copy-btn" onclick="copyLink('download-link-${product.name}')"><i class='bx bxs-copy'></i></button>
-            </div>
-            <div class="link-group">
-              <label>Web</label>
-              <input type="text" value="${product.web}" readonly id="web-link-${product.name}">
-              <button class="copy-btn" onclick="copyLink('web-link-${product.name}')"><i class='bx bxs-copy'></i></button>
-            </div>
-            <div class="link-group">
-              <label>Kiosk</label>
-              <input type="text" value="${product.kiosk}" readonly id="kiosk-link-${product.name}">
-              <button class="copy-btn" onclick="copyLink('kiosk-link-${product.name}')"><i class='bx bxs-copy'></i></button>
-            </div>
+              <div class="image-group">
+                <img src="${imageUrl}" alt="${product.name}">
+              </div>
+              <div class="link-group">
+                  <label>Download</label>
+                  <input type="text" value="${product.download}" readonly id="download-link-${product.name}">
+                  <button class="copy-btn" onclick="copyLink('download-link-${product.name}')"><i class='bx bxs-copy'></i></button>
+                  <button class="open-btn" onclick="openLink('download-link-${product.name}')"><i class='bx bx-link-external'></i></button>
+              </div>
+              <div class="link-group">
+                  <label>Web</label>
+                  <input type="text" value="${product.web}" readonly id="web-link-${product.name}">
+                  <button class="copy-btn" onclick="copyLink('web-link-${product.name}')"><i class='bx bxs-copy'></i></button>
+                  <button class="open-btn" onclick="openLink('web-link-${product.name}')"><i class='bx bx-link-external'></i></button>
+              </div>
+              <div class="link-group">
+                  <label>Kiosk</label>
+                  <input type="text" value="${product.kiosk}" readonly id="kiosk-link-${product.name}">
+                  <button class="copy-btn" onclick="copyLink('kiosk-link-${product.name}')"><i class='bx bxs-copy'></i></button>
+                  <button class="open-btn" onclick="openLink('kiosk-link-${product.name}')"><i class='bx bx-link-external'></i></button>
+              </div>
           `;
-    
+
           productContainer.appendChild(productDiv);
-        });
-      }
-    
-      // 复制链接功能
-      function copyLink(inputId) {
-        const copyText = document.getElementById(inputId);
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
-        document.execCommand("copy");
-        alert("Copied: " + copyText.value);
-      }
-    
-      // 加载产品信息
-      fetchProducts();
+      });
+  } catch (error) {
+      console.error('Error fetching products:', error);
+  } finally {
+      // 隐藏加载动画，显示产品列表
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('products').style.display = 'flex';
+  }
+}
+
+// 复制链接功能
+function copyLink(inputId) {
+  const copyText = document.getElementById(inputId);
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  document.execCommand("copy");
+  alert("Copied: " + copyText.value);
+}
+
+// 打开链接功能
+function openLink(inputId) {
+  let link = document.getElementById(inputId).value.trim();
+
+  // 正则表达式检查 URL 格式
+  const urlPattern = /^(http:\/\/|https:\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+
+  // 如果链接不符合格式，则提示用户
+  if (!urlPattern.test(link)) {
+    alert("Blank ! !");
+    return;
+  }
+
+  // 如果没有前缀，则添加 http://
+  if (!link.startsWith('http://') && !link.startsWith('https://')) {
+    link = 'http://' + link;
+  }
+
+  window.open(link);
+}
+
+
+// 加载产品信息
+fetchProducts();
