@@ -1,14 +1,15 @@
-body {
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+}
+
+body {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 12px;
-    background-color: #f0f0f0;;
-}
-
-body, html{
-    height: 100%;
+    background-color: #f0f0f0;
+    min-height: 100vh;
 }
 
 header{
@@ -319,8 +320,8 @@ header{
 
 .reportForm {
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 1.0);
+    border-radius: 10px;
+    border: 1px solid #ccc;
     width: 400px;
     height: auto;
     text-align: center;
@@ -374,10 +375,11 @@ header{
 }
 
 #products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 每行显示四个产品 */
-    gap: 10px; /* 产品之间的间距 */
+    display: flex;
+    flex-wrap: wrap;
     padding: 10px;
+    gap: 10px;
+    justify-content: center;
 }
 
 .product {
@@ -387,6 +389,7 @@ header{
     border-radius: 8px;
     padding: 5px;
     background-color: #f9f9f9;
+    max-width: 300px;
 }
 
 .product img {
@@ -569,8 +572,8 @@ header{
 .settings-container{
     text-align: center;
     background-color: white;
-    border-radius: 30px;
-    border: 2px solid #ccc;
+    border-radius: 10px;
+    border: 1px solid #ccc;
     padding: 20px 40px;
 }
 
