@@ -427,7 +427,6 @@ header{
 }
 
 .link-group button i {
-    margin-left: 5px;
     font-size: 16px;
 }
 
@@ -609,6 +608,7 @@ header{
     border-radius: 10px;
     border: none;
     background-color: #3498db;
+    color: white;
 }
 
 .setting-button-edit:hover{
