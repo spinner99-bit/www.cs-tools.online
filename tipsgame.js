@@ -113,6 +113,18 @@ switch (game.gameType) {
     case "Great Wall":
         imageURL = "Element/GameLogo/Greatwall99.png";
         break;
+    case "918Kiss 2":
+        imageURL = "Element/GameLogo/918Kiss2.png";
+        break;
+    case "918Kiss Html5":
+        imageURL = "Element/GameLogo/918KissHtml5.png";
+        break;
+    case "Mega H5":
+        imageURL = "Element/GameLogo/MegaH5.png";
+        break;
+    case "3Win8":
+        imageURL = "Element/GameLogo/3Win8.png";
+        break;
     case "JDB Slot":
         imageURL = "Element/GameLogo/JDB-Gaming.png";
         break;
