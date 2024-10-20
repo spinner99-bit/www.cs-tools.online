@@ -143,6 +143,11 @@ header{
     font-size: 10px;
 }
 
+#loading {
+    display: none;
+    font-size: 16px;
+}
+
 .gameLogLoading{
     text-align: center;
     color: black;
@@ -224,11 +229,6 @@ header{
 .header-918Kaya th { background-color: #ff9800; }
 .header-Xe88 th { background-color: #9c27b0; }
 .header-Evo888 th { background-color: #2196f3; }
-
-#loading {
-    display: none;
-    font-size: 16px;
-}
 
 .refreshBtnCover{
     display: flex;
@@ -392,10 +392,17 @@ header{
     max-width: 300px;
 }
 
+.image-group{
+    height: 100px;
+    align-content: center;
+    justify-content: center;
+}
+
 .product img {
     margin-top: 10px;
-    width: auto;
-    max-height: 40px;
+    max-width: 90%; /* 确保图片根据容器宽度调整 */
+    height: auto;    /* 保持图片比例 */
+    max-height: 70px; /* 如果需要，可以限制图片的最大高度 */
 }
 
 .link-group {
@@ -408,7 +415,7 @@ header{
 .link-group input {
     width: 100%;
     padding: 8px;
-    padding-right: 30px;
+    padding-right: 65px;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-right: 5px;
@@ -444,6 +451,18 @@ header{
 
 .copy-btn:hover {
     background-color: #2980b9;
+}
+
+.providers-link-btn-cover{
+    display: flex;
+}
+
+.link-group button.copy-btn {
+    right: 40px; /* 修改为距离右侧 45px */
+}
+
+.link-group button.open-btn {
+    right: 10px; /* 保持原有的 right 属性 */
 }
 
 @media screen and (max-width: 768px) {
