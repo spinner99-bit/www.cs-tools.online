@@ -260,10 +260,10 @@ header{
 
 .game-item {
     width: 300px;
+    border-radius: 8px;
     border: 1px solid #ccc;
     background-color: white;
     padding: 0 10px 10px 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .game-title {
@@ -385,7 +385,7 @@ header{
 .product {
     text-align: center;
     align-items: center;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 8px;
     padding: 5px;
     background-color: #f9f9f9;
