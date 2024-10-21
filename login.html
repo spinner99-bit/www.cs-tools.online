@@ -6,20 +6,43 @@
   <title>LOGIN CS-Tools</title>
   <link rel="stylesheet" href="styles0.css">
   <link rel="shortcut icon" href="Element/Icon.png">
+  <link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
-<body>
-  <div id="outer0" class="all-container-cover">
-    <div id="inner0"></div>
+<body onload="startTime()">
+
+  <div class="login-clock-cover">
+    <div id="clockdate">
+      <div class="clockdate-wrapper">
+        <div class="time-clock-div">
+          <div id="clock"></div>
+          <div id="time"></div>
+        </div>
+        <div id="date"></div>
+      </div>
+    </div>
+  </div>
 
     <!-- 登录表单 -->
-    <div id="loginForm">
-      <h2>Welcome, Please Login</h2>
-      <div class="inputDiv">
-        <input type="text" id="loginUsername" placeholder="Username" required><br>
-        <input type="password" id="loginPassword" placeholder="Password" required><br>
+  <div class="login-container-cover">
+
+    <div class="login-first-step" id="loginBefore">
+      <img src="Element/MyPic.png" class="MyPic">
+      <button class="login-button-first" onclick="showLoginForm()">LOGIN</button>
+    </div>
+
+      <!-- 模态框 -->
+      <div id="loginModal" class="modal">
+        <div class="modal-content">
+          <h1>LOGIN</h1>
+          <div class="inputDiv">
+            <input type="text" id="loginUsername" placeholder="Enter Your Username" required><br>
+            <input type="password" id="loginPassword" placeholder="Enter Your Password" required><br>
+          </div>
+          <button onclick="submitLogin()" class="submit-btn">LOGIN<i class='bx bx-log-in-circle' ></i></button>
+          <p id="loginMessage"></p>
+        </div>
       </div>
-      <button onclick="submitLogin()" class="submit-btn">LOGIN</button>
-      <p id="loginMessage"></p>
     </div>
 
   </div>
