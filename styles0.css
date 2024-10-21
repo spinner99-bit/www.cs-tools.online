@@ -6,103 +6,160 @@
   font-weight: 900;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0;;
+  background-image: url(Element/Bg.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  height: 100%;
+  overflow: hidden;
 }
 
-.all-container-cover {
+.login-clock-cover{
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
+  margin-top: 40px;
 }
 
-#loginForm {
-  background: white;
-  border-radius: 15px;
-  width: auto;
-  height: auto;
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 1.0);
+#clockdate{
+  padding:25px;
+  width: 700px;
+}
+
+.clockdate-wrapper {
+  background-color: transparent;
+  text-align:center;
+  border-radius:5px;
+  margin:0 auto;
+}
+
+.time-clock-div{
+  display: flex;
+  justify-content: center;
+}
+
+#clock{
+  background-color: transparent;
+  font-family: sans-serif;
+  font-size: 100px;
+  color:#fff;
+}
+
+#time{
+  color:white;
+  font-family: sans-serif;
+  font-size:50px;
+  align-content: center;
+  margin-left: 20px;
+}
+
+#date {
+  letter-spacing:3px;
+  font-size:20px;
+  font-family:arial,sans-serif;
+  color:#fff;
+}
+
+.login-container-cover{
+  display: grid;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.login-first-step{
+  width: 400px;
+  display: grid;
+  justify-content: center;
   text-align: center;
+}
+
+.login-first-step img{
+  height: auto;
+  width: 300px;
+}
+
+.login-first-step button{
+  width: 150px;
+  padding: 7px 0;
+  justify-self: center;
+  margin-top: 20px;
+  background: linear-gradient(to right, #329090, #102e39);
   color: white;
+  font-size: 20px;
+  border: 1px solid #329090;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.inputDiv{
+.modal {
+  display: none; /* 默认隐藏 */
+  position: fixed; /* 固定位置 */
+  z-index: 1; /* 确保在顶层 */
+  left: 0;
+  top: 0;
+  width: 100%; /* 宽度为全屏 */
+  height: 100%; /* 高度为全屏 */
+  background-color: rgba(0, 0, 0, 0.7); /* 背景半透明 */
+}
+
+/* 模态框内容 */
+.modal-content {
+  background: transparent;
+  backdrop-filter: blur(10px);
+  margin: 15% auto;
   padding: 20px;
+  border: 2px solid white;
+  width: 350px;
+  border-radius: 10px;
+  text-align: center;
+  display: grid;
 }
 
-#loginForm h2 {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  background-color: #6236ff;
-  margin-bottom: 20px;
-  font-size: 2em;
+.modal-content h1{
   color: white;
-  padding: 20px;
+  margin-bottom: 10px;
 }
 
-#loginForm input[type="text"],
-#loginForm input[type="password"] {
-  width: 100%;
-  padding: 5px 10px;
-  margin: 5px 0 10px;
+.inputDiv input {
+  width: 300px;
+  padding: 8px;
+  margin: 5px 0;
+  text-align: center;
+  background-color: transparent;
   border: none;
-  border-bottom: 3px solid black;
-  background: rgba(255, 255, 255, 0.8);
-  font-size: 1em;
+  font-size: 16px;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.inputDiv input:focus{
+  outline: none;
 }
 
 .submit-btn {
-  background-color: #6236ff;
-  color: white;
+  padding: 5px 0;
+  width: 150px;
+  background-color: white;
+  color: black;
   border: none;
-  padding: 10px 100px;
-  border-radius: 25px;
   cursor: pointer;
+  justify-self: center;
   margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.submit-btn:disabled {
-  background-color: #9b8cff;
-  cursor: not-allowed;
+.submit-btn:hover {
+  color: white;
+  background-color: #007bff;
 }
 
-.submit-btn:hover:not(:disabled) {
-  background-color: #4420b9;
+.submit-btn i{
+  font-size: 30px;
 }
-
-#loginMessage {
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: red;
-}
-
-/* 样式调整：移除其他不需要的部分 */
-#loginForm a,
-#loginForm p {
-  display: none;
-}
-
-/* 视觉效果调整 */
-#outer0::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-#loginMessage {
-  color: red;
-}
-
-
