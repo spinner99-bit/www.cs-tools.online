@@ -68,3 +68,59 @@ function updateUI() {
     document.getElementById('loginForm').style.display = 'block';
   }
 }
+
+function showLoginForm() {
+  document.getElementById("loginModal").style.display = "block";
+}
+
+  // 当用户点击模态框外部时关闭模态框
+  window.onclick = function(event) {
+    var modal = document.getElementById("loginModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+function startTime() {
+  var today = new Date();
+  var hr = today.getHours();  // 24-hour format, no need for conversion
+  var min = today.getMinutes();
+  var sec = today.getSeconds();
+
+  // AM/PM logic
+  var ap = (hr < 12) ? "AM" : "PM";
+
+  // Add leading zeros to hours, minutes, and seconds
+  hr = checkTime(hr);
+  min = checkTime(min);
+  sec = checkTime(sec);
+
+  // Display time in 24-hour format using 'hr' (no conversion)
+  document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec;
+
+  // Display AM/PM in the 'time' div (optional if you want to show AM/PM even for 24-hour format)
+  document.getElementById("time").innerHTML = ap;
+
+  // Get the current date
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday'];
+  var curWeekDay = days[today.getDay()];
+  var curDay = today.getDate();
+  var curMonth = months[today.getMonth()];
+  var curYear = today.getFullYear();
+  var date = curWeekDay + ", " + curDay + " " + curMonth + " " + curYear;
+  document.getElementById("date").innerHTML = date;
+
+  // Update every second
+  setTimeout(function() { startTime() }, 500);
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;  // Add leading zero if necessary
+  }
+  return i;
+}
+
+// Start the clock when the page loads
+startTime();
