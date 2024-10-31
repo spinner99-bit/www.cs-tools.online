@@ -137,68 +137,106 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 // 上传照片
-document.getElementById('uploadForm').addEventListener('submit', (e) => {
+document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // 从 localStorage 获取 username
+    const username = localStorage.getItem("username");
+    if (!username) {
+        alert("Username not found in localStorage.");
+        return;
+    }
+
     const fileInput = document.getElementById("photoInput");
     const file = fileInput.files[0];
     const storageRef = ref(storage, 'images/' + file.name);
 
-    uploadBytes(storageRef, file).then(() => {
-        alert("File uploaded successfully!");
-        fetchImages(); // 重新获取并显示图片
-    }).catch((error) => {
+    try {
+        await uploadBytes(storageRef, file);
+        const imageUrl = await getDownloadURL(storageRef);
+
+        // 格式化上传时间
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份从0开始
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const uploadTime = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+
+        // 生成 upload ID (使用当前时间戳)
+        const uploadID = `UPLOAD-${Date.now()}`;
+
+        // 发送数据到 Google Apps Script
+        await fetch("https://script.google.com/macros/s/AKfycbzpwW_CyuiwnMyHGrX_PrE4e-lRDU5_YZ4RleMQRGvXMWWZfLk_RMB6cXFhRDZ5VRRazQ/exec", {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify({
+                method: "upload",  // 添加方法标识
+                username: username,
+                uploadID: uploadID,  // 添加 upload ID
+                fileName: file.name,
+                imageUrl: imageUrl,
+                uploadTime: uploadTime
+            }),
+            headers: { "Content-Type": "application/json" }
+        });
+
+        alert("File uploaded and data saved!");
+
+        // 重新获取照片
+        fetchImages(); // 调用 fetchImages() 重新加载照片
+
+    } catch (error) {
         console.error("Upload failed:", error);
-    });
+    }
 });
+
 
 // 获取并显示所有照片
 async function fetchImages() {
-    const listRef = ref(storage, 'images/');
-
     try {
-        const res = await listAll(listRef);
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzDH4i5OcqYxf7qQ-bFdsZ6flS_0_bjpVXK8LNmHZpYsdjBf8gfM49LMsNBJbj4kxkwJQ/exec");
+        const imagesData = await response.json();
         const photoGallery = document.getElementById('photoGallery');
         photoGallery.innerHTML = ''; // 清空之前的图片
 
-        res.items.forEach((itemRef) => {
-            getDownloadURL(itemRef).then((url) => {
-                const imgContainer = document.createElement('div');
-                imgContainer.classList.add('img-container'); // 为每个图片容器添加类
+        imagesData.forEach((imageData) => {
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('img-container');
 
-                const img = document.createElement('img');
-                img.src = url;
-                img.alt = itemRef.name;
-                img.style.width = '300px';
-                img.style.margin = '5px';
+            const img = document.createElement('img');
+            img.src = imageData.imageUrl;
+            img.alt = imageData.fileName;
+            img.style.width = '300px';
+            img.style.margin = '5px';
 
-                // 点击照片时弹出查看
-                img.addEventListener('click', () => {
-                    showPopup(url); // 弹出图片
-                });
-
-                imgContainer.appendChild(img);
-
-                // 判断用户是否为 admin
-                const loggedInUser = localStorage.getItem("username");
-                if (loggedInUser === "admin") {
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.innerHTML = "<i class='bx bxs-trash-alt'></i>"; // 使用图标
-                    deleteBtn.classList.add("delete-button"); // 添加样式类
-                    deleteBtn.addEventListener('click', (event) => {
-                        event.stopPropagation(); // 阻止事件冒泡，避免触发弹出窗口
-                        deleteImage(itemRef);
-                    });
-                    imgContainer.appendChild(deleteBtn);
-                }
-
-                photoGallery.appendChild(imgContainer);
-            }).catch((error) => {
-                console.error("Error getting download URL:", error);
+            // 点击照片时弹出查看
+            img.addEventListener('click', () => {
+                showPopup(imageData.imageUrl); // 弹出图片
             });
+
+            imgContainer.appendChild(img);
+
+            // 判断用户是否为 admin
+            const loggedInUser = localStorage.getItem("username");
+            if (loggedInUser === "admin") {
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = "<i class='bx bxs-trash-alt'></i>";
+                deleteBtn.classList.add("delete-button");
+                deleteBtn.addEventListener('click', (event) => {
+                    event.stopPropagation(); // 阻止事件冒泡，避免触发弹出窗口
+                    deleteImage(imageData.uploadID); // 使用 upload ID 作为标识符
+                });
+                imgContainer.appendChild(deleteBtn);
+            }
+
+            photoGallery.appendChild(imgContainer);
         });
 
         // 更新图片总数
-        updateImageCount(res.items.length);
+        updateImageCount(imagesData.length);
 
     } catch (error) {
         console.error("Error fetching images:", error);
@@ -211,17 +249,29 @@ function updateImageCount(count) {
 }
 
 // 删除照片
-function deleteImage(itemRef) {
+function deleteImage(uploadID) {
     const confirmed = confirm("Are you sure you want to delete this photo?");
     if (confirmed) {
-        deleteObject(itemRef).then(() => {
-            alert("File deleted successfully!");
+        fetch("https://script.google.com/macros/s/AKfycbzpwW_CyuiwnMyHGrX_PrE4e-lRDU5_YZ4RleMQRGvXMWWZfLk_RMB6cXFhRDZ5VRRazQ/exec", {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify({
+                method: "delete",
+                uploadID: uploadID
+            }),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(() => {
+            alert("Photo deleted successfully.");
             fetchImages(); // 删除后重新获取并显示图片
-        }).catch((error) => {
-            console.error("Delete failed:", error);
+        })
+        .catch((error) => {
+            console.error("Delete request failed:", error);
         });
     }
 }
+
+
 
 // 弹出窗口显示图片的功能
 function showPopup(url) {
