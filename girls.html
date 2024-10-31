@@ -29,15 +29,13 @@
             <i class='bx bx-x'></i>
         </button>
     </div>
-    <a href="gamelog.html"><i class='bx bxs-wallet-alt'></i>Game Log & Resit</a>
-    <a href="tipsgame.html"><i class='bx bxs-game' ></i>Tips Game</a>
-    <a href="providers-link.html"><i class='bx bx-link-alt'></i>Providers Link</a>
-    <a href="index.html"><i class='bx bxs-cog'></i>Settings</a>
-    <a href="report.html"><i class='bx bxs-error-alt' ></i>Report Problem</a>
-    <div id="avatarMenu">
-        <a href="girls.html"><i class='bx bxs-image'></i>Girls Avatar</a>
-        <a href="manage-user.html"><i class='bx bxs-user-circle'></i>Manage User</a>
-        <a href="manage-link.html"><i class='bx bx-unlink'></i>Manage Link</a>
+    <div class="menu-container-wrapper">
+        <a href="index"><i class='bx bxs-tachometer' ></i>Dashboard</a>
+        <a href="userList"><i class='bx bxs-user-circle'></i>Manage Users</a>
+        <a href="upload-history"><i class='bx bx-history'></i>Upload History</a>
+        <div id="adminMenu" style="display: none;">
+            <a href="girls"><i class='bx bxs-image'></i>Girls Avatar</a>
+        </div>
     </div>
 </div>
 
@@ -51,10 +49,6 @@
 
     <div id="photoGallery"></div>
 </div>
-
-<footer class="copyRight">
-    <p>Copyright © 2024 WWW.CS-TOOLS.ONLINE All Rights Reserved.</p>
-</footer>
 
 <script>
         // 检查用户登录状态
@@ -107,7 +101,7 @@
         window.location.href = "index.html"; // 重定向到 index.html
     } else {
         // 如果是 admin，显示 avatarMenu
-        document.getElementById("avatarMenu").style.display = "block";
+        document.getElementById("adminMenu").style.display = "block";
     }
     });
 
@@ -177,6 +171,11 @@ async function fetchImages() {
                 img.style.width = '300px';
                 img.style.margin = '5px';
 
+                // 点击照片时弹出查看
+                img.addEventListener('click', () => {
+                    showPopup(url); // 弹出图片
+                });
+
                 imgContainer.appendChild(img);
 
                 // 判断用户是否为 admin
@@ -185,7 +184,8 @@ async function fetchImages() {
                     const deleteBtn = document.createElement('button');
                     deleteBtn.innerHTML = "<i class='bx bxs-trash-alt'></i>"; // 使用图标
                     deleteBtn.classList.add("delete-button"); // 添加样式类
-                    deleteBtn.addEventListener('click', () => {
+                    deleteBtn.addEventListener('click', (event) => {
+                        event.stopPropagation(); // 阻止事件冒泡，避免触发弹出窗口
                         deleteImage(itemRef);
                     });
                     imgContainer.appendChild(deleteBtn);
@@ -223,12 +223,55 @@ function deleteImage(itemRef) {
     }
 }
 
+// 弹出窗口显示图片的功能
+function showPopup(url) {
+    // 检查是否已有弹窗，避免重复
+    if (document.getElementById('popup')) return;
+
+    const popup = document.createElement('div');
+    popup.id = 'popup';
+    popup.style.position = 'fixed';
+    popup.style.top = '0';
+    popup.style.left = '0';
+    popup.style.width = '100vw';
+    popup.style.height = '100vh';
+    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    popup.style.display = 'flex';
+    popup.style.alignItems = 'center';
+    popup.style.justifyContent = 'center';
+    popup.style.zIndex = '1000';
+
+    // 点击弹窗外部关闭弹窗
+    popup.addEventListener('click', hidePopup);
+
+    const img = document.createElement('img');
+    img.src = url;
+    img.style.maxWidth = '90%';
+    img.style.maxHeight = '90%';
+    img.style.zIndex = '1001';
+
+    // 点击图片时阻止事件冒泡，避免关闭弹窗
+    img.addEventListener('click', event => {
+        event.stopPropagation();
+    });
+
+    popup.appendChild(img);
+    document.body.appendChild(popup);
+}
+
+// 隐藏弹窗的功能
+function hidePopup() {
+    const popup = document.getElementById('popup');
+    if (popup) {
+        popup.remove();
+    }
+}
+
 // 页面加载时获取并显示图片
 window.onload = function() {
     checkLoginStatus();
     fetchImages();
 };
-
 </script>
 
 </body>
