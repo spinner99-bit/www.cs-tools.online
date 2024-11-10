@@ -12,6 +12,10 @@ body {
     min-height: 100vh;
 }
 
+body::-webkit-scrollbar{
+    display: none;
+}
+
 header{
     display: flex;
     justify-content: space-between;
@@ -108,8 +112,29 @@ header{
     background-color: #555;
 }
 
+.gameLog-FullPage-Wrapper{
+    padding: 0 30px;
+}
+
+.gameLog-fullwrapper{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.gameLog-container{
+    padding: 20px 30px;
+    padding-bottom: 0;
+}
+
+.resit-container{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
 .gameLogTable {
-    width: 80%;
+    width: 800px;
     border-collapse: collapse;
     margin: 20px auto;
     border: 2px solid #e2e2e2;
@@ -197,20 +222,6 @@ header{
     transition: background-color 0.5s;
 }
 
-.rst-button {
-    width: 80px;
-    height: 30px;
-    margin: 0 2.5px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border: 2px solid black;
-    border-radius: 5px;
-    color: black;
-    background-color: white;
-    font-weight: bold;
-    transition: background-color 0.5s;
-}
-
 .game-button.selected {
     background-color: #007bff;
     color: white;
@@ -229,6 +240,231 @@ header{
 .header-918Kaya th { background-color: #ff9800; }
 .header-Xe88 th { background-color: #9c27b0; }
 .header-Evo888 th { background-color: #2196f3; }
+
+.resit-TopChoise{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.resit-TopChoise label{
+    font-size: 18px;
+    font-weight: 900;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.resit-TopChoise select{
+    margin-right: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    border: none;
+    background-color: transparent;
+}
+
+.resit-TopChoise option{
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.resit-TopChoise button{
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.resit-type-name h1{
+    font-size: 22px;
+    font-weight: 900;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.content-mbb1{
+    font-family: "Lato", "Calibri", Helvetica, Arial, sans-serif;
+    justify-content: space-between;
+    width: 650px;
+    margin: 10px 0;
+}
+
+.mbb-top-green{
+    background-color: #389a6e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 20px;
+    padding-bottom: 40px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-top: 0.5px solid #e2e2e2;
+    border-left: 0.5px solid #e2e2e2;
+    border-right: 0.5px solid #e2e2e2;
+    text-align: left;
+}
+
+.mbb-top-left{
+    display: flex;
+}
+
+.mbb-name{
+    font-weight: 700;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.mbb-acc, .mbb-amount{
+    font-size: 13px;
+}
+
+.mbb-tick{
+    color: white;
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.mbb-add-favourite{
+    width: auto;
+    height: 50px;
+}
+
+.mbb-detail-cover{
+    font-size: 17px;
+    color: #171717;
+    padding: 10px 0;
+    border-top: 2px solid #ffc83d;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: white;
+    border-left: 0.5px solid #e2e2e2;
+    border-right: 0.5px solid #e2e2e2;
+    border-bottom: 0.5px solid #e2e2e2;
+}
+
+.mbb-detail-cover span{
+    color: #7D7D7D;
+}
+
+.mbb-per-detail{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+
+.mbbBankName{
+    width: 230px;
+    text-align: right;
+}
+
+.mbbName{
+    width: 300px;
+}
+
+.mbb-bottom-detail{
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: white;
+    margin-top: 3px;
+    border-radius: 7px;
+    border: 0.5px solid #e2e2e2;
+}
+
+.mbb-bottom-detail span{
+    color: #DA4747;
+}
+
+.cimbPerResit-wrapper{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    padding: 20px;
+}
+
+.cimbTop-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5e5e5;
+    padding: 0 25px;
+    width: 724.67px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.cimbTop-left{
+    display: flex;
+    align-items: center;
+}
+
+.cimb-Successful{
+    color: #7db680;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.cimbTop-left p,
+.cimbTop-left span{
+    font-size: 15px;
+}
+
+.cimbTop-Right span{
+    font-size: 14px;
+}
+
+.cimbCenter-wrapper{
+    background-color: #f3f3f3;
+    padding: 20px 25px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom: 3px solid #d6d6d6;
+}
+
+.cimbCenter-left{
+    margin: 0;
+}
+
+.cimbCenter-Row1{
+    display: flex;
+    justify-content: space-between;
+    background-color: red;
+}
+
+.cimbCenter-leftContainer{
+    text-align: left;
+}
+
+.cimbCenter-rightContainer{
+    text-align: right;
+}
+
+.cimbCenter-Row1 p{
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.cimbCenter-left-perRow{
+    margin-bottom: 25px;
+}
+
+.cimbCenter-left-perRow label{
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.cimbCenter-left-perRow span{
+    font-size: 15px;
+    font-weight: 700;
+}
 
 .refreshBtnCover{
     display: flex;
@@ -501,88 +737,6 @@ header{
     margin-right: 10px;
 }
 
-.girls-all-cover{
-    display: grid;
-    justify-content: center;
-}
-
-.uploadFormDiv{
-    justify-content: center;
-    text-align: center;
-}
-
-.girl-count-image{
-    font-size: 20px;
-    font-weight: 900;
-    margin: 20px auto;
-}
-
-#photoGallery{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;  /* 水平居中 */
-    align-items: center;
-}
-
-.img-container {
-    position: relative; /* 使容器相对定位 */
-    display: flex;      /* 使用 Flexbox */
-    flex-direction: column; /* 垂直排列图片和按钮 */
-    justify-content: center; /* 垂直居中 */
-    align-items: center; /* 水平居中 */
-    height: 370px; /* 容器高度 */
-    overflow: hidden;
-    text-align: center;
-    background-color: black;
-    margin: 5px; /* 添加一些外边距以避免重叠 */
-    border: 2px solid #e2e2e2;
-}
-
-.img-container img {
-    max-width: 100%; /* 限制图片最大宽度 */
-    height: auto; /* 自动高度，保持比例 */
-    object-fit: cover; /* 确保图片覆盖容器而不变形 */
-}
-
-.delete-button {
-    position: absolute; /* 绝对定位 */
-    top: 0; /* 距离顶部 5px */
-    right: -5px; /* 距离右侧 5px */
-    background: none; /* 移除默认背景 */
-    border: none; /* 移除默认边框 */
-    cursor: pointer; /* 鼠标悬停时显示为指针 */
-    color: #ff0000; /* 你可以更改为想要的颜色 */
-}
-
-.bxs-trash-alt{
-    font-size: 40px;
-}
-
-/* 调整图片容器在小屏幕上的尺寸 */
-@media (max-width: 768px) {
-    .img-container {
-        margin: 0;
-        height: 160px; /* 适配小屏设备的图片容器高度 */
-    }
-}
-
-@media (max-width: 480px) {
-    .img-container {
-        margin: 0;
-        height: 170px; /* 更小屏幕设备的图片容器高度 */
-    }
-    .delete-button{
-        top: 2px;
-        right: -10px;
-    }
-    .bxs-trash-alt{
-        font-size: 24px;
-    }
-    .copyRight p{
-        font-size: 10px;
-    }
-}
-
 .setting-full-cover{
     display: flex;
     justify-content: center;
@@ -635,94 +789,4 @@ header{
 
 .setting-button-edit:hover{
     background-color: #2980b9;
-}
-
-.Resit-Cover{
-    display: grid;
-    justify-content: center;
-    width: 100%;
-}
-
-.content-mbb1{
-    font-family: "Lato", "Calibri", Helvetica, Arial, sans-serif;
-    justify-content: space-between;
-    width: 650px;
-}
-
-.mbb-top-green{
-    background-color: #389a6e;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    padding: 20px;
-    padding-bottom: 40px;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    border-top: 0.5px solid #e2e2e2;
-    border-left: 0.5px solid #e2e2e2;
-    border-right: 0.5px solid #e2e2e2;
-}
-
-.mbb-top-left{
-    display: flex;
-}
-
-.mbb-name{
-    font-weight: 700;
-    font-size: 18px;
-    margin-left: 5px;
-}
-
-.mbb-acc, .mbb-amount{
-    font-size: 13px;
-}
-
-.mbb-tick{
-    color: white;
-    font-size: 22px;
-    margin-right: 10px;
-}
-
-.mbb-add-favourite{
-    width: auto;
-    height: 50px;
-}
-
-.mbb-detail-cover{
-    font-size: 17px;
-    color: #171717;
-    padding: 10px 0;
-    border-top: 2px solid #ffc83d;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-    background-color: white;
-    border-left: 0.5px solid #e2e2e2;
-    border-right: 0.5px solid #e2e2e2;
-    border-bottom: 0.5px solid #e2e2e2;
-}
-
-.mbb-detail-cover span{
-    color: #7D7D7D;
-}
-
-.mbb-per-detail{
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 20px;
-}
-
-.mbb-bottom-detail{
-    font-size: 17px;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
-    background-color: white;
-    margin-top: 3px;
-    border-radius: 7px;
-    border: 0.5px solid #e2e2e2;
-}
-
-.mbb-bottom-detail span{
-    color: #DA4747;
 }
