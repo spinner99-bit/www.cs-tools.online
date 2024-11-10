@@ -180,7 +180,8 @@ switch (game.gameType) {
 // 更新 gameTitle 的内容为图片
 gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style="width: auto; height: 35px; margin: 5px 0;">`;
 
-    
+                    const username = localStorage.getItem('username');
+
                     const gameBox = document.createElement('div');
                     gameBox.className = 'game-box';
     
@@ -203,14 +204,14 @@ gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style=
                     } else {
                         // 组装格子内的内容
                         const extraContentAbove = `🎰 Product Type : ${game.gameType}\n\n`;  // 添加额外内容
-                        const extraContentBelow = `\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers MB33 Sahaje \nSemoga Tips Game Ini Dapat Bantu🔥`;  // 添加额外内容
+                        const extraContentBelow = `\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers ${username} Sahaje \nSemoga Tips Game Ini Dapat Bantu🔥`;  // 添加额外内容
                         // 设置最终显示内容
                         gameBox.innerText = extraContentAbove + gameContent.trim() + extraContentBelow;  
                     }
     
                     // 添加点击复制功能
                     gameBox.addEventListener('click', function() {
-                        const copyContent = `🎰 **Product Type : ${game.gameType}**\n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers MB33 Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
+                        const copyContent = `🎰 **Product Type : ${game.gameType}**\n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers **${username}** Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
                         const tempInput = document.createElement('textarea');
                         tempInput.value = copyContent;  // 修改为所需格式
                         document.body.appendChild(tempInput);
