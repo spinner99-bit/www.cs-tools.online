@@ -55,13 +55,13 @@ const tableData = [];
         document.getElementById('loading').style.display = 'block';
         document.getElementById('gameLog').innerHTML = ''; // 清空表格内容
         document.getElementById('gameTable').style.display = 'none'; // 隐藏表格
-        
+    
         // 重置所有按钮的颜色
         const buttons = document.querySelectorAll('.game-button');
         buttons.forEach(btn => {
             btn.classList.remove('selected'); // 移除选择样式
         });
-        
+    
         // 设置被点击的按钮为选中状态
         button.classList.add('selected');
     
@@ -81,7 +81,7 @@ const tableData = [];
                 const gameName = data.gameName;
                 const row1Bet = parseFloat(data.bet); // 获取 Bet 值
                 const row1Win = (row1Bet * (Math.random() * 50 + 1)).toFixed(2); // random number between 1 to 50
-                
+    
                 let randomBeginMoney;
                 if (Math.random() < 0.1) {
                     randomBeginMoney = (Math.random() * (5000 - 2000) + 2000).toFixed(2); // 2000 到 5000
@@ -153,7 +153,7 @@ const tableData = [];
                 };
     
                 // 给最后一行 TableID 标记红色
-                row13.isTableIDRed = true; 
+                row13.isTableIDRed = true;
     
                 // 如果是 Mega888，给最后一行整体标记红色，并设置 BeginMoney 和 EndMoney 为 '-'
                 if (game === 'Mega888') {
@@ -163,7 +163,10 @@ const tableData = [];
                 }
     
                 tableData.push(row13);
-                tableData.reverse(); 
+                tableData.reverse();
+    
+                // 保存 scoreWithoutDecimal 到 localStorage
+                localStorage.setItem('scoreWithoutDecimal', scoreWithoutDecimal);
     
                 function formatDateTime(date) {
                     const year = date.getFullYear();
@@ -201,43 +204,156 @@ const tableData = [];
                 document.getElementById('loading').style.display = 'none';
             });
     }
+    
+    // 初始化默认游戏日志
+loadGameLog('918Kiss', document.querySelector('.game-button')); // 传入初始按钮
 
-// 获取所有按钮和内容容器
-const buttons = document.querySelectorAll('.rst-button'); // 修改选择器
-const containers = document.querySelectorAll('.content, .content-mbb1'); // 匹配所有内容容器
-
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        // 移除所有按钮的 'active' 类
-        buttons.forEach(btn => btn.classList.remove('active'));
-        
-        // 为点击的按钮添加 'active' 类
-        button.classList.add('active');
-
-        // 获取目标容器的 ID
-        const target = button.getAttribute('data-target');
-
-        // 隐藏所有内容容器
-        containers.forEach(container => {
-            container.style.display = 'none';
-        });
-
-        // 显示目标容器
-        document.getElementById(target).style.display = 'block';
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    // 在页面加载时确保 loading2 隐藏，resitContainer 也开始隐藏
+    document.getElementById('loading2').style.display = 'none';
+    document.getElementById('resitContainer').style.display = 'none';
 });
 
-// 默认选中第一个按钮
-document.querySelector('.rst-button').classList.add('active');
-document.getElementById('mbb1-1').style.display = 'block'; // 默认显示第一个内容
+document.getElementById('generateButton').addEventListener('click', function() {
+    const selectedResitType = document.getElementById('resitTypeSelect').value;
+    const resitContainer = document.getElementById('resitContainer');
+    const loadingElement = document.getElementById('loading2');
+    
+    resitContainer.innerHTML = ''; // 清空当前内容
+
+    // 显示加载动画，隐藏 resitContainer
+    loadingElement.style.display = 'block';
+    resitContainer.style.display = 'none';
+
+    if (selectedResitType === 'MBB 1') {
+        // 生成 MAYBANK TO MAYBANK 和 MAYBANK TO OTHER BANK 的 HTML 内容
+        const resitHTML = `
+            <div class="resit-type-name">
+                <h1>MAYBANK TO MAYBANK</h1>
+            </div>
+            <div class="content-mbb1">
+                <div class="mbb-top-green">
+                    <div class="mbb-top-left">
+                        <div><div class="mbb-tick"><i class='bx bx-check'></i></div></div>
+                        <div>
+                            <div class="mbbName">Transfer To<span class="mbb-name" id="rst-name-1">0</span></div>
+                            <span class="mbb-acc" id="rst-account1">0</span><br>
+                            <span class="mbb-amount" id="rst-amount-1">0</span>
+                        </div>
+                    </div>
+                    <img src="Element/mbb-add-favourite.png" class="mbb-add-favourite">
+                </div>
+                <div class="mbb-detail-cover">
+                    <div class="mbb-per-detail"><label>Recipient's bank</label><span>Maybank / Maybank Islamic</span></div>
+                    <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-1">0</span></div>
+                    <div class="mbb-per-detail"><label>Recipient's Reference</label><span>Payment</span></div>
+                    <div class="mbb-per-detail"><label>Status</label><span>Successful</span></div>
+                    <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-1">0</span></div>
+                </div>
+                <div class="mbb-bottom-detail">
+                    <label>Total Amount</label><span id="rst-amount-2">0</span>
+                </div>
+            </div>
+
+            <div class="resit-type-name">
+                <h1>MAYBANK TO OTHER BANK</h1>
+            </div>
+            <div class="content-mbb1">
+                <div class="mbb-top-green">
+                    <div class="mbb-top-left">
+                        <div><div class="mbb-tick"><i class='bx bx-check'></i></div></div>
+                        <div>
+                            <div class="mbbName">Transfer To<span class="mbb-name" id="rst-name-2">0</span></div>
+                            <span class="mbb-acc" id="rst-account2">0</span><br>
+                            <span class="mbb-amount" id="rst-amount-3">0</span>
+                        </div>
+                    </div>
+                    <img src="Element/mbb-add-favourite.png" class="mbb-add-favourite">
+                </div>
+                <div class="mbb-detail-cover">
+                    <div class="mbb-per-detail"><label>Recipient's bank</label><span id="rst-bank-2"  class="mbbBankName">0</span></div>
+                    <div class="mbb-per-detail"><label>Transaction Type</label><span>Funds Transfer</span></div>
+                    <div class="mbb-per-detail"><label>Transfer Mode</label><span>DuitNow Transfer</span></div>
+                    <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-2">0</span></div>
+                    <div class="mbb-per-detail"><label>Recipient's Reference</label><span>payment</span></div>
+                    <div class="mbb-per-detail"><label>Status</label><span>Successful</span></div>
+                    <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-2">0</span></div>
+                </div>
+                <div class="mbb-bottom-detail">
+                    <label>Total Amount</label><span id="rst-amount-4">0</span>
+                </div>
+            </div>
+        `;
+        resitContainer.innerHTML = resitHTML;
+
+        // 获取数据并填充内容
+        fetchDataAndFill();
+    }
+});
+
+function formatCurrency(amount) {
+    const formattedAmount = parseFloat(amount).toFixed(2);
+    return 'RM ' + formattedAmount.replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+function fetchDataAndFill() {
+    fetch('https://script.google.com/macros/s/AKfycbx7i8p2CoKTT6whGIb81cXhxrEQCDoQnmvuf8D9AsEljhRqm-pGSoUSmTxbZ9kRP-CL2g/exec')
+        .then(response => response.json())
+        .then(data => {
+            const names = data.names;
+            let accountE = data.accountE;
+            let accountH = data.accountH;
+            const banks = data.banks;
+
+            accountE = accountE.filter(account => account && account !== 'Account Number');
+            accountH = accountH.filter(account => account && account !== 'Account Number');
+
+            const randomName1 = names[Math.floor(Math.random() * names.length)];
+            const randomAccount1 = accountE[Math.floor(Math.random() * accountE.length)];
+            const randomName2 = names[Math.floor(Math.random() * names.length)];
+            const randomAccount2 = accountH[Math.floor(Math.random() * accountH.length)];
+
+            const validBanks = banks.filter(bank => bank && bank !== ''); // 过滤空值和无效数据
+            const bank2 = validBanks.length > 0 ? validBanks[Math.floor(Math.random() * validBanks.length)] : 'No Bank Info';
+            
+            const randomReferences = [
+                6253399282, 6253399283, 6253399284, 6253399285, 6253399286,
+                6253399287, 6253399288, 6253399289, 6253399290, 6253399291
+            ];
+
+            const scoreWithoutDecimal = localStorage.getItem('scoreWithoutDecimal') || 1000;
+            const formattedAmount = formatCurrency(scoreWithoutDecimal);
+
+            document.getElementById('rst-name-1').textContent = randomName1;
+            document.getElementById('rst-account1').textContent = randomAccount1 || 'N/A';
+            document.getElementById('rst-amount-1').textContent = formattedAmount;
+            document.getElementById('rst-reference-1').textContent = randomReferences[0];
+            document.getElementById('rst-Date-1').textContent = `Today ${new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}`;
+
+            document.getElementById('rst-name-2').textContent = randomName2;
+            document.getElementById('rst-account2').textContent = randomAccount2;
+            document.getElementById('rst-amount-2').textContent = formattedAmount;
+            document.getElementById('rst-reference-2').textContent = randomReferences[1];
+            document.getElementById('rst-Date-2').textContent = `Today ${new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}`;
+
+            document.getElementById('rst-bank-2').textContent = bank2;
+            document.getElementById('rst-amount-3').textContent = formattedAmount;
+            document.getElementById('rst-amount-4').textContent = formattedAmount;
+
+            // 隐藏加载动画并显示 resitContainer
+            document.getElementById('loading2').style.display = 'none';
+            document.getElementById('resitContainer').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            document.getElementById('loading2').style.display = 'none';
+        });
+}
 
     // 页面加载时，自动检查登录状态并加载游戏列表
     window.onload = function() {
         checkLoginStatus();
     };
-
-// 初始化默认游戏日志
-loadGameLog('918Kiss', document.querySelector('.game-button')); // 传入初始按钮
 
     // 控制侧边栏的显示和隐藏
     const menuBtn = document.querySelector('.menuBtnC');
