@@ -599,18 +599,6 @@ header{
     color: green;
 }
 
-.copyRight{
-    display: flex;
-    justify-content: center;
-    margin-top: 150px;
-    bottom: 0;
-}
-
-.copyRight p{
-    font-size: 14px;
-    font-weight: 900;
-}
-
 #products {
     display: flex;
     flex-wrap: wrap;
