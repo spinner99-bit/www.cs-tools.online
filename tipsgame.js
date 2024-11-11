@@ -1,3 +1,11 @@
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode == 123) { // F12
+        e.preventDefault();
+    }
+});
+
     // Google Apps Script 部署的 API URL
     const apiUrl = 'https://script.google.com/macros/s/AKfycbwmkWcv84RNd9ObMLs294jHK4kfxcq79UyVzZg0CyD1ybTyNY8kwb6rhfDTykJhaNvO/exec';
 
@@ -211,7 +219,8 @@ gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style=
     
                     // 添加点击复制功能
                     gameBox.addEventListener('click', function() {
-                        const copyContent = `🎰 **Product Type : ${game.gameType}**\n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers **${username}** Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
+                        const copyContent = `🎰 **Product Type : ${game.gameType}**
+                        \n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers **${username}** Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
                         const tempInput = document.createElement('textarea');
                         tempInput.value = copyContent;  // 修改为所需格式
                         document.body.appendChild(tempInput);
