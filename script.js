@@ -1,4 +1,12 @@
-    // 检查用户登录状态
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode == 123) { // F12
+        e.preventDefault();
+    }
+});
+
+// 检查用户登录状态
     function checkLoginStatus() {
         const username = localStorage.getItem('username');
         const headerDiv = document.getElementById('header');
