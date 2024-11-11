@@ -1,3 +1,11 @@
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode == 123) { // F12
+        e.preventDefault();
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     const currentPath = window.location.pathname;
 
