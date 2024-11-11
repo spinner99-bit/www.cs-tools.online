@@ -1,5 +1,13 @@
 const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIr50gDiDsWCcrAl7H0oayuWpC-0-oYZ9wSNTVdBhMrg9AnZew_IFZ4jZgNQoLOlcLMA/exec'; // 替换为你的 Google Apps Script URL
 
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode == 123) { // F12
+        e.preventDefault();
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   updateUI(); // 页面加载时更新UI
 });
