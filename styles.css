@@ -53,6 +53,10 @@ header{
     font-size: 40px;
 }
 
+footer{
+    margin: 100px 0;
+}
+
 /* 样式：隐藏的侧边栏 */
 .sidebar {
     position: fixed;
