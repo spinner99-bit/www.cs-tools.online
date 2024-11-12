@@ -324,10 +324,7 @@ function fetchDataAndFill() {
             const validBanks = banks.filter(bank => bank && bank !== ''); // 过滤空值和无效数据
             const bank2 = validBanks.length > 0 ? validBanks[Math.floor(Math.random() * validBanks.length)] : 'No Bank Info';
             
-            const randomReferences = [
-                6253399282, 6253399283, 6253399284, 6253399285, 6253399286,
-                6253399287, 6253399288, 6253399289, 6253399290, 6253399291
-            ];
+            const randomReferences = Array.from({ length: 10 }, () => Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000);
 
             const scoreWithoutDecimal = localStorage.getItem('scoreWithoutDecimal') || 1000;
             const formattedAmount = formatCurrency(scoreWithoutDecimal);
