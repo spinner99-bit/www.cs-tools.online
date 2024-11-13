@@ -201,6 +201,7 @@ footer{
     background-color: white;
     padding: 5px 15px;
     width: 800px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .gameLog-choise-left{
