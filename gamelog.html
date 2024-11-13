@@ -41,18 +41,33 @@
 
     <div class="gameLog-container">
 
-        <div class="slcProPle">
-            <p>Please Select Game</p>
-        </div>
-
         <div id="buttons" class="gameLogSelBtn">
-            <button class="game-button" onclick="loadGameLog('918Kiss', this)">918Kiss</button>
-            <button class="game-button" onclick="loadGameLog('Mega888', this)">Mega888</button>
-            <button class="game-button" onclick="loadGameLog('Pussy888', this)">Pussy888</button>
-            <button class="game-button" onclick="loadGameLog('918Kaya', this)">918Kaya</button>
-            <button class="game-button" onclick="loadGameLog('Xe88', this)">Xe88</button>
-            <button class="game-button" onclick="loadGameLog('Evo888', this)">Evo888</button>
-        </div>
+            <div class="gameLog-choise-left">
+                <div class="gameLog-selectTime">
+                    <label><i class='bx bxs-joystick' ></i>Game : </label>
+                    <select id="gameSelect">
+                        <option value="" disabled selected>Choise Game</option>
+                        <option value="918Kiss">918Kiss</option>
+                        <option value="Mega888">Mega888</option>
+                        <option value="Pussy888">Pussy888</option>
+                        <option value="918Kaya" disabled>918Kaya</option>
+                        <option value="Xe88" disabled>Xe88</option>
+                        <option value="Evo888" disabled>Evo888</option>
+                    </select>
+                </div>
+                <div class="gameLog-selectTime">
+                    <label><i class='bx bxs-calendar-star' ></i>Time : </label>
+                    <select id="timeSelect" onchange="toggleScheduleInput(this.value)">
+                        <option value="Current">Current Time</option>
+                        <option value="Schedule">Schedule</option>
+                    </select>
+                    <input type="datetime-local" id="scheduleInput" style="display: none;">
+                </div>
+            </div>
+            <div>
+                <button onclick="generateGameLog()">Generate</button>
+            </div>
+        </div>      
 
         <div id="loading" class="gameLogLoading">
             <i class='bx bx-loader'></i>
@@ -79,17 +94,25 @@
 </div>
 
 <div class="gameLog-fullwrapper">
-    <div class="gameLog-container resit-container">
-        <div class="resit-TopChoise">
-            <label>Resit Type : </label>
-            <select id="resitTypeSelect">
-                <option value="" disabled selected>Choose Bank</option>
-                <option value="MBB 1">MBB 1</option>
-                <option value="MBB 2">MBB 2</option>
-            </select>
-            <button id="generateButton">Generate</button>
+    <div class="gameLog-container">
+
+        <div class="gameLogSelBtn">
+            <div class="gameLog-choise-left">
+                <label><i class='bx bxs-receipt' ></i>Resit Type : </label>
+                <select id="resitTypeSelect">
+                    <option value="" disabled selected>Choise Bank</option>
+                    <option value="MBB 1">MBB 1</option>
+                    <option value="MBB 2">MBB 2</option>
+                </select>
+            </div>
+            <div>
+                <button id="generateButton">Generate</button>
+            </div>
         </div>
-        <div id="resitContainer" style="display:none;"></div> <!-- 默认隐藏 -->
+
+        <div class="resit-container-wrapper">
+            <div id="resitContainer" style="display:none;"></div> <!-- 默认隐藏 -->
+        </div>
         <div id="loading2" class="gameLogLoading" style="display:none;">
             <i class='bx bx-loader'></i>
             <p>Loading......Please Wait</p>
