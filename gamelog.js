@@ -58,22 +58,47 @@ const tableData = [];
         window.location.href = 'login.html';
     }
 
-    function loadGameLog(game, button) {
+    function toggleScheduleInput(value) {
+        // 显示或隐藏日期选择输入框
+        const scheduleInput = document.getElementById('scheduleInput');
+        scheduleInput.style.display = value === 'Schedule' ? 'block' : 'none';
+    }
+    
+    function generateGameLog() {
+        const game = document.getElementById('gameSelect').value;
+        const timeSelect = document.getElementById('timeSelect').value;
+    
+        let currentTime;
+        if (timeSelect === 'Current') {
+            currentTime = new Date(); // 使用当前时间
+        } else {
+            const scheduleInput = document.getElementById('scheduleInput');
+            const scheduledDateTime = new Date(scheduleInput.value);
+    
+            if (!isNaN(scheduledDateTime)) {
+                currentTime = scheduledDateTime; // 使用用户选择的时间
+            } else {
+                alert('Please select a valid date and time.');
+                return;
+            }
+        }
+    
+        // 增加随机 55 到 129 秒
+        const randomSeconds = Math.floor(Math.random() * (60 - 3 + 1)) + 55;
+        currentTime.setSeconds(currentTime.getSeconds() + randomSeconds);
+    
+        // 调用 loadGameLog 函数，并传入 game 和修改后的 currentTime
+        loadGameLog(game, currentTime);
+    }
+    
+
+    function loadGameLog(game, currentTime) {
         // 显示加载指示器，隐藏游戏日志
         document.getElementById('loading').style.display = 'block';
         document.getElementById('gameLog').innerHTML = ''; // 清空表格内容
         document.getElementById('gameTable').style.display = 'none'; // 隐藏表格
-    
-        // 重置所有按钮的颜色
-        const buttons = document.querySelectorAll('.game-button');
-        buttons.forEach(btn => {
-            btn.classList.remove('selected'); // 移除选择样式
-        });
-    
-        // 设置被点击的按钮为选中状态
-        button.classList.add('selected');
-    
-        // 根据游戏名称获取对应的 Google Apps Script 链接
+
+        // 获取 Google Apps Script 链接
         const SHEET_URLS = {
             '918Kiss': 'https://script.google.com/macros/s/AKfycbxu-MlfcsiIC8l44C3cV9nxPJgufvHbW665QXI5Gu_oYpbFz5_zl-VvM6JzRa0wh8pt/exec',
             'Mega888': 'https://script.google.com/macros/s/AKfycbwvOmn9S5jpU7_Y6kMKDFctuwnU6B03WQMvHrCZGnU291vNrwp5oA3eqNfEotOzeMnBFQ/exec',
@@ -87,18 +112,16 @@ const tableData = [];
             .then(response => response.json())
             .then(data => {
                 const gameName = data.gameName;
-                const row1Bet = parseFloat(data.bet); // 获取 Bet 值
-                const row1Win = (row1Bet * (Math.random() * 50 + 1)).toFixed(2); // random number between 1 to 50
-    
+                const row1Bet = parseFloat(data.bet);
+                const row1Win = (row1Bet * (Math.random() * 50 + 1)).toFixed(2);
+
                 let randomBeginMoney;
                 if (Math.random() < 0.1) {
-                    randomBeginMoney = (Math.random() * (5000 - 2000) + 2000).toFixed(2); // 2000 到 5000
+                    randomBeginMoney = (Math.random() * (5000 - 2000) + 2000).toFixed(2);
                 } else {
-                    randomBeginMoney = (Math.random() * (2000 - 500) + 500).toFixed(2); // 500 到 2000
+                    randomBeginMoney = (Math.random() * (2000 - 500) + 500).toFixed(2);
                 }
-    
-                const currentTime = new Date(); // 获取当前时间
-    
+
                 const row1 = {
                     gameName: gameName,
                     tableID: 0,
@@ -108,7 +131,8 @@ const tableData = [];
                     endMoney: (parseFloat(randomBeginMoney) - row1Bet + parseFloat(row1Win)).toFixed(2),
                     dateTime: currentTime
                 };
-                tableData.length = 0; // 清空现有数据
+
+                tableData.length = 0;
                 tableData.push(row1);
     
                 const totalRows = 11; // 总行数（不包括第1行）
@@ -150,6 +174,8 @@ const tableData = [];
                 const lastRow = tableData[tableData.length - 1];
                 const scoreWithoutDecimal = Math.floor(lastRow.endMoney);
                 const beginMoneyForRow13 = lastRow.endMoney;
+                const row13DateTime = new Date(lastRow.dateTime.getTime() + (Math.random() * (30 - 2) + 2) * 60000);
+                
                 const row13 = {
                     gameName: '-',
                     tableID: `Set score：-${scoreWithoutDecimal}.00`,
@@ -157,24 +183,25 @@ const tableData = [];
                     win: '-',
                     beginMoney: beginMoneyForRow13,
                     endMoney: (parseFloat(beginMoneyForRow13) - Math.floor(parseFloat(lastRow.endMoney))).toFixed(2),
-                    dateTime: new Date(lastRow.dateTime.getTime() + (Math.random() * (30 - 2) + 2) * 60000)
+                    dateTime: row13DateTime
                 };
-    
+                
                 // 给最后一行 TableID 标记红色
                 row13.isTableIDRed = true;
-    
+                
                 // 如果是 Mega888，给最后一行整体标记红色，并设置 BeginMoney 和 EndMoney 为 '-'
                 if (game === 'Mega888') {
                     row13.isRed = true;
                     row13.beginMoney = '-';
                     row13.endMoney = '-';
                 }
-    
+                
                 tableData.push(row13);
                 tableData.reverse();
-    
-                // 保存 scoreWithoutDecimal 到 localStorage
+                
+                // 保存 scoreWithoutDecimal 和 row13 的 dateTime 到 localStorage
                 localStorage.setItem('scoreWithoutDecimal', scoreWithoutDecimal);
+                localStorage.setItem('row13DateTime', row13DateTime.toISOString());
     
                 function formatDateTime(date) {
                     const year = date.getFullYear();
@@ -213,8 +240,6 @@ const tableData = [];
             });
     }
     
-    // 初始化默认游戏日志
-loadGameLog('918Kiss', document.querySelector('.game-button')); // 传入初始按钮
 
 document.addEventListener('DOMContentLoaded', function() {
     // 在页面加载时确保 loading2 隐藏，resitContainer 也开始隐藏
@@ -329,17 +354,21 @@ function fetchDataAndFill() {
             const scoreWithoutDecimal = localStorage.getItem('scoreWithoutDecimal') || 1000;
             const formattedAmount = formatCurrency(scoreWithoutDecimal);
 
+            // 获取并格式化 row13DateTime
+            const row13DateTime = localStorage.getItem('row13DateTime');
+            const formattedDateTime = row13DateTime ? new Date(row13DateTime).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' }) : 'No Date';
+
             document.getElementById('rst-name-1').textContent = randomName1;
             document.getElementById('rst-account1').textContent = randomAccount1 || 'N/A';
             document.getElementById('rst-amount-1').textContent = formattedAmount;
             document.getElementById('rst-reference-1').textContent = randomReferences[0];
-            document.getElementById('rst-Date-1').textContent = `Today ${new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}`;
+            document.getElementById('rst-Date-1').textContent = `Today ${formattedDateTime}`;
 
             document.getElementById('rst-name-2').textContent = randomName2;
             document.getElementById('rst-account2').textContent = randomAccount2;
             document.getElementById('rst-amount-2').textContent = formattedAmount;
             document.getElementById('rst-reference-2').textContent = randomReferences[1];
-            document.getElementById('rst-Date-2').textContent = `Today ${new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}`;
+            document.getElementById('rst-Date-2').textContent = `Today ${formattedDateTime}`;
 
             document.getElementById('rst-bank-2').textContent = bank2;
             document.getElementById('rst-amount-3').textContent = formattedAmount;
