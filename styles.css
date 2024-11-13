@@ -123,18 +123,14 @@ footer{
 .gameLog-fullwrapper{
     width: 100%;
     margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    display: grid;
 }
 
 .gameLog-container{
-    padding: 20px 30px;
+    padding: 10px 30px;
     padding-bottom: 0;
-}
-
-.resit-container{
-    display: grid;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
 }
 
 .gameLogTable {
@@ -196,46 +192,64 @@ footer{
     font-size: 200px;
 }
 
-.slcProPle{
+.gameLogSelBtn {
+    margin: 20px 0;
+    justify-content: space-between;
     text-align: center;
-    color: black;
-    margin-bottom: 0;
+    align-items: center;
+    display: flex;
+    background-color: white;
+    padding: 5px 15px;
+    width: 800px;
 }
 
-.slcProPle p{
+.gameLog-choise-left{
+    display: flex;
+    align-items: center;
+}
+
+.gameLog-selectTime{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.gameLogSelBtn label{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 900;
+    display: flex;
+}
+
+.gameLogSelBtn i{
     font-size: 20px;
+    align-self: center;
+    margin-right: 3px;
+}
+
+.gameLogSelBtn select,
+.gameLogSelBtn input{
+    margin-right: 10px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 900;
+    border: none;
+    background-color: transparent;
+    padding: 3px 0;
+}
+
+.gameLogSelBtn option{
+    font-size: 12px;
     font-weight: 900;
 }
 
-.gameLogSelBtn {
-    margin: 20px auto;
-    text-align: center;
-}
-
-.game-button {
-    width: 80px;
-    height: 30px;
-    margin: 0 2.5px;
-    margin-bottom: 5px;
+.gameLogSelBtn button{
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    border: 2px solid black;
-    border-radius: 5px;
-    color: black;
-    background-color: white;
-    font-weight: bold;
-    transition: background-color 0.5s;
-}
-
-.game-button.selected {
-    background-color: #007bff;
-    color: white;
-    border: 2px solid black;
-}
-
-.rst-button.active {
-    background-color: #007bff;
-    color: white;
-    border: 2px solid black;
 }
 
 .header-918Kiss th { background-color: #605ca8; }
@@ -244,6 +258,11 @@ footer{
 .header-918Kaya th { background-color: #ff9800; }
 .header-Xe88 th { background-color: #9c27b0; }
 .header-Evo888 th { background-color: #2196f3; }
+
+.resit-container-wrapper{
+    display: grid;
+    justify-content: center;
+}
 
 .resit-TopChoise{
     display: flex;
