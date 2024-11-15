@@ -108,57 +108,71 @@ const tableData = [];
             'Evo888': 'https://script.google.com/macros/s/AKfycbzx2k5ux6NwZsy8j0jgxCmR-0unk7nDpD2KyEuAL5HAUTakWj9YmtMXQ9WPoGwOeJ5edg/exec'
         };
     
+        // 通过游戏的URL从数据源获取数据
         fetch(SHEET_URLS[game])
             .then(response => response.json())
             .then(data => {
-                const gameName = data.gameName;
-                const row1Bet = parseFloat(data.bet);
-                const row1Win = (row1Bet * (Math.random() * 50 + 1)).toFixed(2);
+                const gameName = data.gameName; // 获取游戏名称
+                const row1Bet = parseFloat(data.bet); // 获取并转换第一行的投注金额
+                const row1Win = `0.00`
 
+                // 随机生成开始资金
                 let randomBeginMoney;
                 if (Math.random() < 0.1) {
-                    randomBeginMoney = (Math.random() * (5000 - 2000) + 2000).toFixed(2);
+                    // 10%概率生成2000到5000之间的随机金额
+                    randomBeginMoney = (Math.random() * (20000 - 4000) + 4000).toFixed(2);
                 } else {
-                    randomBeginMoney = (Math.random() * (2000 - 500) + 500).toFixed(2);
+                    // 90%概率生成500到2000之间的随机金额
+                    randomBeginMoney = (Math.random() * (4000 - 500) + 500).toFixed(2);
                 }
 
+                // 第一行数据构造
                 const row1 = {
-                    gameName: gameName,
-                    tableID: 0,
-                    bet: row1Bet.toFixed(2),
-                    win: row1Win,
-                    beginMoney: randomBeginMoney,
-                    endMoney: (parseFloat(randomBeginMoney) - row1Bet + parseFloat(row1Win)).toFixed(2),
-                    dateTime: currentTime
+                    gameName: gameName, // 游戏名称
+                    tableID: 0, // 表格ID
+                    bet: row1Bet.toFixed(2), // 投注金额
+                    win: row1Win, // 赢利金额
+                    beginMoney: randomBeginMoney, // 开始资金
+                    endMoney: (parseFloat(randomBeginMoney) - row1Bet + parseFloat(row1Win)).toFixed(2), // 结束资金 = 开始资金 - 投注 + 赢利
+                    dateTime: currentTime // 当前时间
                 };
 
+                // 清空并添加第一行数据
                 tableData.length = 0;
                 tableData.push(row1);
-    
-                const totalRows = 11; // 总行数（不包括第1行）
-                const randomRowsCount = Math.floor(Math.random() * 3) + 3; // 随机生成3到5之间的数字
-                const winningRows = new Set();
-    
+
+                // 设定总行数（不包括第一行）
+                const totalRows = 11;
+                // 随机生成3到5之间的数字表示赢家行数
+                const randomRowsCount = Math.floor(Math.random() * 3) + 3;
+                const winningRows = new Set(); // 用Set确保不重复选择中奖行
+
+                // 随机选择赢家行
                 while (winningRows.size < randomRowsCount) {
                     winningRows.add(Math.floor(Math.random() * totalRows));
                 }
-    
+
+                // 生成后续的数据行
                 for (let i = 1; i <= totalRows; i++) {
-                    const previousRow = tableData[i - 1];
-                    const bet = previousRow.bet;
-                    const beginMoney = previousRow.endMoney;
-    
+                    const previousRow = tableData[i - 1]; // 获取上一行数据
+                    const bet = previousRow.bet; // 当前行投注金额
+                    const beginMoney = previousRow.endMoney; // 当前行开始资金为上一行的结束资金
+
                     let win;
+                    // 如果当前行是赢家行，生成随机的赢利金额
                     if (winningRows.has(i - 1)) {
-                        win = (bet * (Math.random() * 50 + 1)).toFixed(2);
+                        win = (bet * (Math.random() * 10 + 0)).toFixed(2);
+                        // win = Math.max((bet * (Math.random() * 10)), 0.10).toFixed(2);
                     } else {
-                        win = "0.00";
+                        win = "0.00"; // 否则赢利为0
                     }
-    
+
+                    // 计算当前行的结束资金
                     const endMoney = (parseFloat(beginMoney) - parseFloat(bet) + parseFloat(win)).toFixed(2);
-                    const timeDifference = Math.floor(Math.random() * 5) + 3;
-                    const dateTime = new Date(previousRow.dateTime.getTime() + timeDifference * 1000);
-    
+                    const timeDifference = Math.floor(Math.random() * 5) + 3; // 随机生成3到7秒之间的时间差
+                    const dateTime = new Date(previousRow.dateTime.getTime() + timeDifference * 1000); // 计算当前行的时间
+
+                    // 当前行数据构造
                     const row = {
                         gameName: previousRow.gameName,
                         tableID: 0,
@@ -168,22 +182,26 @@ const tableData = [];
                         endMoney: endMoney,
                         dateTime: dateTime
                     };
+
+                    // 添加当前行数据
                     tableData.push(row);
                 }
-    
+
+                // 最后一行数据处理
                 const lastRow = tableData[tableData.length - 1];
-                const scoreWithoutDecimal = Math.floor(lastRow.endMoney);
-                const beginMoneyForRow13 = lastRow.endMoney;
-                const row13DateTime = new Date(lastRow.dateTime.getTime() + (Math.random() * (30 - 2) + 2) * 60000);
-                
+                const scoreWithoutDecimal = Math.floor(lastRow.endMoney); // 取最后一行结束资金的整数部分作为得分
+                const beginMoneyForRow13 = lastRow.endMoney; // 最后一行结束资金为第13行的开始资金
+                const row13DateTime = new Date(lastRow.dateTime.getTime() + (Math.random() * (30 - 2) + 2) * 60000); // 生成一个随机的时间，表示第13行时间
+
+                // 第13行数据构造
                 const row13 = {
-                    gameName: '-',
-                    tableID: `Set score：-${scoreWithoutDecimal}.00`,
-                    bet: '-',
-                    win: '-',
-                    beginMoney: beginMoneyForRow13,
-                    endMoney: (parseFloat(beginMoneyForRow13) - Math.floor(parseFloat(lastRow.endMoney))).toFixed(2),
-                    dateTime: row13DateTime
+                    gameName: '-', // 游戏名称留空
+                    tableID: `Set score：-${scoreWithoutDecimal}.00`, // 设置得分为最后一行的整数部分
+                    bet: '-', // 不涉及投注金额
+                    win: '-', // 不涉及赢利金额
+                    beginMoney: beginMoneyForRow13, // 使用最后一行的结束资金作为开始资金
+                    endMoney: (parseFloat(beginMoneyForRow13) - Math.floor(parseFloat(lastRow.endMoney))).toFixed(2), // 结束资金为开始资金减去整数部分的结束金额
+                    dateTime: row13DateTime // 使用生成的时间
                 };
                 
                 // 给最后一行 TableID 标记红色
