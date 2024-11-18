@@ -65,8 +65,16 @@ const tableData = [];
     }
     
     function generateGameLog() {
-        const game = document.getElementById('gameSelect').value;
+        const gameSelect = document.getElementById('gameSelect');
+        const game = gameSelect.value;
         const timeSelect = document.getElementById('timeSelect').value;
+    
+        // 检查 gameSelect 是否为空
+        if (!game) {
+            alert('Please select a game to generate.');
+            gameSelect.focus(); // 将焦点设置到 gameSelect
+            return;
+        }
     
         let currentTime;
         if (timeSelect === 'Current') {
@@ -90,7 +98,6 @@ const tableData = [];
         // 调用 loadGameLog 函数，并传入 game 和修改后的 currentTime
         loadGameLog(game, currentTime);
     }
-    
 
     function loadGameLog(game, currentTime) {
         // 显示加载指示器，隐藏游戏日志
@@ -265,11 +272,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('resitContainer').style.display = 'none';
 });
 
-document.getElementById('generateButton').addEventListener('click', function() {
+document.getElementById('generateButton').addEventListener('click', function () {
     const selectedResitType = document.getElementById('resitTypeSelect').value;
     const resitContainer = document.getElementById('resitContainer');
     const loadingElement = document.getElementById('loading2');
-    
+
+    // 检查 resitTypeSelect 是否为空
+    if (!selectedResitType) {
+        alert('Please select a resit type to generate.');
+        document.getElementById('resitTypeSelect').focus(); // 将焦点设置到 resitTypeSelect
+        return;
+    }
+
     resitContainer.innerHTML = ''; // 清空当前内容
 
     // 显示加载动画，隐藏 resitContainer
@@ -297,7 +311,7 @@ document.getElementById('generateButton').addEventListener('click', function() {
                 <div class="mbb-detail-cover">
                     <div class="mbb-per-detail"><label>Recipient's bank</label><span>Maybank / Maybank Islamic</span></div>
                     <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-1">0</span></div>
-                    <div class="mbb-per-detail"><label>Recipient's Reference</label><span>Payment</span></div>
+                    <div class="mbb-per-detail"><label>Recipient's Reference</label><input type="text" value="payment"></div>
                     <div class="mbb-per-detail"><label>Status</label><span>Successful</span></div>
                     <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-1">0</span></div>
                 </div>
@@ -326,7 +340,7 @@ document.getElementById('generateButton').addEventListener('click', function() {
                     <div class="mbb-per-detail"><label>Transaction Type</label><span>Funds Transfer</span></div>
                     <div class="mbb-per-detail"><label>Transfer Mode</label><span>DuitNow Transfer</span></div>
                     <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-2">0</span></div>
-                    <div class="mbb-per-detail"><label>Recipient's Reference</label><span>payment</span></div>
+                    <div class="mbb-per-detail"><label>Recipient's Reference</label><input type="text" value="payment"></div>
                     <div class="mbb-per-detail"><label>Status</label><span>Successful</span></div>
                     <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-2">0</span></div>
                 </div>
