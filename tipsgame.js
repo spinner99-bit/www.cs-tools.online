@@ -219,8 +219,7 @@ gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style=
     
                     // 添加点击复制功能
                     gameBox.addEventListener('click', function() {
-                        const copyContent = `🎰 **Product Type : ${game.gameType}**
-                        \n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers **${username}** Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
+                        const copyContent = `🎰 **Product Type : ${game.gameType}**\n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers **${username}** Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
                         const tempInput = document.createElement('textarea');
                         tempInput.value = copyContent;  // 修改为所需格式
                         document.body.appendChild(tempInput);
