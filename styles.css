@@ -28,7 +28,7 @@ header{
 }
 
 .menuBtnC i{
-    font-size: 45px;
+    font-size: 32px;
     font-weight: 900;
 }
 
@@ -50,7 +50,8 @@ header{
 }
 
 .logout-btn i{
-    font-size: 40px;
+    font-size: 32px;
+    margin-left: 10px;
 }
 
 footer{
@@ -85,10 +86,14 @@ footer{
 
 .close-btn{
     padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-.sideBarTopCont i{
-    font-size: 26px;
+.close-btn i{
+    font-size: 32px;
+    color: white;
 }
 
 .sideBarTopCont h2{
@@ -96,23 +101,54 @@ footer{
     margin-left: 20px;
 }
 
-.bxs-wallet-alt, .bxs-game, .bxs-cog, .bxs-error-alt, .bxs-image, .bx-link-alt, .bxs-user-circle, .bx-unlink {
-    font-size: 22px;
-    font-weight: 900;
-    margin-right: 5px;
+.sideBar-pageContainer ul {
+    margin: 0;
+    padding: 0;
 }
 
-.sidebar a {
-    color: white;
+.sideBar-pageContainer li{
+    list-style: none;
+    text-align: left;
+    margin: 0;
+    width: 230px;
+    overflow: hidden;
+}
+
+.sideBar-pageContainer a {
+    text-decoration: none;
+    padding: 10px 0;
+    padding-left: 20px;
     font-size: 16px;
     font-weight: 900;
-    display: block;
-    padding: 7px 0 7px 20px;
-    text-decoration: none;
+    color: white;
     display: flex;
+    width: 230px;
+    align-items: center;
+    align-content: center;
 }
 
-.sidebar a:hover {
+.perRow-sideBar {
+    display: flex;
+    align-items: center;
+}
+
+.perRow-sideBar i {
+    font-size: 22px;
+    font-weight: 900;
+    margin: 0;
+    padding-right: 5px;
+    align-self: center;
+}
+
+.perRow-sideBar p {
+    font-size: 15px;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.sideBar-pageContainer a:hover {
     background-color: #555;
 }
 
@@ -178,18 +214,6 @@ footer{
     color: black;
     font-weight: 900;
     margin-top: 40px;
-}
-
-.bx-loader-circle{
-	-webkit-animation: spin 2s linear infinite;
-	-moz-animation: spin 2s linear infinite;
-	animation: spin 2s linear infinite;
-}
-
-.gameLogLoading i{
-    text-align: center;
-    color: black;
-    font-size: 200px;
 }
 
 .gameLogSelBtn {
