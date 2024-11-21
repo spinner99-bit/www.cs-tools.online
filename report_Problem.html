@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Problem</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="Element/Icon.png">
+    <script src="https://kit.fontawesome.com/e3ce135c28.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="menuBtnC">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <div id="header" class="userInfoR">
+        <!-- 头部内容将根据用户登录状态动态插入 -->
+    </div>
+</header>
+
+<!-- 侧边栏菜单 -->
+<div class="sidebar" id="sidebar">
+    <div class="sideBarTopCont">
+        <h2>MENU</h2>
+        <button class="close-btn" id="closeSidebar">
+          <i class="fa-solid fa-square-xmark"></i>
+        </button>
+    </div>
+    <div class="sideBar-pageContainer">
+      <ul>
+        <li><a href="https://www.cs-tools.online/game_Log&Resit">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-dice"></i>
+            <p>GAME LOG & RESIT</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/tips_Game">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-dice-d20"></i>
+            <p>TIPS GAME</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/providers_Link">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-link"></i>
+            <p>PROVIDERS LINK</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/index">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-gear"></i>
+            <p>SETTINGS</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/report_Problem">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-flag"></i>
+            <p>REPORT PROBLEM</p>
+          </div>
+        </a></li>
+      </ul>
+    </div>
+</div>
+
+<div class="reportDiv">
+    <div class="reportForm">
+        <h2>Report a problem</h2>
+        <textarea id="messageInput" placeholder="Please fill in the problem you encountered here....." required></textarea>
+        <button onclick="sendMessage()" class="sendReportBtn">Send</button>
+        <p id="reportResponseMessage"></p>
+    </div>
+</div>
+
+<footer style="visibility: hidden;">1</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
