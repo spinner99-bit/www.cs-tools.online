@@ -572,6 +572,11 @@ footer{
     color: green;
 }
 
+.providersLink-loading {
+    display: flex;
+    justify-content: center;
+}
+
 #products {
     display: flex;
     flex-wrap: wrap;
