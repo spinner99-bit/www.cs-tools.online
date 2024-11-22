@@ -47,7 +47,7 @@ async function submitLogin() {
   if (result.success) {
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
-    localStorage.setItem('fullName', result.fullName);
+    localStorage.setItem('company', result.fullName);
     localStorage.setItem('phoneNumber', result.phoneNumber);
     localStorage.setItem('option1', result.option1);
     localStorage.setItem('number2', result.number2);
