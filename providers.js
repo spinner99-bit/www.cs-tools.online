@@ -129,20 +129,20 @@ async function fetchProducts() {
               <div class="link-group">
                   <label>Download</label>
                   <input type="text" value="${product.download}" readonly id="download-link-${product.name}">
-                  <button class="copy-btn" onclick="copyLink('download-link-${product.name}')"><i class='bx bxs-copy'></i></button>
-                  <button class="open-btn" onclick="openLink('download-link-${product.name}')"><i class='bx bx-link-external'></i></button>
+                  <button class="copy-btn" onclick="copyLink('download-link-${product.name}')"><i class="fa-solid fa-copy"></i></button>
+                  <button class="open-btn" onclick="openLink('download-link-${product.name}')"><i class="fa-solid fa-up-right-from-square"></i></button>
               </div>
               <div class="link-group">
                   <label>Web</label>
                   <input type="text" value="${product.web}" readonly id="web-link-${product.name}">
-                  <button class="copy-btn" onclick="copyLink('web-link-${product.name}')"><i class='bx bxs-copy'></i></button>
-                  <button class="open-btn" onclick="openLink('web-link-${product.name}')"><i class='bx bx-link-external'></i></button>
+                  <button class="copy-btn" onclick="copyLink('web-link-${product.name}')"><i class="fa-solid fa-copy"></i></button>
+                  <button class="open-btn" onclick="openLink('web-link-${product.name}')"><i class="fa-solid fa-up-right-from-square"></i></button>
               </div>
               <div class="link-group">
                   <label>Kiosk</label>
                   <input type="text" value="${product.kiosk}" readonly id="kiosk-link-${product.name}">
-                  <button class="copy-btn" onclick="copyLink('kiosk-link-${product.name}')"><i class='bx bxs-copy'></i></button>
-                  <button class="open-btn" onclick="openLink('kiosk-link-${product.name}')"><i class='bx bx-link-external'></i></button>
+                  <button class="copy-btn" onclick="copyLink('kiosk-link-${product.name}')"><i class="fa-solid fa-copy"></i></button>
+                  <button class="open-btn" onclick="openLink('kiosk-link-${product.name}')"><i class="fa-solid fa-up-right-from-square"></i></button>
               </div>
           `;
 
