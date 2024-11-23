@@ -20,6 +20,10 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #f0f0f0;
 }
 
 /* 菜单按钮样式 */
