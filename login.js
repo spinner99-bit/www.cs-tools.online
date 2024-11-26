@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzuE_iqBjQIWRmMRF-B6fjgZ1VVjGQVl3QoCwu5zNBfNEhVc83KQ3CXdgpicRrCj0Z4zg/exec'; // 替换为你的 Google Apps Script URL
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyaOXVdPTCVLmpaRw9nJeErc3C8tTA-1YhquuqkxVT1zKmRadfJtHRJA2Qkhm2GJRe65w/exec'; // 替换为你的 Google Apps Script URL
 
 document.addEventListener('contextmenu', event => event.preventDefault());
 
