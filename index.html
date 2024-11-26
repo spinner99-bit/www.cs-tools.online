@@ -102,7 +102,7 @@
 
     <div class="settings-TopContainer">
       <h2>Bank Account Settings</h2>
-      <button class="setting-button-edit">Change Information</button>
+      <button class="setting-button-edit" id="editBankButton">Change Information</button>
     </div>
 
     <div class="settings-bankContainer">
@@ -119,11 +119,11 @@
           <tr>
             <td><img src="Element/Bank/Maybank.png"></td>
             <td></td>
-            <td><textarea rows="1"></textarea></td>
+            <td><textarea rows="1" id="mbbNo"></textarea></td>
           </tr>
           <tr>
             <td><img src="Element/Bank/Cimb.png"></td>
-            <td><select>
+            <td><select id="cimbName">
               <option value="" disabled selected>Choise</option>
               <option value="BSA-i W/O FEE-STMT">BSA-i W/O FEE-STMT</option>
               <option value="ECOSAVE SA-i">ECOSAVE SA-i</option>
@@ -134,17 +134,17 @@
               <option value="OCTOSAVERS ACCOUNT-i">OCTOSAVERS ACCOUNT-i</option>
               <option value="SA PASSBOOK">SA PASSBOOK</option>
             </select></td>
-            <td><textarea rows="1"></textarea></td>
+            <td><textarea rows="1" id="cimbNo"></textarea></td>
           </tr>
           <tr>
             <td><img src="Element/Bank/HongLeongBank.png"></td>
             <td></td>
-            <td><textarea rows="1"></textarea></td>
+            <td><textarea rows="1" id="hlbNo"></textarea></td>
           </tr>
           <tr>
             <td><img src="Element/Bank/RhbBank.png"></td>
             <td></td>
-            <td><textarea rows="1"></textarea></td>
+            <td><textarea rows="1" id="rhbNo"></textarea></td>
           </tr>
 
         </tbody>
