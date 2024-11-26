@@ -34,12 +34,12 @@ document.addEventListener('keydown', function (e) {
         }
 
         // 判断用户是否为 admin
-        const loggedInUser = localStorage.getItem("username"); // 假设存储了用户名
-        if (loggedInUser === "admin") {
-            document.getElementById("avatarMenu").style.display = "block";
-        } else {
-            document.getElementById("avatarMenu").style.display = "none";
-        }
+        // const loggedInUser = localStorage.getItem("username"); // 假设存储了用户名
+        // if (loggedInUser === "admin") {
+            // document.getElementById("avatarMenu").style.display = "block";
+        // } else {
+            // document.getElementById("avatarMenu").style.display = "none";
+        // }
     });
 
     // 退出登录功能
@@ -48,6 +48,11 @@ document.addEventListener('keydown', function (e) {
         localStorage.removeItem('username');
         localStorage.removeItem('password');
         localStorage.removeItem('company');
+        localStorage.removeItem('mbbNo');
+        localStorage.removeItem('cimbName');
+        localStorage.removeItem('cimbNo');
+        localStorage.removeItem('hlbNo');
+        localStorage.removeItem('rhbNo');
 
         // 跳转回登录页面
         window.location.href = 'login.html';
@@ -89,11 +94,6 @@ async function sendMessage() {
         document.getElementById('reportResponseMessage').textContent = "Error sending message.";
     }
 }
-
-    // 页面加载时，自动检查登录状态并加载游戏列表
-    window.onload = function() {
-        checkLoginStatus();
-    };
     
     // 控制侧边栏的显示和隐藏
     const menuBtn = document.querySelector('.menuBtnC');
@@ -109,58 +109,63 @@ async function sendMessage() {
     });
 
 
-    // 获取元素
-    const usernameInput = document.getElementById('username');
-    const oldPasswordInput = document.getElementById('old-password');
-    const newPasswordInput = document.getElementById('new-password');
-    const confirmPasswordInput = document.getElementById('confirm-password');
-    const editButton = document.getElementById('edit-btn');
+// 获取元素
+const usernameInput = document.getElementById('username');
+const oldPasswordInput = document.getElementById('old-password');
+const newPasswordInput = document.getElementById('new-password');
+const confirmPasswordInput = document.getElementById('confirm-password');
+const editButton = document.getElementById('edit-btn');
 
-    // 模拟 Google Sheets API URL（替换为实际URL）
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzx6tqrEy1AjdH-QcYxuOtMZJLdmSWCookG-_7qSRs3izOCe22w9UczbZU5G1awDSuPIg/exec'; 
+// 模拟 Google Sheets API URL（替换为实际URL）
+const API_URL = 'https://script.google.com/macros/s/AKfycbzx6tqrEy1AjdH-QcYxuOtMZJLdmSWCookG-_7qSRs3izOCe22w9UczbZU5G1awDSuPIg/exec'; 
 
-    // 从 localStorage 获取用户信息
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password'); // 假设密码也存储在 localStorage
+// 从 localStorage 获取用户信息
+const storedUsername = localStorage.getItem('username');
+const storedPassword = localStorage.getItem('password'); // 假设密码也存储在 localStorage
 
-    // 在第一个 input 中显示 username
-    usernameInput.value = storedUsername;
+// 在第一个 input 中显示 username
+usernameInput.value = storedUsername;
 
-    // 初始状态下所有 input 不可编辑
-    let isEditable = false;
+// 初始状态下所有 input 不可编辑
+let isEditable = false;
 
-    // 当用户点击 Edit 按钮后，允许修改四个 input
-    editButton.addEventListener('click', function() {
-      if (!isEditable) {
-        // 允许修改输入框
-        oldPasswordInput.disabled = false;
-        newPasswordInput.disabled = false;
-        confirmPasswordInput.disabled = false;
+// 当用户点击 Edit 按钮后，允许修改四个 input
+editButton.addEventListener('click', function() {
+  if (!isEditable) {
+    // 允许修改输入框
+    oldPasswordInput.disabled = false;
+    newPasswordInput.disabled = false;
+    confirmPasswordInput.disabled = false;
 
-        // 将按钮文字改为 Update
-        editButton.textContent = 'Update';
-        isEditable = true;
-      } else {
-        // 点击 Update 按钮后，执行密码修改逻辑
-        const oldPassword = oldPasswordInput.value.trim();
-        const newPassword = newPasswordInput.value.trim();
-        const confirmPassword = confirmPasswordInput.value.trim();
+    // 将按钮文字改为 Update
+    editButton.textContent = 'Update';
+    isEditable = true;
+  } else {
+    // 点击 Update 按钮后，执行密码修改逻辑
+    const oldPassword = oldPasswordInput.value.trim();
+    const newPassword = newPasswordInput.value.trim();
+    const confirmPassword = confirmPasswordInput.value.trim();
 
-        // 检查旧密码是否正确
-        if (oldPassword !== storedPassword) {
-            alert('Old password is incorrect.');
-            return;
-        }
-
-        // 检查新密码是否一致
-        if (newPassword !== confirmPassword) {
-            alert('New password and confirm password do not match.');
-            return;
-        }
-
-        // 请求发送到 Google Sheets 保存新密码
-        updatePassword(storedUsername, newPassword, oldPassword);  // 传递旧密码
+    // 检查旧密码是否正确
+    if (oldPassword !== storedPassword) {
+      alert('Old password is incorrect.');
+      return;
     }
+
+    // 检查新密码是否一致
+    if (newPassword !== confirmPassword) {
+      alert('New password and confirm password do not match.');
+      return;
+    }
+
+    // 更新按钮文本为 Updating... 并禁用按钮
+    editButton.textContent = 'Updating...';
+    editButton.style.cursor = 'not-allowed';
+    editButton.disabled = true;
+
+    // 请求发送到 Google Sheets 保存新密码
+    updatePassword(storedUsername, newPassword, oldPassword);  // 传递旧密码
+  }
 });
 
 // 发送请求到 Google Sheets 保存新密码
@@ -194,15 +199,110 @@ function updatePassword(username, newPassword, oldPassword) {
       newPasswordInput.disabled = true;
       confirmPasswordInput.disabled = true;
 
-      // 将按钮文字改回 Edit
-      editButton.textContent = 'Edit';
+      // 恢复按钮状态
+      editButton.textContent = 'Change Password';
+      editButton.style.cursor = 'pointer';
+      editButton.disabled = false;
       isEditable = false;
     } else {
       alert(result.message);  // 显示后端返回的错误信息
+
+      // 如果失败，恢复按钮状态
+      editButton.textContent = 'Update';
+      editButton.style.cursor = 'pointer';
+      editButton.disabled = false;
     }
   })
   .catch(error => {
     console.error('Error:', error);
     alert('There was an error updating the password.');
+
+    // 如果失败，恢复按钮状态
+    editButton.textContent = 'Update';
+    editButton.style.cursor = 'pointer';
+    editButton.disabled = false;
   });
 }
+
+
+function getBankInfo() {
+    const mbbNo = localStorage.getItem("mbbNo");
+    const cimbName = localStorage.getItem("cimbName");
+    const cimbNo = localStorage.getItem("cimbNo");
+    const hlbNo = localStorage.getItem("hlbNo");
+    const rhbNo = localStorage.getItem("rhbNo");
+  
+    // 填充到页面
+    if (mbbNo) document.getElementById("mbbNo").value = mbbNo;
+    if (cimbName) document.getElementById("cimbName").value = cimbName;
+    if (cimbNo) document.getElementById("cimbNo").value = cimbNo;
+    if (hlbNo) document.getElementById("hlbNo").value = hlbNo;
+    if (rhbNo) document.getElementById("rhbNo").value = rhbNo;
+};
+
+// 点击编辑按钮时
+document.getElementById("editBankButton").addEventListener("click", function() {
+    const button = this;
+
+    if (button.textContent === "Change Information") {
+      button.textContent = "Update";
+      document.querySelectorAll("textarea, select").forEach(input => input.disabled = false);
+    } else {
+      updateBankAccountInfo(button);  // 将按钮传递给更新函数
+    }
+});
+
+// 更新银行信息并保存到 Google Sheets
+function updateBankAccountInfo(button) {
+    // 禁用按钮并更改文本为 Updating...，设置光标为 not-allowed
+    button.disabled = true;
+    button.textContent = "Updating...";
+    button.style.cursor = "not-allowed";  // 设置光标为 not-allowed
+
+    const mbbNo = document.getElementById("mbbNo").value;
+    const cimbName = document.getElementById("cimbName").value;
+    const cimbNo = document.getElementById("cimbNo").value;
+    const hlbNo = document.getElementById("hlbNo").value;
+    const rhbNo = document.getElementById("rhbNo").value;
+    const username = localStorage.getItem("username");  // 获取用户名
+
+    // 保存数据到 localStorage
+    localStorage.setItem("mbbNo", mbbNo);
+    localStorage.setItem("cimbName", cimbName);
+    localStorage.setItem("cimbNo", cimbNo);
+    localStorage.setItem("hlbNo", hlbNo);
+    localStorage.setItem("rhbNo", rhbNo);
+
+    // 调用 Google Apps Script 更新数据到 Google Sheets
+    fetch("https://script.google.com/macros/s/AKfycbwALdZ7s81bW6QMRelXiVq8aXogc3fB0KJUXn4uy3d93NDdyrydX4TbIMBN5YoUI9J1-A/exec?action=updateBankInfo", {  // 添加 action 查询参数
+        method: "POST",
+        body: JSON.stringify({ username, mbbNo, cimbName, cimbNo, hlbNo, rhbNo }),  // 发送包含 username 和银行信息的数据
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert("Your bank info is updated!");
+
+        // 恢复按钮文本为 Change Information
+        button.textContent = "Change Information";
+        button.style.cursor = "pointer";  // 恢复光标为 pointer
+        button.disabled = false;  // 恢复按钮为可点击状态
+
+        // 禁用输入框
+        document.querySelectorAll("textarea, select").forEach(input => input.disabled = true);
+      })
+      .catch(error => {
+        alert("Something went wrong, please try again later.");
+        console.error("Update failed", error);
+
+        // 如果发生错误，恢复按钮状态
+        button.textContent = "Change Information";
+        button.style.cursor = "pointer";  // 恢复光标为 pointer
+        button.disabled = false;  // 恢复按钮为可点击状态
+      });
+}
+
+// 页面加载时，自动检查登录状态并加载游戏列表
+window.onload = function() {
+    checkLoginStatus();
+    getBankInfo();
+};
