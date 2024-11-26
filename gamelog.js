@@ -362,25 +362,44 @@ function formatCurrency(amount) {
 }
 
 function fetchDataAndFill() {
-    fetch('https://script.google.com/macros/s/AKfycbx7i8p2CoKTT6whGIb81cXhxrEQCDoQnmvuf8D9AsEljhRqm-pGSoUSmTxbZ9kRP-CL2g/exec')
+    fetch('https://script.google.com/macros/s/AKfycbwc4yBA699DcJ9WYwEahMYl9Ld6GGds5srGtaLY3IaYvzgxJDUPTgDQros7oqiy_DG1aA/exec')
         .then(response => response.json())
         .then(data => {
             const names = data.names;
             let accountE = data.accountE;
             let accountH = data.accountH;
-            const banks = data.banks;
+            let banks = data.banks;
 
+            // 过滤掉 accountE, accountH, banks 中的无效数据
             accountE = accountE.filter(account => account && account !== 'Account Number');
             accountH = accountH.filter(account => account && account !== 'Account Number');
+            banks = banks.filter(bank => bank && bank !== '');
+
+            // 计算有效数据的条数
+            // console.log('Valid accountH count:', accountH.length);
+            // console.log('Valid banks count:', banks.length);
+
+            // 保证 accountH 和 banks 的长度一致，取最小长度
+            const length = Math.min(accountH.length, banks.length);
+
+            // 确保 accountH 和 banks 的数据一一对应
+            const accountBankPairs = [];
+            for (let i = 0; i < length; i++) {
+                accountBankPairs.push({
+                    account: accountH[i],
+                    bank: banks[i] || 'No Bank Info'  // 如果没有银行信息，则使用默认值
+                });
+            }
 
             const randomName1 = names[Math.floor(Math.random() * names.length)];
             const randomAccount1 = accountE[Math.floor(Math.random() * accountE.length)];
             const randomName2 = names[Math.floor(Math.random() * names.length)];
-            const randomAccount2 = accountH[Math.floor(Math.random() * accountH.length)];
 
-            const validBanks = banks.filter(bank => bank && bank !== ''); // 过滤空值和无效数据
-            const bank2 = validBanks.length > 0 ? validBanks[Math.floor(Math.random() * validBanks.length)] : 'No Bank Info';
-            
+            // 从配对数组中随机选择一对 account 和 bank
+            const randomPair = accountBankPairs[Math.floor(Math.random() * accountBankPairs.length)];
+            const randomAccount2 = randomPair.account;
+            const bank2 = randomPair.bank;
+
             const randomReferences = Array.from({ length: 10 }, () => Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000);
 
             const scoreWithoutDecimal = localStorage.getItem('scoreWithoutDecimal') || 1000;
@@ -415,6 +434,9 @@ function fetchDataAndFill() {
             document.getElementById('loading2').style.display = 'none';
         });
 }
+
+
+
 
     // 页面加载时，自动检查登录状态并加载游戏列表
     window.onload = function() {
