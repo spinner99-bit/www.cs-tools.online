@@ -163,3 +163,8 @@ body {
 .submit-btn i{
   font-size: 30px;
 }
+
+#loginMessage{
+  color: red;
+  margin-top: 10px;
+}
