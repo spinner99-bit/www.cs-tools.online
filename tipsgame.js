@@ -51,6 +51,11 @@ document.addEventListener('keydown', function (e) {
         localStorage.removeItem('username');
         localStorage.removeItem('password');
         localStorage.removeItem('company');
+        localStorage.removeItem('mbbNo');
+        localStorage.removeItem('cimbName');
+        localStorage.removeItem('cimbNo');
+        localStorage.removeItem('hlbNo');
+        localStorage.removeItem('rhbNo');
 
         // 跳转回登录页面
         window.location.href = 'login.html';
