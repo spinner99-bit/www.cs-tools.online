@@ -36,12 +36,12 @@ const tableData = [];
         }
 
         // 判断用户是否为 admin
-        const loggedInUser = localStorage.getItem("username"); // 假设存储了用户名
-        if (loggedInUser === "admin") {
-            document.getElementById("avatarMenu").style.display = "block";
-        } else {
-            document.getElementById("avatarMenu").style.display = "none";
-        }
+        // const loggedInUser = localStorage.getItem("username"); // 假设存储了用户名
+        // if (loggedInUser === "admin") {
+            // document.getElementById("avatarMenu").style.display = "block";
+        // } else {
+            // document.getElementById("avatarMenu").style.display = "none";
+        // }
     });
 
     // 退出登录功能
