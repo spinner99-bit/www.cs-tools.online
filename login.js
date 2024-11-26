@@ -1,4 +1,4 @@
-const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyaOXVdPTCVLmpaRw9nJeErc3C8tTA-1YhquuqkxVT1zKmRadfJtHRJA2Qkhm2GJRe65w/exec'; // 替换为你的 Google Apps Script URL
+const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVAPDowGtlaAQFA00EZ1HOLks1HOUBCCEmJyDe0oKeTu4t36GGvAMNFqsKfpeiLZMaww/exec'; // 替换为你的 Google Apps Script URL
 
 document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -48,6 +48,11 @@ async function submitLogin() {
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
     localStorage.setItem('company', result.fullName);
+    localStorage.setItem('mbbNo', result.mbbNo);
+    localStorage.setItem('cimbName', result.cimbName);
+    localStorage.setItem('cimbNo', result.cimbNo);
+    localStorage.setItem('hlbNo', result.hlbNo);
+    localStorage.setItem('rhbNo', result.rhbNo);
 
     // 登录成功后跳转到 index.html
     window.location.href = 'tips_Game';
