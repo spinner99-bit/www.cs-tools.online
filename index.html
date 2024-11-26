@@ -68,31 +68,91 @@
 </div>
 
 <div class="setting-full-cover">
-<div class="settings-container">
-    <h2>Change Password</h2>
 
-    <div class="setting-per-row">
-      <label for="username">Username</label><br>
-      <input type="text" id="username" disabled>
+  <div class="settings-container">
+    <div class="settings-TopContainer">
+      <h2>Password Settings</h2>
+      <button id="edit-btn" class="setting-button-edit">Change Password</button>
     </div>
 
-    <div class="setting-per-row">
-      <label for="old-password">Old Password</label><br>
-      <input type="password" id="old-password" disabled>
-    </div>
+    <div class="settings-MainContainer">
+      <div class="setting-per-row">
+        <label for="username">Username</label><br>
+        <input type="text" id="username" disabled>
+      </div>
 
-    <div class="setting-per-row">
-      <label for="new-password">New Password</label><br>
-      <input type="password" id="new-password" disabled>
-    </div>
+      <div class="setting-per-row">
+        <label for="old-password">Old Password</label><br>
+        <input type="password" id="old-password" disabled>
+      </div>
 
-    <div class="setting-per-row">
-      <label for="confirm-password">Confirm Password</label><br>
-      <input type="password" id="confirm-password" disabled>
-    </div>
+      <div class="setting-per-row">
+        <label for="new-password">New Password</label><br>
+        <input type="password" id="new-password" disabled>
+      </div>
 
-    <button id="edit-btn" class="setting-button-edit">Change</button>
+      <div class="setting-per-row">
+        <label for="confirm-password">Confirm Password</label><br>
+        <input type="password" id="confirm-password" disabled>
+      </div>
+    </div>
   </div>
+
+  <div class="settings-container">
+
+    <div class="settings-TopContainer">
+      <h2>Bank Account Settings</h2>
+      <button class="setting-button-edit">Change Information</button>
+    </div>
+
+    <div class="settings-bankContainer">
+      <table>
+        <thead>
+          <tr>
+            <th class="setting-bankType">Bank Type</th>
+            <th class="setting-bankName">Bank Name</th>
+            <th class="setting-AccNumber">Account Number</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td><img src="Element/Bank/Maybank.png"></td>
+            <td></td>
+            <td><textarea rows="1"></textarea></td>
+          </tr>
+          <tr>
+            <td><img src="Element/Bank/Cimb.png"></td>
+            <td><select>
+              <option value="" disabled selected>Choise</option>
+              <option value="BSA-i W/O FEE-STMT">BSA-i W/O FEE-STMT</option>
+              <option value="ECOSAVE SA-i">ECOSAVE SA-i</option>
+              <option value="AIR ASIA SAVER">AIR ASIA SAVER</option>
+              <option value="BASIC SA WITHOUT FEE">BASIC SA WITHOUT FEE</option>
+              <option value="YOUTH SAVERS ACCT-i">YOUTH SAVERS ACCT-i</option>
+              <option value="PETRONAS SAVERS">PETRONAS SAVERS</option>
+              <option value="OCTOSAVERS ACCOUNT-i">OCTOSAVERS ACCOUNT-i</option>
+              <option value="SA PASSBOOK">SA PASSBOOK</option>
+            </select></td>
+            <td><textarea rows="1"></textarea></td>
+          </tr>
+          <tr>
+            <td><img src="Element/Bank/HongLeongBank.png"></td>
+            <td></td>
+            <td><textarea rows="1"></textarea></td>
+          </tr>
+          <tr>
+            <td><img src="Element/Bank/RhbBank.png"></td>
+            <td></td>
+            <td><textarea rows="1"></textarea></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
 </div>
 
 <footer style="visibility: hidden;">1</footer>
