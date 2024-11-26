@@ -46,11 +46,8 @@ document.addEventListener('keydown', function (e) {
     function logout() {
         // 清除登录信息
         localStorage.removeItem('username');
-        localStorage.removeItem('fullName');
-        localStorage.removeItem('phoneNumber');
-        localStorage.removeItem('option1');
-        localStorage.removeItem('number2');
-        localStorage.removeItem('option2');
+        localStorage.removeItem('password');
+        localStorage.removeItem('company');
 
         // 跳转回登录页面
         window.location.href = 'login.html';
