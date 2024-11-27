@@ -580,7 +580,7 @@ function getFormattedDateTime() {
     }
 
     // 随机增加 40 到 240 秒
-    const randomSeconds = Math.floor(Math.random() * (240 - 40 + 1)) + 40; // 随机秒数
+    const randomSeconds = Math.floor(Math.random() * (125 - 40 + 1)) + 40; // 随机秒数
     const newDate = new Date(baseDate.getTime() + randomSeconds * 1000); // 加上随机秒数
 
     return formatTo12Hour(newDate.toISOString());
