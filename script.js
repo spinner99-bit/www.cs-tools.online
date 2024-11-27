@@ -224,6 +224,66 @@ function updatePassword(username, newPassword, oldPassword) {
   });
 }
 
+const changeCompanyBtn = document.getElementById('changeCompanyBtn');
+const companyInput = document.getElementById('company');
+const username = localStorage.getItem('username'); // 从 localStorage 获取 username
+
+// Function to save to Google Sheets
+async function saveToGoogleSheets(username, companyName) {
+  try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzzbpfcuUQvxSvblEj57Xep7L1cYKzBhSByRmLCErPo7h54wb1vvonGlroyQXHpck0Sag/exec?action=updateCompany', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'updateCompany',
+        username: username,
+        value: companyName,
+      }),
+    });
+
+    if (!response.ok) throw new Error('Failed to save');
+    const result = await response.json();
+    return result.status === 'success';
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+// Button click handler
+changeCompanyBtn.addEventListener('click', async () => {
+  if (!username) {
+    alert('No username found. Please log in.');
+    return;
+  }
+
+  if (changeCompanyBtn.textContent === 'Change Company') {
+    changeCompanyBtn.textContent = 'Update Company';
+    companyInput.disabled = false;
+    companyInput.focus();
+  } else if (changeCompanyBtn.textContent === 'Update Company') {
+    changeCompanyBtn.textContent = 'Updating...';
+    changeCompanyBtn.style.cursor = 'not-allowed';
+    changeCompanyBtn.disabled = true;
+    companyInput.disabled = true;
+
+    const success = await saveToGoogleSheets(username, companyInput.value);
+
+    if (success) {
+      changeCompanyBtn.textContent = 'Change Company';
+      changeCompanyBtn.disabled = false;
+      companyInput.disabled = true;
+      changeCompanyBtn.style.cursor = 'pointer';
+      alert('Your new company name is updated!');
+      localStorage.setItem("company", companyInput.value);
+    } else {
+      alert('Failed to update. Please try again.');
+      changeCompanyBtn.textContent = 'Update Company';
+      changeCompanyBtn.disabled = false;
+      companyInput.disabled = false;
+    }
+  }
+});
+
 
 function getBankInfo() {
     const mbbNo = localStorage.getItem("mbbNo");
@@ -231,6 +291,7 @@ function getBankInfo() {
     const cimbNo = localStorage.getItem("cimbNo");
     const hlbNo = localStorage.getItem("hlbNo");
     const rhbNo = localStorage.getItem("rhbNo");
+    const company = localStorage.getItem("company");
   
     // 填充到页面
     if (mbbNo) document.getElementById("mbbNo").value = mbbNo;
@@ -238,6 +299,7 @@ function getBankInfo() {
     if (cimbNo) document.getElementById("cimbNo").value = cimbNo;
     if (hlbNo) document.getElementById("hlbNo").value = hlbNo;
     if (rhbNo) document.getElementById("rhbNo").value = rhbNo;
+    if (company) document.getElementById("company").value = company;
 };
 
 // 点击编辑按钮时
