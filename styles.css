@@ -444,6 +444,171 @@ footer{
     color: #DA4747;
 }
 
+.cimbPerResit-wrapper{
+    background-color: #ffffff;
+    padding: 10px;
+    width: 650px;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cimbTopContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5e5e5;
+    padding: 13px 25px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.cimbTop-leftWrapper{
+    align-items: center;
+    display: flex;
+}
+
+.cimbTop-leftWrapper img{
+    height: 18px;
+    width: auto;
+}
+
+.cimbTop-leftWrapper #cimbSuccessful{
+    color: #7DB680;
+    font-weight: 800;
+    margin: 0 5px 0 7px;
+    display: inline-block;
+}
+
+.cimbTop-time{
+    font-size: 13px;
+}
+
+.cimbCenterContainer{
+    padding: 10px 25px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ccc;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.cimbCenterContainer h1{
+    font-size: 18px;
+    margin: 0;
+    margin-top: 12.06px;
+}
+
+.cimbCenter-left h1{
+    text-align: left;
+}
+
+.cimbCenter-right h1{
+    text-align: right;
+}
+
+.cimbCenter-perRowDetail{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.cimbCenter-perRowDetail p{
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.cimbCenter-perRowDetail span{
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.cimbCenter-right {
+    text-align: right;
+}
+
+.cimbCanterRight-rowOne {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-left: auto;
+}
+
+.cimbCanterRight-rowOne p {
+    font-size: 10px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.cimbCanterRight-rowOne span {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 5px;
+}
+
+.cimbCenter-right img {
+    height: 12px;
+    width: auto;
+    margin-top: 5px;
+}
+
+
+.cimbBeforeBottom{
+    text-align: left;
+    margin: 15px 0;
+}
+
+.cimbBeforeBottom img{
+    height: 14px;
+    width: auto;
+}
+
+.cimbBottomContainer {
+    padding: 20px 25px;
+    margin-top: 30px;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+    border-radius: 5px;
+}
+  
+.cimbBottomContainer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.cimbBottomContainer h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+  
+.cimbBottom-Amount {
+    display: flex;
+    align-items: flex-start;
+}
+  
+.cimbBottom-Amount p {
+    font-size: 10px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1;
+}
+  
+.cimbBottom-Amount span {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 5px;
+    line-height: 1;
+}
+
 .refreshBtnCover{
     display: flex;
     justify-content: center;
