@@ -55,7 +55,7 @@ async function submitLogin() {
     localStorage.setItem('rhbNo', result.rhbNo);
 
     // 登录成功后跳转到 index.html
-    window.location.href = 'tips_Game';
+    window.location.href = 'index';
   } else {
         // 如果登录失败，显示错误信息
         document.getElementById('loginMessage').textContent = result.message || "Login failed, please try again.";
