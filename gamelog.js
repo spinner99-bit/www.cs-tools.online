@@ -354,7 +354,116 @@ document.getElementById('generateButton').addEventListener('click', function () 
         resitContainer.innerHTML = resitHTML;
 
         // 获取数据并填充内容
-        fetchDataAndFill();
+        fetchDataAndFill();  
+    } else if (selectedResitType === 'CIMB 1') {
+                // 生成 CIMB 的 HTML 内容
+        const cimbHTML = `
+            <div class="cimbFullWrapper" id="cimbContainer">
+                <div class="resit-type-name">
+                    <h1>CIMB BANK TO CIMB BANK</h1>
+                </div>
+                <!-- 第一部分 -->
+                <div class="cimbPerResit-wrapper">
+                    <div class="cimbTopContainer">
+                        <div class="cimbTop-leftWrapper">
+                            <img src="Element/cimb-tick.png">
+                            <span id="cimbSuccessful">Successful</span>
+                            <span id="cimbOneRef">0</span>
+                        </div>
+                        <div>
+                            <span class="cimbTop-time" id="cimbOneTime">0</span>
+                        </div>
+                    </div>
+                    <div class="cimbCenterContainer">
+                        <div class="cimbCenter-left">
+                            <h1>To</h1>
+                            <div class="cimbCenter-perRowDetail">
+                                <p>Account Number</p>
+                                <span id="cimbOneAcc">0</span>
+                            </div>
+                            <div class="cimbCenter-perRowDetail">
+                                <p>Account Name</p>
+                                <span id="cimbOneAccName">0</span>
+                            </div>
+                            <div class="cimbCenter-perRowDetail">
+                                <p>Recipient Name</p>
+                                <span id="cimbOneName">0</span>
+                            </div>
+                        </div>
+                        <div class="cimbCenter-right cimbAmount-firstOne">
+                            <h1>Amount</h1>
+                            <div class="cimbCanterRight-rowOne">
+                                <p>MYR</p><span id="cimbOneAmount1">0</span><p>00</p>
+                            </div>
+                            <img src="Element/cimb-charges.png">
+                        </div>
+                    </div>
+                    <div class="cimbBeforeBottom">
+                        <img src="Element/cimb-more-detail.png">
+                    </div>
+                    <div class="cimbBottomContainer">
+                        <div class="cimbBottomContainer-wrapper">
+                            <h1>Total</h1>
+                            <div class="cimbBottom-Amount">
+                                <p>MYR</p><span id="cimbOneAmount2">0</span><p>00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resit-type-name">
+                    <h1>CIMB BANK TO OTHER BANK</h1>
+                </div>
+                <!-- 第二部分 -->
+                <div class="cimbPerResit-wrapper">
+                    <div class="cimbTopContainer">
+                        <div class="cimbTop-leftWrapper">
+                            <img src="Element/cimb-tick.png">
+                            <span id="cimbSuccessful">Successful</span>
+                            <span id="cimbTwoRef">0</span>
+                        </div>
+                        <div>
+                            <span class="cimbTop-time" id="cimbTwoTime">0</span>
+                        </div>
+                    </div>
+                    <div class="cimbCenterContainer">
+                        <div class="cimbCenter-left">
+                            <h1>To</h1>
+                            <div class="cimbCenter-perRowDetail">
+                                <p>Account Number</p>
+                                <span id="cimbTwoAcc">0</span>
+                            </div>
+                            <div class="cimbCenter-perRowDetail">
+                                <p>Recipient Name</p>
+                                <span id="cimbTwoName">0</span>
+                            </div>
+                        </div>
+                        <div class="cimbCenter-right cimbAmount-firstOne">
+                            <h1>Amount</h1>
+                            <div class="cimbCanterRight-rowOne">
+                                <p>MYR</p><span id="cimbTwoAmount1">0</span><p>00</p>
+                            </div>
+                            <img src="Element/cimb-charges.png">
+                        </div>
+                    </div>
+                    <div class="cimbBeforeBottom">
+                        <img src="Element/cimb-more-detail.png">
+                    </div>
+                    <div class="cimbBottomContainer">
+                        <div class="cimbBottomContainer-wrapper">
+                            <h1>Total</h1>
+                            <div class="cimbBottom-Amount">
+                                <p>MYR</p><span id="cimbTwoAmount2">0</span><p>00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        resitContainer.innerHTML = cimbHTML;
+
+        // 获取数据并填充内容
+        fetchDataAndFillCIMB();
     }
 });
 
@@ -437,8 +546,124 @@ function fetchDataAndFill() {
         });
 }
 
+// 工具函数：将时间格式化为 12 小时制
+function formatTo12Hour(dateString) {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+        // 如果输入无法解析为有效时间，返回默认格式字符串
+        return dateString;
+    }
 
+    // 获取日、月、年、小时、分钟、秒
+    const day = String(date.getDate()).padStart(2, '0'); // 保证日期是两位数字
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear();
+    const hour = String(date.getHours() % 12 || 12).padStart(2, '0');  // 转为12小时制，并确保小时是两位数字
+    const minute = String(date.getMinutes()).padStart(2, '0');  // 确保分钟是两位数字
+    const second = String(date.getSeconds()).padStart(2, '0');  // 确保秒是两位数字
+    const ampm = date.getHours() >= 12 ? 'pm' : 'am';
 
+    // 拼接日期和时间，确保日期后有逗号
+    const formattedDate = `${day} ${month} ${year}, ${hour}:${minute}:${second} ${ampm}`;
+
+    return formattedDate;
+}
+
+// 获取并格式化时间，随机增加 40 到 240 秒
+function getFormattedDateTime() {
+    const row13DateTime = localStorage.getItem('row13DateTime');
+    const baseDate = new Date(row13DateTime);
+
+    if (isNaN(baseDate.getTime())) {
+        // 如果 localStorage 中的时间无效，直接返回默认格式
+        return formatTo12Hour(row13DateTime);
+    }
+
+    // 随机增加 40 到 240 秒
+    const randomSeconds = Math.floor(Math.random() * (240 - 40 + 1)) + 40; // 随机秒数
+    const newDate = new Date(baseDate.getTime() + randomSeconds * 1000); // 加上随机秒数
+
+    return formatTo12Hour(newDate.toISOString());
+}
+
+// 获取 Google Sheets 数据和 LocalStorage 数据
+async function fetchDataAndFillCIMB() {
+    const formattedDateTime = getFormattedDateTime();
+
+    // 使用 Promise.all 确保所有异步请求完成后再继续执行
+    const cimbData = await Promise.all([
+        fetchSheetColumn('E'),  // 随机获取 E 列
+        fetchSheetColumn('A'),  // 随机获取 A 列
+        fetchSheetColumn('D'),  // 随机获取 D 列
+        fetchSheetColumn('H')   // 随机获取 H 列
+    ])
+    .then(([cimbOneAcc, cimbOneAccName, cimbOneName, cimbTwoAcc]) => ({
+        cimbOneRef: `Ref ${Math.floor(Math.random() * 899999999 + 100000000)}`,
+        cimbTwoRef: `Ref ${Math.floor(Math.random() * 899999999 + 100000000)}`,
+        cimbOneTime: formattedDateTime,
+        cimbTwoTime: formattedDateTime,
+        cimbOneAcc,
+        cimbOneAccName,
+        cimbOneName,
+        cimbOneAmount1: formatAmount(localStorage.getItem('scoreWithoutDecimal') || '1000'),
+        cimbOneAmount2: formatAmount(localStorage.getItem('scoreWithoutDecimal') || '1000'),
+        cimbTwoAcc,
+        cimbTwoName: cimbOneAccName,  // 再次随机获取 A 列作为 Cimb 二的姓名
+        cimbTwoAmount1: formatAmount(localStorage.getItem('scoreWithoutDecimal') || '1000'),
+        cimbTwoAmount2: formatAmount(localStorage.getItem('scoreWithoutDecimal') || '1000'),
+    }))
+    .catch(error => {
+        console.error('Error fetching sheet columns:', error);
+        return {}; // 返回空对象以防止其他错误
+    });
+
+    // 填充数据到 DOM
+    document.getElementById('cimbOneRef').textContent = cimbData.cimbOneRef;
+    document.getElementById('cimbTwoRef').textContent = cimbData.cimbTwoRef;
+    document.getElementById('cimbOneTime').textContent = cimbData.cimbOneTime;
+    document.getElementById('cimbTwoTime').textContent = cimbData.cimbTwoTime;
+    document.getElementById('cimbOneAcc').textContent = cimbData.cimbOneAcc;
+    document.getElementById('cimbOneAccName').textContent = cimbData.cimbOneAccName;
+    document.getElementById('cimbOneName').textContent = cimbData.cimbOneName;
+    document.getElementById('cimbOneAmount1').textContent = cimbData.cimbOneAmount1;
+    document.getElementById('cimbOneAmount2').textContent = cimbData.cimbOneAmount2;
+    document.getElementById('cimbTwoAcc').textContent = cimbData.cimbTwoAcc;
+    document.getElementById('cimbTwoName').textContent = cimbData.cimbTwoName;
+    document.getElementById('cimbTwoAmount1').textContent = cimbData.cimbTwoAmount1;
+    document.getElementById('cimbTwoAmount2').textContent = cimbData.cimbTwoAmount2;
+
+    // 隐藏加载动画，显示内容
+    document.getElementById('loading2').style.display = 'none';
+    document.getElementById('resitContainer').style.display = 'block';
+}
+
+// 工具函数：格式化金额
+function formatAmount(amount) {
+    return parseInt(amount).toLocaleString('en-US') + '.';
+}
+
+// Web App URL (替换为您的实际 URL)
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxHuIilX3KLe7NyMZG93CiiMZZbnU7uesVc_mY6BbT7OiaB3PRR9PtSU5i5jPIohLLr/exec';
+
+// 工具函数：获取 Google Sheets 某列的随机值
+async function fetchSheetColumn(column) {
+    try {
+        const response = await fetch(WEB_APP_URL);
+        const data = await response.json();
+
+        if (data[column] && data[column].length > 0) {
+            // 从指定列中随机选择一项
+            const randomIndex = Math.floor(Math.random() * data[column].length);
+            return data[column][randomIndex];
+        } else {
+            console.error(`Column ${column} is empty or does not exist.`);
+            return `NoData_${column}`;
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return `Error_${column}`;
+    }
+}
 
     // 页面加载时，自动检查登录状态并加载游戏列表
     window.onload = function() {
