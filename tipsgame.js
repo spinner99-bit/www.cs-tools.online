@@ -213,7 +213,7 @@ gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style=
         gameBox.classList.add('maintenance');  // 添加 Maintenance 样式
     } else {
         // 组装格子内的内容
-        const extraContentAbove = `🎰 Product Type : ${game.gameType}\n\n`;  // 添加额外内容
+        const extraContentAbove = `🎰 Providers : ${game.gameType}\n\n`;  // 添加额外内容
         const extraContentBelow = `\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers ${company} Sahaje \nSemoga Tips Game Ini Dapat Bantu🔥`;  // 添加额外内容
         // 设置最终显示内容
     gameBox.innerText = extraContentAbove + gameContent.trim() + extraContentBelow;  
@@ -221,7 +221,7 @@ gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style=
     
     // 添加点击复制功能
     gameBox.addEventListener('click', function() {
-        const copyContent = `🎰 **Product Type : ${game.gameType}**\n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers **${company}** Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
+        const copyContent = `🎰 **Providers : ${game.gameType}**\n\n${gameContent.trim()}\n\n⚠️ Attention : Tips Game Ini Hanya Untuk Providers **${company}** Sahaje \n **Semoga Tips Game Ini Dapat Bantu** 🔥`;  // 获取要复制的内容
         const tempInput = document.createElement('textarea');
         tempInput.value = copyContent;  // 修改为所需格式
         document.body.appendChild(tempInput);
