@@ -11,25 +11,27 @@
 </head>
 <body class="loginPage">
 
-    <div class="loginForm-wrapper">
-      <h1>LOGIN</h1>
-      <div class="loginForm-container">
-        <!-- Username Field with Icon -->
-        <div class="input-container">
-          <i class='bx bx-user'></i>
-          <input type="text" id="loginUsername" placeholder="Username" required>
-        </div>
-        <!-- Password Field with Icon -->
-        <div class="input-container">
-          <i class='bx bx-lock'></i>
-          <input type="password" id="loginPassword" placeholder="Password" required>
-        </div>
+  <div class="loginForm-wrapper">
+    <h1>LOGIN</h1>
+    <div class="loginForm-container">
+      <div class="input-container">
+        <input type="text" id="loginUsername" required placeholder=" " />
+        <span class="bar"></span>
+        <label for="loginUsername" class="loginPage-Label">Username</label>
+        <i class='bx bx-user'></i>
       </div>
-      <button onclick="submitLogin()" class="submit-btn">LOGIN<i class='bx bx-log-in-circle'></i></button>
-      <div>
-        <p id="loginMessage"></p>
+      <div class="input-container">
+        <input type="password" id="loginPassword" required placeholder=" " />
+        <span class="bar"></span>
+        <label for="loginPassword" class="loginPage-Label">Password</label>
+        <i class='bx bx-lock'></i>
       </div>
     </div>
+    <button onclick="submitLogin()" class="submit-btn">LOGIN<i class='bx bx-log-in-circle'></i></button>
+    <div>
+      <p id="loginMessage"></p>
+    </div>
+  </div>
 
   <script src="login.js"></script>
 
