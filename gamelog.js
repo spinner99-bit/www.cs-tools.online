@@ -395,7 +395,7 @@ document.getElementById('generateButton').addEventListener('click', function () 
                             <div class="cimbCanterRight-rowOne">
                                 <p>MYR</p><span id="cimbOneAmount1">0</span><p>00</p>
                             </div>
-                            <img src="Element/cimb-charges.png">
+                            <img src="Element/cimb-charges-cimb.png">
                         </div>
                     </div>
                     <div class="cimbBeforeBottom">
@@ -623,8 +623,9 @@ async function fetchDataAndFillCIMB() {
     document.getElementById('cimbOneTime').textContent = cimbData.cimbOneTime;
     document.getElementById('cimbTwoTime').textContent = cimbData.cimbTwoTime;
     document.getElementById('cimbOneAcc').textContent = cimbData.cimbOneAcc;
-    document.getElementById('cimbOneAccName').textContent = cimbData.cimbOneAccName;
-    document.getElementById('cimbOneName').textContent = cimbData.cimbOneName;
+    // document.getElementById('cimbOneAccName').textContent = cimbData.cimbOneAccName;
+    document.getElementById('cimbOneAccName').textContent = cimbData.cimbOneName;
+    document.getElementById('cimbOneName').textContent = cimbData.cimbOneAccName;
     document.getElementById('cimbOneAmount1').textContent = cimbData.cimbOneAmount1;
     document.getElementById('cimbOneAmount2').textContent = cimbData.cimbOneAmount2;
     document.getElementById('cimbTwoAcc').textContent = cimbData.cimbTwoAcc;
