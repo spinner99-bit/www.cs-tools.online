@@ -59,15 +59,14 @@ body::-webkit-scrollbar{
     border-bottom: 2px solid #ccc;
     background-color: transparent;
     font-weight: 900;
-    transition: border-color 0.3s ease; /* 添加动态效果 */
+    transition: border-color 0.3s ease;
 }
 
-/* 输入框聚焦时更改边框颜色 */
-.input-container input:focus {
+.input-container input:focus,
+.input-container input:not(:placeholder-shown) {
     border-color: #07468e;
 }
 
- /* 默认图标样式 */
 .input-container i {
     position: absolute;
     top: 50%;
@@ -76,12 +75,49 @@ body::-webkit-scrollbar{
     font-size: 20px;
     color: #ccc;
     pointer-events: none; /* 防止图标干扰点击输入框 */
-    transition: color 0.3s ease; /* 动态效果 */
+    transition: color 0.3s ease;
 }
 
-/* 当输入框聚焦时，改变图标颜色 */
 .input-container:focus-within i {
     color: #07468e;
+}
+
+.input-container input:not(:placeholder-shown)~i {
+    color: #07468e;
+}
+
+.input-container span.bar {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 2px;
+    width: 0;
+    background-color: #07468e;
+    transform: translateX(-50%);
+    transition: width 0.4s ease;
+}
+
+.input-container input:focus~.bar,
+.input-container input:not(:placeholder-shown)~.bar {
+    width: 100%;
+}
+
+.input-container .loginPage-Label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #ccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-container input:focus~.loginPage-Label,
+.input-container input:not(:placeholder-shown)~.loginPage-Label {
+    top: -10px;
+    color: #07468e;
+    font-size: 12px;
+    font-weight: 900;
 }
 
 .loginForm-wrapper button {
