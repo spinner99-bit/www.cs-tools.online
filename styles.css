@@ -751,6 +751,83 @@ footer{
     line-height: 1;
 }
 
+.mbb2-fullWarpper{
+    width: 700px;
+    border: 1px solid black;
+}
+
+.mbb2-perResit-wrapper{
+    background-color: white;
+    text-align: left;
+    padding: 40px 0 70px 40px;
+    width: 660px;
+    font-family: Helvetica, sans-serif;
+}
+
+.mbb2-topLogo img{
+    width: 220px;
+    height: auto;
+}
+
+.mbb2-perResit-wrapper h1{
+    font-size: 22px;
+    font-weight: 750;
+}
+
+.mbb2-canterDetail-detailCenter{
+    margin: 30px 0;
+}
+
+.mbb2-centerDetail-perRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.mbb2-successful{
+    color: #20a520;
+}
+
+.mbb2-centerDetail-perRow p{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.mbb2-centerDetail-perRow span{
+    font-weight: 750;
+    text-align: left;
+    font-size: 15px;
+    width: 350px;
+}
+
+.mbb2-bottomDetail-wrapper{
+    margin-top: 0;
+}
+
+.mbb2-bottomDetail-rowOne{
+    margin: 30px 0;
+}
+
+.mbb2-bottomDetail-rowOne p{
+    font-size: 14px;
+}
+
+.mbb2-bottomDetail-rowOne span{
+    font-weight: 750;
+}
+
+.mbb2-bottomDetail-rowTwo img{
+    height: auto;
+    width: 100px;
+}
+
+.mbb2-bottomDetail-rowLastOne{
+    font-weight: 750;
+    font-size: 9.7px;
+}
+
 .refreshBtnCover{
     display: flex;
     justify-content: center;
