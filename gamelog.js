@@ -518,7 +518,7 @@ function fetchDataAndFill() {
 
             // 获取并格式化 row13DateTime
             const row13DateTime = localStorage.getItem('row13DateTime');
-            const formattedDateTime = row13DateTime ? new Date(row13DateTime).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' }) : 'No Date';
+            const formattedDateTime = row13DateTime ? new Date(row13DateTime).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' }) : 'Error';
 
             document.getElementById('rst-name-1').textContent = randomName1;
             document.getElementById('rst-account1').textContent = randomAccount1 || 'N/A';
