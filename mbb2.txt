@@ -1,0 +1,67 @@
+              <div class="mbb2-fullWarpper">
+
+                <div class="mbb2-perResit-wrapper">
+                  <div class="mbb2-topLogo">
+                    <img src="Element/mbb2-logo1.png">
+                  </div>
+                  <h1>Open 3rd Party Transfer</h1>
+                  <div class="mbb2-centerDetail-wrapper">
+                    <div class="mbb2-canterDetail-detailTop">
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>Status:</p>
+                        <span class="mbb2-successful">Successful</span>
+                      </div>
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>Reference Number:</p>
+                        <span>6430354793</span>
+                      </div>
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>Transaction Date:</p>
+                        <span>28 Nov 2024 08:53:59</span>
+                      </div>
+                    </div>
+                    <div class="mbb2-canterDetail-detailCenter">
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>Amount:</p>
+                        <span>RM2,500.00</span>
+                      </div>
+                    </div>
+                    <div class="mbb2-canterDetail-detailCenter">
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>From Account:</p>
+                        <span>553104624381</span>
+                      </div>
+                    </div>
+                    <div class="mbb2-centerDetail-detailBottom">
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>To Open 3rd Party Account :</p>
+                        <span>153011189986</span>
+                      </div>
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>Account Holder Name :</p>
+                        <span>OUI SHUK XIAN</span>
+                      </div>
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>Recipient Reference :</p>
+                        <span>payment</span>
+                      </div>
+                      <div class="mbb2-centerDetail-perRow">
+                        <p>Other Transfer Details :</p>
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mbb2-bottomDetail-wrapper">
+                    <div class="mbb2-bottomDetail-rowOne">
+                      <p>Note:<span> This receipt is computer generated and no signature is required.</span></p>
+                    </div>
+                    <div class="mbb2-bottomDetail-rowTwo">
+                      <img src="Element/mbb2-logo2.png">
+                    </div>
+                    <div class="mbb2-bottomDetail-rowLastOne">
+                      <p>Malayan Banking Berhad (Co.Reg. : 196001009142) | Maybank Islamic Berhad (Co.Reg. : 200701029411)</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
