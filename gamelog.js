@@ -513,7 +513,7 @@ function fetchDataAndFill() {
 
             const randomReferences = Array.from({ length: 10 }, () => Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000);
 
-            const scoreWithoutDecimal = localStorage.getItem('scoreWithoutDecimal') || 1000;
+            const scoreWithoutDecimal = localStorage.getItem('scoreWithoutDecimal') || 'Error';
             const formattedAmount = formatCurrency(scoreWithoutDecimal);
 
             // 获取并格式化 row13DateTime
