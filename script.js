@@ -57,43 +57,6 @@ document.addEventListener('keydown', function (e) {
         // 跳转回登录页面
         window.location.href = 'login.html';
     }
-
-        // 发送消息函数
-async function sendMessage() {
-    const username = localStorage.getItem('username');
-    const messageInput = document.getElementById('messageInput');
-    const message = messageInput.value.trim();
-
-    if (message === "") {
-        document.getElementById('responseMessage').textContent = "Please enter a message.";
-        return;
-    }
-
-    const botToken = '6414565524:AAGY2obKsjvpfyH8rnq4t9OWMPDgKHM8ddI';
-    const chatId = '-4585176626';
-    const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-    // 发送请求到 Telegram Bot
-    const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: `( ${username} ) Report The Problem : ${message}`,
-        }),
-    });
-
-    const result = await response.json();
-
-    if (result.ok) {
-        document.getElementById('reportResponseMessage').textContent = "Message sent successfully!";
-        messageInput.value = ""; // 清空输入框
-    } else {
-        document.getElementById('reportResponseMessage').textContent = "Error sending message.";
-    }
-}
     
     // 控制侧边栏的显示和隐藏
     const menuBtn = document.querySelector('.menuBtnC');
