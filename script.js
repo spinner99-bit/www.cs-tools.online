@@ -129,6 +129,8 @@ changeCompanyBtn.addEventListener('click', async () => {
       cancelEditCompanyBtn.style.display = 'none';
       alert('Company name is successfully update !');
       localStorage.setItem("company", companyInput.value);
+
+      getBankInfo()
     } else {
       alert('Failed to update Company name, Please try again later');
       changeCompanyBtn.textContent = 'Update';
@@ -298,6 +300,8 @@ function updatePassword(username, newPassword, oldPassword) {
       editButton.style.cursor = 'pointer';
       editButton.disabled = false;
       isEditable = false;
+
+      getBankInfo()
     } else {
       alert(result.message);  // 显示后端返回的错误信息
 
@@ -325,6 +329,7 @@ function getBankInfo() {
     const hlbNo = localStorage.getItem("hlbNo");
     const rhbNo = localStorage.getItem("rhbNo");
     const company = localStorage.getItem("company");
+    const password = localStorage.getItem("password");
   
     // 填充到页面
     if (mbbNo) document.getElementById("mbbNo").value = mbbNo;
@@ -333,6 +338,7 @@ function getBankInfo() {
     if (hlbNo) document.getElementById("hlbNo").value = hlbNo;
     if (rhbNo) document.getElementById("rhbNo").value = rhbNo;
     if (company) document.getElementById("company").value = company;
+    if (password) document.getElementById("passwordHide").value = password;
 };
 
 // 点击编辑按钮时
@@ -382,6 +388,8 @@ function updateBankAccountInfo(button) {
   .then(response => response.json())
   .then(data => {
     alert("Your bank info is updated!");
+
+    getBankInfo()
 
     // 恢复按钮文本为 Change Information
     button.textContent = "Change Information";
