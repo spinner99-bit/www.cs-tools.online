@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Manage User</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="shortcut icon" href="../Element/Icon.png">
+  <script src="https://kit.fontawesome.com/e3ce135c28.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="menuBtnC">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <div id="header" class="userInfoR">
+        <!-- 头部内容将根据用户登录状态动态插入 -->
+    </div>
+</header>
+
+<!-- 侧边栏菜单 -->
+<div class="sidebar" id="sidebar">
+    <div class="sideBarTopCont">
+        <h2>TOOLS</h2>
+        <button class="close-btn" id="closeSidebar">
+          <i class="fa-solid fa-square-xmark"></i>
+        </button>
+    </div>
+    <div class="sideBar-pageContainer">
+      <ul>
+        <li><a href="https://www.cs-tools.online/game_Log&Resit">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-dice"></i>
+            <p>GAME LOG & RESIT</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/tips_Game">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-dice-d20"></i>
+            <p>TIPS GAME</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/providers_Link">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-link"></i>
+            <p>PROVIDERS LINK</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/index">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-gear"></i>
+            <p>SETTINGS</p>
+          </div>
+        </a></li>
+
+        <li><a href="https://www.cs-tools.online/report_Problem">
+          <div class="perRow-sideBar">
+            <i class="fa-solid fa-flag"></i>
+            <p>REPORT PROBLEM</p>
+          </div>
+        </a></li>
+
+        <div id="menuForAdmin" style="display: none;">
+            <li><a href="https://www.cs-tools.online/admin/manage-User">
+            <div class="perRow-sideBar">
+                <i class="fa-solid fa-users-gear"></i>
+                <p>MANAGE USER</p>
+            </div>
+            </a></li>
+        </div>
+      </ul>
+    </div>
+</div>
+
+<div class="manageUser-fullWrapper">
+
+    <div class="manageUserForm-wrapper">
+        <div class="manageUser-ListTop">
+            <h2>Add New User</h2>
+        </div>
+        <form id="registrationForm">
+            <div class="addUser-perRow">
+                <label>Username</label><br>
+                <input type="text" id="username" required />
+            </div>
+
+            <div class="addUser-perRow">
+                <label>Password</label><br>
+                <input type="text" id="password" required />
+            </div>
+
+            <div class="addUser-perRow">
+                <label>Company</label><br>
+                <input type="text" id="fullName" />
+            </div>
+
+            <button type="submit">Add User</button>
+        </form>
+    </div>
+
+    <div class="manageUserList-wrapper">
+        <div class="manageUser-ListTop">
+            <h2>User List</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="manageUserList-Username">Username</th>
+              <th class="manageUserList-Password">Password</th>
+              <th>Company</th>
+              <th class="manageUserList-Status">Status</th>
+              <th>Last Login Date</th>
+              <th class="manageUserList-Action">Action</th>
+            </tr>
+          </thead>
+          <tbody id="dataTable">
+          </tbody>
+        </table>
+
+        <!-- Popup Window -->
+        <div id="overlay"></div>
+        <div id="popup" class="userList-popup">
+            <h2>Edit User Info</h2>
+            <form id="editForm">
+                <div class="userList-perRowDetail">
+                    <label>Username :</label>
+                    <input type="text" id="editUsername" disabled>
+                </div>
+
+                <div class="userList-perRowDetail">
+                    <label>Password :</label>
+                    <input type="text" id="editPassword">
+                </div>
+
+                <div class="userList-perRowDetail">
+                    <label>Company :</label>
+                    <input type="text" id="editCompany">
+                </div>
+
+                <div class="userList-perRowDetail">
+                    <label>Status :</label>
+                    <select id="editStatus">
+                        <option value="1">Active</option>
+                        <option value="2">Suspended</option>
+                    </select>
+                </div>
+
+                <div class="userList-perRowDetail">
+                    <label>Last Login Time :</label>
+                    <input type="text" id="editLastLoginTime" disabled>
+                </div>
+
+                <div class="userList-popupSaveButton">
+                    <button type="button" id="cancelButton" class="userList-cencelButton">Cancel</button>
+                    <button type="submit" class="userList-SaveButton">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+  <script src="manage-User.js"></script>
+</body>
+</html>
