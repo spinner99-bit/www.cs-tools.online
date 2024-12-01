@@ -95,19 +95,24 @@
         <input type="text" id="username" disabled>
       </div>
 
-      <div class="setting-per-row">
+      <div class="setting-per-row" id="settingPassSample">
+        <label>Password</label><br>
+        <input type="text" disabled value="**********">
+      </div>
+
+      <div class="setting-per-row" id="settingOldPassword" style="display: none;">
         <label for="old-password">Old Password</label><br>
-        <input type="password" id="old-password" disabled>
+        <input type="password" id="old-password" disabled placeholder="your old password">
       </div>
 
-      <div class="setting-per-row">
+      <div class="setting-per-row" id="settingNewPassword" style="display: none;">
         <label for="new-password">New Password</label><br>
-        <input type="password" id="new-password" disabled>
+        <input type="password" id="new-password" disabled placeholder="your new password">
       </div>
 
-      <div class="setting-per-row">
+      <div class="setting-per-row" id="settingComfirmPassword" style="display: none;">
         <label for="confirm-password">Confirm Password</label><br>
-        <input type="password" id="confirm-password" disabled>
+        <input type="password" id="confirm-password" disabled placeholder="comfirm your new password">
       </div>
     </div>
   </div>
