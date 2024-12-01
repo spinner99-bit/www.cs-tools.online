@@ -105,11 +105,11 @@ changeCompanyBtn.addEventListener('click', async () => {
   }
 
   if (changeCompanyBtn.textContent === 'Change Company') {
-    changeCompanyBtn.textContent = 'Update Company';
+    changeCompanyBtn.textContent = 'Update';
     companyInput.disabled = false;
     companyInput.focus();
     cancelEditCompanyBtn.style.display = 'inline';
-  } else if (changeCompanyBtn.textContent === 'Update Company') {
+  } else if (changeCompanyBtn.textContent === 'Update') {
     changeCompanyBtn.textContent = 'Updating...';
     changeCompanyBtn.style.cursor = 'not-allowed';
     changeCompanyBtn.disabled = true;
@@ -131,7 +131,7 @@ changeCompanyBtn.addEventListener('click', async () => {
       localStorage.setItem("company", companyInput.value);
     } else {
       alert('Failed to update Company name, Please try again later');
-      changeCompanyBtn.textContent = 'Update Company';
+      changeCompanyBtn.textContent = 'Update';
       changeCompanyBtn.disabled = false;
       companyInput.disabled = false;
       changeCompanyBtn.style.cursor = 'pointer';
