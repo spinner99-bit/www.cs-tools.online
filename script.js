@@ -115,6 +115,10 @@ const oldPasswordInput = document.getElementById('old-password');
 const newPasswordInput = document.getElementById('new-password');
 const confirmPasswordInput = document.getElementById('confirm-password');
 const editButton = document.getElementById('edit-btn');
+const passSample = document.getElementById('settingPassSample');
+const oldPassWrapper = document.getElementById('settingOldPassword');
+const NewPassWrapper = document.getElementById('settingNewPassword');
+const ComfirmPassWrapper = document.getElementById('settingComfirmPassword');
 
 // 模拟 Google Sheets API URL（替换为实际URL）
 const API_URL = 'https://script.google.com/macros/s/AKfycbzx6tqrEy1AjdH-QcYxuOtMZJLdmSWCookG-_7qSRs3izOCe22w9UczbZU5G1awDSuPIg/exec'; 
@@ -133,6 +137,10 @@ let isEditable = false;
 editButton.addEventListener('click', function() {
   if (!isEditable) {
     // 允许修改输入框
+    passSample.style.display = 'none';
+    oldPassWrapper.style.display = 'block';
+    NewPassWrapper.style.display = 'block';
+    ComfirmPassWrapper.style.display = 'block';
     oldPasswordInput.disabled = false;
     newPasswordInput.disabled = false;
     confirmPasswordInput.disabled = false;
@@ -190,6 +198,11 @@ function updatePassword(username, newPassword, oldPassword) {
 
       // 更新 localStorage 中的密码
       localStorage.setItem('password', newPassword);
+
+      passSample.style.display = 'block';
+      oldPassWrapper.style.display = 'none';
+      NewPassWrapper.style.display = 'none';
+      ComfirmPassWrapper.style.display = 'none';
 
       // 重置输入框并禁用
       oldPasswordInput.value = '';
