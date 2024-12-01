@@ -72,9 +72,11 @@
   <div class="settings-container">
     <div class="settings-TopContainer">
       <h2>Company Settings</h2>
-      <button class="setting-button-edit" id="changeCompanyBtn">Change Company</button>
+      <div class="setting-button-edit">
+        <button class="setting-changeButton" id="changeCompanyBtn">Change Company</button>
+        <button class="setting-cancelButton" id="cancelEditComapny" style="display: none;">Cancel</button>
+      </div>
     </div>
-  
     <div class="settings-MainContainer">
       <div class="setting-per-row">
         <label>Company Name</label><br>
@@ -86,9 +88,11 @@
   <div class="settings-container">
     <div class="settings-TopContainer">
       <h2>Password Settings</h2>
-      <button id="edit-btn" class="setting-button-edit">Change Password</button>
+      <div class="setting-button-edit">
+        <button class="setting-changeButton" id="edit-btn">Change Password</button>
+        <button class="setting-cancelButton" id="cancelEditPassword" style="display: none;">Cancel</button>
+      </div>
     </div>
-
     <div class="settings-MainContainer">
       <div class="setting-per-row">
         <label for="username">Username</label><br>
@@ -102,28 +106,29 @@
 
       <div class="setting-per-row" id="settingOldPassword" style="display: none;">
         <label for="old-password">Old Password</label><br>
-        <input type="password" id="old-password" disabled placeholder="your old password">
+        <input type="password" id="old-password" disabled>
       </div>
 
       <div class="setting-per-row" id="settingNewPassword" style="display: none;">
         <label for="new-password">New Password</label><br>
-        <input type="password" id="new-password" disabled placeholder="your new password">
+        <input type="password" id="new-password" disabled>
       </div>
 
       <div class="setting-per-row" id="settingComfirmPassword" style="display: none;">
         <label for="confirm-password">Confirm Password</label><br>
-        <input type="password" id="confirm-password" disabled placeholder="comfirm your new password">
+        <input type="password" id="confirm-password" disabled>
       </div>
     </div>
   </div>
 
   <div class="settings-container">
-
     <div class="settings-TopContainer">
       <h2>Bank Account Settings</h2>
-      <button class="setting-button-edit" id="editBankButton">Change Information</button>
+      <div class="setting-button-edit">
+        <button class="setting-changeButton" id="editBankButton">Change Information</button>
+        <button class="setting-cancelButton" id="cancelEditBank" style="display: none;">Cancel</button>
+      </div>
     </div>
-
     <div class="settings-bankContainer">
       <table>
         <thead>
@@ -134,7 +139,6 @@
           </tr>
         </thead>
         <tbody>
-
           <tr>
             <td><img src="Element/Bank/Maybank.png"></td>
             <td></td>
@@ -165,11 +169,9 @@
             <td></td>
             <td><textarea rows="1" id="rhbNo" disabled></textarea></td>
           </tr>
-
         </tbody>
       </table>
     </div>
-
   </div>
 
 </div>
