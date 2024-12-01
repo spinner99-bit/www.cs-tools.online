@@ -1096,6 +1096,7 @@ footer{
     display: grid;
     justify-content: center;
     align-items: center;
+    padding: 0 30px;
 }
 
 .settings-container{
