@@ -1183,6 +1183,12 @@ footer{
     font-weight: 900;
     color: black;
     width: 300px;
+    border: 1px solid black;
+}
+
+.setting-per-row input:disabled{
+    color: grey;
+    border: 1px solid #ccc;
 }
 
 .settings-bankContainer {
@@ -1236,14 +1242,25 @@ footer{
 
 .settings-bankContainer textarea,
 .settings-bankContainer select{
-    border: 1px solid #ccc;
+    border: 1px solid black;
     background-color: white;
     text-align: center;
     padding: 10px;
+    color: black;
     font-weight: 900;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .settings-bankContainer textarea{
     resize: none;
+}
+
+.settings-bankContainer textarea:disabled{
+    color: grey;
+    border: 1px solid #ccc;
+}
+
+.settings-bankContainer select:disabled{
+    color: grey;
+    border: 1px solid #ccc;
 }
