@@ -1122,20 +1122,43 @@ footer{
 .settings-container h2{
     font-weight: 900;
     margin: 0;
+    font-size: 15px;
 }
 
 .setting-button-edit{
-    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.setting-button-edit button{
+    padding: 6px 20px;
+    font-size: 12px;
     font-weight: 900;
-    border-radius: 10px;
-    border: none;
-    background-color: #3498db;
-    color: white;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-.setting-button-edit:hover{
+.setting-changeButton{
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border: 1px solid #3498db;
+}
+
+.setting-changeButton:hover{
     background-color: #2980b9;
+}
+
+.setting-cancelButton{
+    background-color: #f0f0f0;
+    color: #444444;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+}
+
+.setting-cancelButton:hover{
+    background-color: #ddd;
+    border: 1px solid #aaa;
 }
 
 .setting-per-row{
