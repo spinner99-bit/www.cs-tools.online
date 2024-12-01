@@ -71,6 +71,87 @@ document.addEventListener('keydown', function (e) {
         sidebar.classList.remove('active'); // 点击关闭按钮隐藏侧边栏
     });
 
+const changeCompanyBtn = document.getElementById('changeCompanyBtn');
+const cancelEditCompanyBtn = document.getElementById('cancelEditComapny');
+const companyInput = document.getElementById('company');
+const username = localStorage.getItem('username');
+
+// Function to save to Google Sheets
+async function saveToGoogleSheets(username, companyName) {
+  try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzzbpfcuUQvxSvblEj57Xep7L1cYKzBhSByRmLCErPo7h54wb1vvonGlroyQXHpck0Sag/exec?action=updateCompany', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'updateCompany',
+        username: username,
+        value: companyName,
+      }),
+    });
+
+    if (!response.ok) throw new Error('Failed to save');
+    const result = await response.json();
+    return result.status === 'success';
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+// 处理 "Change Company" 按钮点击事件
+changeCompanyBtn.addEventListener('click', async () => {
+  if (!username) {
+    alert('Bug ! !');
+    return;
+  }
+
+  if (changeCompanyBtn.textContent === 'Change Company') {
+    changeCompanyBtn.textContent = 'Update Company';
+    companyInput.disabled = false;
+    companyInput.focus();
+    cancelEditCompanyBtn.style.display = 'inline';
+  } else if (changeCompanyBtn.textContent === 'Update Company') {
+    changeCompanyBtn.textContent = 'Updating...';
+    changeCompanyBtn.style.cursor = 'not-allowed';
+    changeCompanyBtn.disabled = true;
+    cancelEditCompanyBtn.style.cursor = 'not-allowed';
+    cancelEditCompanyBtn.disabled = true;
+    companyInput.disabled = true;
+
+    const success = await saveToGoogleSheets(username, companyInput.value);
+
+    if (success) {
+      changeCompanyBtn.textContent = 'Change Company';
+      companyInput.disabled = true;
+      changeCompanyBtn.style.cursor = 'pointer';
+      changeCompanyBtn.disabled = false;
+      cancelEditCompanyBtn.style.cursor = 'pointer';
+      cancelEditCompanyBtn.disabled = false;
+      cancelEditCompanyBtn.style.display = 'none';
+      alert('Company name is successfully update !');
+      localStorage.setItem("company", companyInput.value);
+    } else {
+      alert('Failed to update Company name, Please try again later');
+      changeCompanyBtn.textContent = 'Update Company';
+      changeCompanyBtn.disabled = false;
+      companyInput.disabled = false;
+      changeCompanyBtn.style.cursor = 'pointer';
+      cancelEditCompanyBtn.style.cursor = 'pointer';
+      cancelEditCompanyBtn.style.display = 'none';
+    }
+  }
+});
+
+// 处理 "Cancel" 按钮点击事件
+cancelEditCompanyBtn.addEventListener('click', () => {
+  // 重置按钮文本和状态
+  changeCompanyBtn.textContent = 'Change Company';
+  changeCompanyBtn.disabled = false;
+  companyInput.disabled = true;
+  
+  // 隐藏取消按钮
+  changeCompanyBtn.style.cursor = 'pointer';
+  cancelEditCompanyBtn.style.display = 'none'; // 隐藏取消按钮
+});
 
 // 获取元素
 const usernameInput = document.getElementById('username');
@@ -78,6 +159,7 @@ const oldPasswordInput = document.getElementById('old-password');
 const newPasswordInput = document.getElementById('new-password');
 const confirmPasswordInput = document.getElementById('confirm-password');
 const editButton = document.getElementById('edit-btn');
+const cancelEditPassword = document.getElementById('cancelEditPassword');
 const passSample = document.getElementById('settingPassSample');
 const oldPassWrapper = document.getElementById('settingOldPassword');
 const NewPassWrapper = document.getElementById('settingNewPassword');
@@ -96,10 +178,11 @@ usernameInput.value = storedUsername;
 // 初始状态下所有 input 不可编辑
 let isEditable = false;
 
-// 当用户点击 Edit 按钮后，允许修改四个 input
+// 当用户点击 Edit 按钮后
 editButton.addEventListener('click', function() {
   if (!isEditable) {
     // 允许修改输入框
+    cancelEditPassword.style.display = 'block';
     passSample.style.display = 'none';
     oldPassWrapper.style.display = 'block';
     NewPassWrapper.style.display = 'block';
@@ -133,10 +216,41 @@ editButton.addEventListener('click', function() {
     editButton.textContent = 'Updating...';
     editButton.style.cursor = 'not-allowed';
     editButton.disabled = true;
+    cancelEditPassword.style.cursor = 'not-allowed';
+    cancelEditPassword.disabled = true;
 
     // 请求发送到 Google Sheets 保存新密码
     updatePassword(storedUsername, newPassword, oldPassword);  // 传递旧密码
   }
+
+  // 处理 "Cancel" 按钮点击事件
+  cancelEditPassword.addEventListener('click', () => {
+  // 重置按钮文本和状态
+
+  cancelEditPassword.style.display = 'none';
+  passSample.style.display = 'block';
+  oldPassWrapper.style.display = 'none';
+  NewPassWrapper.style.display = 'none';
+  ComfirmPassWrapper.style.display = 'none';
+
+  // 重置输入框并禁用
+  oldPasswordInput.value = '';
+  newPasswordInput.value = '';
+  confirmPasswordInput.value = '';
+  oldPasswordInput.disabled = true;
+  newPasswordInput.disabled = true;
+  confirmPasswordInput.disabled = true;
+
+  // 恢复按钮状态
+  editButton.textContent = 'Change Password';
+  editButton.style.cursor = 'pointer';
+  editButton.disabled = false;
+  isEditable = false;
+  
+  // 隐藏取消按钮
+  cancelEditPassword.style.cursor = 'pointer';
+  cancelEditPassword.style.display = 'none'; // 隐藏取消按钮
+});
 });
 
 // 发送请求到 Google Sheets 保存新密码
@@ -176,6 +290,10 @@ function updatePassword(username, newPassword, oldPassword) {
       confirmPasswordInput.disabled = true;
 
       // 恢复按钮状态
+      cancelEditPassword.style.cursor = 'pointer';
+      cancelEditPassword.style.display = 'none';
+      cancelEditPassword.disabled = false;
+
       editButton.textContent = 'Change Password';
       editButton.style.cursor = 'pointer';
       editButton.disabled = false;
@@ -200,67 +318,6 @@ function updatePassword(username, newPassword, oldPassword) {
   });
 }
 
-const changeCompanyBtn = document.getElementById('changeCompanyBtn');
-const companyInput = document.getElementById('company');
-const username = localStorage.getItem('username'); // 从 localStorage 获取 username
-
-// Function to save to Google Sheets
-async function saveToGoogleSheets(username, companyName) {
-  try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbzzbpfcuUQvxSvblEj57Xep7L1cYKzBhSByRmLCErPo7h54wb1vvonGlroyQXHpck0Sag/exec?action=updateCompany', {
-      method: 'POST',
-      body: JSON.stringify({
-        action: 'updateCompany',
-        username: username,
-        value: companyName,
-      }),
-    });
-
-    if (!response.ok) throw new Error('Failed to save');
-    const result = await response.json();
-    return result.status === 'success';
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-}
-
-// Button click handler
-changeCompanyBtn.addEventListener('click', async () => {
-  if (!username) {
-    alert('No username found. Please log in.');
-    return;
-  }
-
-  if (changeCompanyBtn.textContent === 'Change Company') {
-    changeCompanyBtn.textContent = 'Update Company';
-    companyInput.disabled = false;
-    companyInput.focus();
-  } else if (changeCompanyBtn.textContent === 'Update Company') {
-    changeCompanyBtn.textContent = 'Updating...';
-    changeCompanyBtn.style.cursor = 'not-allowed';
-    changeCompanyBtn.disabled = true;
-    companyInput.disabled = true;
-
-    const success = await saveToGoogleSheets(username, companyInput.value);
-
-    if (success) {
-      changeCompanyBtn.textContent = 'Change Company';
-      changeCompanyBtn.disabled = false;
-      companyInput.disabled = true;
-      changeCompanyBtn.style.cursor = 'pointer';
-      alert('Your new company name is updated!');
-      localStorage.setItem("company", companyInput.value);
-    } else {
-      alert('Failed to update. Please try again.');
-      changeCompanyBtn.textContent = 'Update Company';
-      changeCompanyBtn.disabled = false;
-      companyInput.disabled = false;
-    }
-  }
-});
-
-
 function getBankInfo() {
     const mbbNo = localStorage.getItem("mbbNo");
     const cimbName = localStorage.getItem("cimbName");
@@ -280,64 +337,97 @@ function getBankInfo() {
 
 // 点击编辑按钮时
 document.getElementById("editBankButton").addEventListener("click", function() {
-    const button = this;
+  const button = this;
 
-    if (button.textContent === "Change Information") {
+  if (button.textContent === "Change Information") {
       button.textContent = "Update";
       document.querySelectorAll("textarea, select").forEach(input => input.disabled = false);
-    } else {
+      document.getElementById("cancelEditBank").style.display = "inline"; // 显示 Cancel 按钮
+  } else {
       updateBankAccountInfo(button);  // 将按钮传递给更新函数
-    }
+  }
 });
 
 // 更新银行信息并保存到 Google Sheets
 function updateBankAccountInfo(button) {
-    // 禁用按钮并更改文本为 Updating...，设置光标为 not-allowed
-    button.disabled = true;
-    button.textContent = "Updating...";
-    button.style.cursor = "not-allowed";  // 设置光标为 not-allowed
+  // 禁用按钮并更改文本为 Updating...，设置光标为 not-allowed
+  button.disabled = true;
+  button.textContent = "Updating...";
+  button.style.cursor = "not-allowed";  // 设置光标为 not-allowed
 
-    const mbbNo = document.getElementById("mbbNo").value;
-    const cimbName = document.getElementById("cimbName").value;
-    const cimbNo = document.getElementById("cimbNo").value;
-    const hlbNo = document.getElementById("hlbNo").value;
-    const rhbNo = document.getElementById("rhbNo").value;
-    const username = localStorage.getItem("username");  // 获取用户名
+  // 禁用 "Cancel" 按钮并设置光标为 not-allowed
+  const cancelButton = document.getElementById("cancelEditBank");
+  cancelButton.disabled = true;
+  cancelButton.style.cursor = "not-allowed";
 
-    // 保存数据到 localStorage
-    localStorage.setItem("mbbNo", mbbNo);
-    localStorage.setItem("cimbName", cimbName);
-    localStorage.setItem("cimbNo", cimbNo);
-    localStorage.setItem("hlbNo", hlbNo);
-    localStorage.setItem("rhbNo", rhbNo);
+  const mbbNo = document.getElementById("mbbNo").value;
+  const cimbName = document.getElementById("cimbName").value;
+  const cimbNo = document.getElementById("cimbNo").value;
+  const hlbNo = document.getElementById("hlbNo").value;
+  const rhbNo = document.getElementById("rhbNo").value;
+  const username = localStorage.getItem("username");  // 获取用户名
 
-    // 调用 Google Apps Script 更新数据到 Google Sheets
-    fetch("https://script.google.com/macros/s/AKfycbwALdZ7s81bW6QMRelXiVq8aXogc3fB0KJUXn4uy3d93NDdyrydX4TbIMBN5YoUI9J1-A/exec?action=updateBankInfo", {  // 添加 action 查询参数
-        method: "POST",
-        body: JSON.stringify({ username, mbbNo, cimbName, cimbNo, hlbNo, rhbNo }),  // 发送包含 username 和银行信息的数据
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert("Your bank info is updated!");
+  // 保存数据到 localStorage
+  localStorage.setItem("mbbNo", mbbNo);
+  localStorage.setItem("cimbName", cimbName);
+  localStorage.setItem("cimbNo", cimbNo);
+  localStorage.setItem("hlbNo", hlbNo);
+  localStorage.setItem("rhbNo", rhbNo);
 
-        // 恢复按钮文本为 Change Information
-        button.textContent = "Change Information";
-        button.style.cursor = "pointer";  // 恢复光标为 pointer
-        button.disabled = false;  // 恢复按钮为可点击状态
+  // 调用 Google Apps Script 更新数据到 Google Sheets
+  fetch("https://script.google.com/macros/s/AKfycbwALdZ7s81bW6QMRelXiVq8aXogc3fB0KJUXn4uy3d93NDdyrydX4TbIMBN5YoUI9J1-A/exec?action=updateBankInfo", {
+    method: "POST",
+    body: JSON.stringify({ username, mbbNo, cimbName, cimbNo, hlbNo, rhbNo }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert("Your bank info is updated!");
 
-        // 禁用输入框
-        document.querySelectorAll("textarea, select").forEach(input => input.disabled = true);
-      })
-      .catch(error => {
-        alert("Something went wrong, please try again later.");
-        console.error("Update failed", error);
+    // 恢复按钮文本为 Change Information
+    button.textContent = "Change Information";
+    button.style.cursor = "pointer";  // 恢复光标为 pointer
+    button.disabled = false;  // 恢复按钮为可点击状态
 
-        // 如果发生错误，恢复按钮状态
-        button.textContent = "Change Information";
-        button.style.cursor = "pointer";  // 恢复光标为 pointer
-        button.disabled = false;  // 恢复按钮为可点击状态
-      });
+    // 恢复 "Cancel" 按钮状态
+    cancelButton.style.cursor = "pointer";  // 恢复 "Cancel" 按钮光标
+    cancelButton.disabled = false;  // 启用 "Cancel" 按钮
+    cancelButton.style.display = "none"; // 隐藏 "Cancel" 按钮
+
+    // 禁用输入框
+    document.querySelectorAll("textarea, select").forEach(input => input.disabled = true);
+  })
+  .catch(error => {
+    alert("Something went wrong, please try again later.");
+    console.error("Update failed", error);
+
+    // 如果发生错误，恢复按钮状态
+    button.textContent = "Change Information";
+    button.style.cursor = "pointer";  // 恢复光标为 pointer
+    button.disabled = false;  // 恢复按钮为可点击状态
+
+    // 恢复 "Cancel" 按钮状态
+    cancelButton.style.cursor = "pointer";  // 恢复 "Cancel" 按钮光标
+    cancelButton.disabled = false;  // 启用 "Cancel" 按钮
+    cancelButton.style.display = "none"; // 隐藏 "Cancel" 按钮
+  });
 }
+
+// 处理 "Cancel" 按钮点击事件
+document.getElementById("cancelEditBank").addEventListener("click", function() {
+  const button = document.getElementById("editBankButton");
+
+  // 恢复按钮文本为 "Change Information"
+  button.textContent = "Change Information";
+  button.style.cursor = "pointer";  // 恢复光标为 pointer
+  button.disabled = false;  // 恢复按钮为可点击状态
+
+  // 禁用所有输入框
+  document.querySelectorAll("textarea, select").forEach(input => input.disabled = true);
+
+  // 隐藏 "Cancel" 按钮
+  document.getElementById("cancelEditBank").style.display = "none";
+});
+
 
 // 页面加载时，自动检查登录状态并加载游戏列表
 window.onload = function() {
