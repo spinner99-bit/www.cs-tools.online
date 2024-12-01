@@ -6,6 +6,17 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    // 从 localStorage 获取用户名
+    const username = localStorage.getItem("username");
+
+    // 检查用户名是否为 admin 或 MB33
+    if (username === "admin" || username === "MB33") {
+        // 显示管理员菜单
+        document.getElementById("menuForAdmin").style.display = "block";
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     const currentPath = window.location.pathname;
 
