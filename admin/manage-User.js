@@ -73,46 +73,108 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = 'login.html';
     }
 
-document.getElementById("registrationForm").addEventListener("submit", async (event) => {
-    event.preventDefault(); // 防止表单刷新页面
-  
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const fullName = document.getElementById("fullName").value;
-  
-    // 确保必填字段都有值
-    if (!username || !password || !fullName) {
-      alert("All fields are required!"); // 使用 alert 提示
-      return;
+    const addUserBtn = document.getElementById("addUserBtn");
+    const cancelAddUserBtn = document.getElementById("cancelAddUser");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const fullNameInput = document.getElementById("fullName");
+    const addUserContainer = document.getElementById('addUserContainer');
+    
+    // 清空输入框函数
+    function clearForm() {
+      usernameInput.value = "";
+      passwordInput.value = "";
+      fullNameInput.value = "";
     }
-  
-    try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbyRjvG0T4bJxy4D1w1Xi8FnrVyTW2rpklvGZCYXYZ3mrTn_2W-tElnMVBCk_IPkFzJHww/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `action=register&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&fullName=${encodeURIComponent(fullName)}`
-      });
-  
-      const result = await response.json();
-  
-      if (result.success) {
-        alert("New User ID Added !"); // 使用 alert 提示成功信息
-        clearForm(); // 清空表单
-      } else {
-        alert(`Error: ${result.message}`); // 使用 alert 提示错误信息
+    
+    // 保存到 Google Sheets 函数
+    async function saveToGoogleSheets(username, password, fullName) {
+      try {
+        const response = await fetch(
+          "https://script.google.com/macros/s/AKfycbzp2Ia8B9DQ5Qja9SImzjcWxvC2_znrk73KzlcZIpexFySVCF3BknUg8qWJ1Jv85pdCHw/exec",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `action=register&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&fullName=${encodeURIComponent(fullName)}`
+          }
+        );
+    
+        const result = await response.json();
+        return result.success;
+      } catch (error) {
+        console.error("Error:", error);
+        return false;
       }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred. Please try again.");
     }
-  });
-  
-  // 清空表单字段
-  function clearForm() {
-    document.getElementById("username").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("fullName").value = "";
-  }
+    
+    // 处理 "Add User" 按钮点击事件
+    addUserBtn.addEventListener("click", async () => {
+      if (addUserBtn.textContent === "Add User") {
+        addUserContainer.style.display = "block";
+        addUserBtn.textContent = "Add";
+        usernameInput.disabled = false;
+        passwordInput.disabled = false;
+        fullNameInput.disabled = false;
+        cancelAddUserBtn.style.display = "inline";
+      } else if (addUserBtn.textContent === "Add") {
+        if (!usernameInput.value || !passwordInput.value) {
+          alert("Username and Password are required!");
+          return;
+        }
+    
+        // 如果 fullName 为空，设置默认值
+        const fullName = fullNameInput.value.trim() || "Company Name";
+    
+        addUserBtn.textContent = "Adding...";
+        addUserBtn.disabled = true;
+        addUserBtn.style.cursor = 'not-allowed';
+        cancelAddUserBtn.disabled = true;
+        cancelAddUserBtn.style.cursor = 'not-allowed';
+        usernameInput.disabled = true;
+        passwordInput.disabled = true;
+        fullNameInput.disabled = true;
+    
+        const success = await saveToGoogleSheets(
+          usernameInput.value,
+          passwordInput.value,
+          fullName
+        );
+    
+        if (success) {
+          alert("New User ID Added!");
+          addUserContainer.style.display = "none";
+          addUserBtn.textContent = "Add User";
+          addUserBtn.disabled = false;
+          addUserBtn.style.cursor = 'pointer';
+          cancelAddUserBtn.style.display = "none";
+          cancelAddUserBtn.disabled = false;
+          cancelAddUserBtn.style.cursor = 'pointer';
+          clearForm();
+          fetchData()
+        } else {
+          alert("Failed to add user. Please try again.");
+          addUserBtn.textContent = "Add";
+          addUserBtn.disabled = false;
+          addUserBtn.style.cursor = 'pointer';
+          cancelAddUserBtn.disabled = false;
+          cancelAddUserBtn.style.cursor = 'pointer';
+          usernameInput.disabled = false;
+          passwordInput.disabled = false;
+          fullNameInput.disabled = false;
+        }
+      }
+    });
+    
+    // 处理 "Cancel" 按钮点击事件
+    cancelAddUserBtn.addEventListener("click", () => {
+      clearForm();
+      addUserContainer.style.display = "none";
+      usernameInput.disabled = true;
+      passwordInput.disabled = true;
+      fullNameInput.disabled = true;
+      addUserBtn.textContent = "Add User";
+      cancelAddUserBtn.style.display = "none";
+    });
 
     // 控制侧边栏的显示和隐藏
     const menuBtn = document.querySelector('.menuBtnC');
@@ -127,30 +189,41 @@ document.getElementById("registrationForm").addEventListener("submit", async (ev
         sidebar.classList.remove('active'); // 点击关闭按钮隐藏侧边栏
     });
 
-    async function fetchData() {
+async function fetchData() {
+    const tableBody = document.getElementById("dataTable");
+    const loadingElement = document.getElementById("loading");
+
+    // 隐藏表格，显示 loading
+    tableBody.style.display = "none";
+    loadingElement.style.display = "block";
+
+    try {
         const response = await fetch("https://script.google.com/macros/s/AKfycbyQeWUCxThTyVKhEMxn08Dv4ej9WhsRJpc-gCp3OEhJ2_zDyJzPxVCxJ8Hx8wPFT2srlA/exec");
         const data = await response.json();
-    
-        const tableBody = document.getElementById("dataTable");
+
         tableBody.innerHTML = ""; // 清空表格
-    
+
         data.forEach((row, rowIndex) => {
             const tr = document.createElement("tr");
-    
+
             // 遍历每一列，创建表格单元格
             row.forEach((cell, cellIndex) => {
                 const td = document.createElement("td");
-    
-                // 如果是第二列（密码列），将内容显示为 *
+
                 if (cellIndex === 1) {
-                    td.textContent = "*".repeat(cell.length); // 用 * 号替代密码的实际字符
+                    // 第二列（密码列）内容显示为 *
+                    const cellValue = String(cell); // 确保 cell 是字符串
+                    td.textContent = "*".repeat(cellValue.length);
+                } else if (cellIndex === 4) {
+                    // 第五列（时间列）格式化时间
+                    td.textContent = formatDate(cell);
                 } else {
                     td.textContent = cell;
                 }
-    
+
                 tr.appendChild(td);
             });
-    
+
             // 添加编辑按钮
             const actionTd = document.createElement("td");
             const editButton = document.createElement("i");
@@ -159,10 +232,36 @@ document.getElementById("registrationForm").addEventListener("submit", async (ev
             editButton.addEventListener("click", () => openEditPopup(row, rowIndex));
             actionTd.appendChild(editButton);
             tr.appendChild(actionTd);
-    
+
             tableBody.appendChild(tr);
         });
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    } finally {
+        // 显示表格，隐藏 loading
+        loadingElement.style.display = "none";
+        tableBody.style.display = "table-row-group"; // 恢复表格显示
     }
+}
+
+// 时间格式化函数
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+        // 如果无法解析日期，返回原始字符串
+        return dateString;
+    }
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
   
 // 打开编辑弹窗
 function openEditPopup(row, rowIndex) {
@@ -183,7 +282,6 @@ function openEditPopup(row, rowIndex) {
     };
 }
 
-  
 async function saveEdit(rowIndex) {
     const updatedData = {
         action: "UpdateUserInfo",
