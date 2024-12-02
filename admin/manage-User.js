@@ -270,17 +270,23 @@ function openEditPopup(row, rowIndex) {
     document.getElementById("editPassword").setAttribute('type', 'password');  // 确保密码输入框显示为星号
     document.getElementById("editCompany").value = row[2];
     document.getElementById("editStatus").value = row[3] === "Active" ? "1" : "2";  // 根据传入的状态值设定选择框
-    document.getElementById("editLastLoginTime").value = row[4];
 
+    // 确保最后登录时间格式化
+    const formattedDate = formatDate(row[4]);
+    document.getElementById("editLastLoginTime").value = formattedDate;
+
+    // 显示弹窗
     document.getElementById("popup").style.display = "block";
     document.getElementById("overlay").style.display = "block";
 
+    // 保存编辑内容
     document.getElementById("editForm").onsubmit = async (event) => {
         event.preventDefault();
         await saveEdit(rowIndex);
         closePopup();
     };
 }
+
 
 async function saveEdit(rowIndex) {
     const updatedData = {
