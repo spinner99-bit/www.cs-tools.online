@@ -17,6 +17,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+function checkCompanyName() {
+    // 从 LocalStorage 获取 company 值
+    const company = localStorage.getItem('company');
+
+    // 检查 company 是否为空或等于 'Company Name'
+    if (!company || company === 'Company Name') {
+        // 弹出警告
+        alert('Please Set up your company name first!');
+        // 跳转到 index 页面
+        window.location.href = 'index';
+    }
+};
+
     // Google Apps Script 部署的 API URL
     const apiUrl = 'https://script.google.com/macros/s/AKfycbwmkWcv84RNd9ObMLs294jHK4kfxcq79UyVzZg0CyD1ybTyNY8kwb6rhfDTykJhaNvO/exec';
 
@@ -275,6 +288,7 @@ gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style=
     window.onload = function() {
         checkLoginStatus();
         fetchGames();
+        checkCompanyName()
     };
 
     // 控制侧边栏的显示和隐藏
