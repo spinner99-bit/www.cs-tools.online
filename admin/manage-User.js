@@ -287,8 +287,17 @@ function openEditPopup(row, rowIndex) {
     };
 }
 
-
 async function saveEdit(rowIndex) {
+    // 获取按钮
+    const submitButton = document.querySelector(".userList-SaveButton");
+    const cancelButton = document.getElementById("cancelButton");
+
+    // 禁用按钮并更改样式
+    submitButton.disabled = true;
+    cancelButton.disabled = true;
+    submitButton.style.cursor = "not-allowed";
+    cancelButton.style.cursor = "not-allowed";
+
     const updatedData = {
         action: "UpdateUserInfo",
         username: document.getElementById("editUsername").value, // 获取实际用户名
@@ -301,20 +310,37 @@ async function saveEdit(rowIndex) {
     // 将数据转换为 URL 编码格式
     const urlEncodedData = new URLSearchParams(updatedData).toString();
 
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzaLlO1YQoHpbWwRYV7loN-Cr8zEjrvk5mp9KzWm77kb94iHZATAgmk92uD4GOgDrcsqQ/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded" // 指定 URL 编码格式
-        },
-        body: urlEncodedData, // 发送 URL 编码数据
-    });
+    try {
+        const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbzaLlO1YQoHpbWwRYV7loN-Cr8zEjrvk5mp9KzWm77kb94iHZATAgmk92uD4GOgDrcsqQ/exec",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded", // 指定 URL 编码格式
+                },
+                body: urlEncodedData, // 发送 URL 编码数据
+            }
+        );
 
-    const result = await response.json();
-    if (result.success) {
-        alert("Successfully update User Info !");
-        fetchData();
-    } else {
-        alert("Failed to update : " + result.message);
+        const result = await response.json();
+
+        if (result.success) {
+            alert("Successfully updated User Info!");
+            fetchData(); // 刷新数据
+        } else {
+            alert("Failed to update: " + result.message);
+        }
+    } catch (error) {
+        console.error("Error updating user info:", error);
+        alert("An error occurred while updating user info.");
+    } finally {
+        // 恢复按钮状态和样式
+        submitButton.disabled = false;
+        cancelButton.disabled = false;
+        submitButton.style.cursor = "pointer";
+        cancelButton.style.cursor = "pointer";
+
+        closePopup(); // 关闭弹窗
     }
 }
 
