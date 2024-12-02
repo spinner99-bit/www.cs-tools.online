@@ -354,6 +354,11 @@ footer{
     margin-top: 40px;
 }
 
+.userList-loading{
+    height: 150px;
+    width: auto;
+}
+
 .gameLogSelBtn {
     margin: 20px 0;
     justify-content: space-between;
@@ -1265,131 +1270,17 @@ footer{
     border: 1px solid #ccc;
 }
 
-.manageUser-fullWrapper{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    padding: 0 30px;
-}
-
-.manageUserForm-wrapper,
-.manageUserList-wrapper{
-    text-align: center;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    margin-bottom: 30px;
-    max-width: 850px;
-    box-shadow: 0 6px 3px rgba(0, 0, 0, 0.4);
-}
-
-.manageUser-ListTop{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ccc;
-    margin-bottom: 20px;
-}
-
-.manageUser-ListTop h2{
-    font-weight: 900;
-    margin: 0;
-    font-size: 15px;
-}
-
-.manageUserForm-wrapper label{
-    text-align: center;
-    align-content: center;
-    width: 120px;
-    font-size: 14px;
-    color: black;
-    margin-right: 10px;
+.userlist-table{
     font-weight: 900;
 }
 
-.manageUserForm-wrapper input{
-    margin-top: 5px;
-    text-align: center;
-    padding: 7px;
-    font-size: 14px;
-    font-weight: 900;
-    color: black;
-    width: 300px;
-    border: 1px solid black;
-}
-
-.setting-per-row input:disabled{
-    color: grey;
-    border: 1px solid #ccc;
-}
-
-.manageUserForm-wrapper button{
-    padding: 5px 15px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 12px;
-    font-weight: 900;
-    margin-top: 15px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-.manageUserForm-wrapper button:hover{
-    background-color: #0056b3;
-}
-
-.manageUserList-wrapper table{
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-.manageUserList-wrapper th, .manageUserList-wrapper td {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-    overflow: hidden;
-}
-
-.manageUserList-wrapper th{
-    font-weight: 900;
-    padding: 10px 0;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-}
-
-.manageUserList-wrapper tr{
-    border: 1px solid #ddd;
-}
-
-.manageUserList-wrapper td{
-    height: 100%;
-    border: 1px solid #ddd;
-    padding: 5px;
-    font-size: 12px;
-    font-weight: 900;
-}
-
-.manageUserList-wrapper tr:nth-child(even) {
-    background-color: #f7f7f7;
-}
-  
-.manageUserList-wrapper tr:nth-child(odd) {
-    background-color: #ffffff;
-}
-
-.manageUserList-wrapper i{
+.settings-container i{
     font-size: 24px;
     color: #007bff;
     cursor: pointer;
 }
 
-.manageUserList-wrapper i:hover{
+.settings-container i:hover{
     color: #0056b3;
 }
 
@@ -1406,7 +1297,7 @@ footer{
     width: 10%;
 }
 
-.manageUserList-wrapper #overlay { 
+.settings-container #overlay { 
     display: none; 
     position: fixed; 
     top: 0;
