@@ -1322,6 +1322,13 @@ footer{
     z-index: 1000; 
 }
 
+.userList-popup h2{
+    background-color: #aaa;
+    color: white;
+    padding: 10px 0;
+    margin: 10px 0 20px 0;
+}
+
 .userList-perRowDetail{
     display: flex;
     justify-content: space-between;
@@ -1353,6 +1360,11 @@ footer{
 
 .userList-perRowDetail select{
     width: 222.83px;
+}
+
+.userList-perRowDetail option{
+    font-size: 12px;
+    font-weight: 900;
 }
 
 .userList-popupSaveButton{
