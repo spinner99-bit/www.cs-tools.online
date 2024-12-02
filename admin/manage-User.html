@@ -76,50 +76,57 @@
     </div>
 </div>
 
-<div class="manageUser-fullWrapper">
+<div class="setting-full-cover">
 
-    <div class="manageUserForm-wrapper">
-        <div class="manageUser-ListTop">
-            <h2>Add New User</h2>
+    <div class="settings-container">
+      <div class="settings-TopContainer">
+        <h2>Add New User</h2>
+        <div class="setting-button-edit">
+          <button class="setting-changeButton" id="addUserBtn">Add User</button>
+          <button class="setting-cancelButton" id="cancelAddUser" style="display: none;">Cancel</button>
         </div>
-        <form id="registrationForm">
-            <div class="addUser-perRow">
-                <label>Username</label><br>
-                <input type="text" id="username" required />
-            </div>
-
-            <div class="addUser-perRow">
-                <label>Password</label><br>
-                <input type="text" id="password" required />
-            </div>
-
-            <div class="addUser-perRow">
-                <label>Company</label><br>
-                <input type="text" id="fullName" />
-            </div>
-
-            <button type="submit">Add User</button>
-        </form>
+      </div>
+      <div class="settings-MainContainer" id="addUserContainer" style="display: none;">
+        <div class="setting-per-row">
+          <label>Username</label><br>
+          <input type="text" id="username" disabled />
+        </div>
+        <div class="setting-per-row">
+          <label>Password</label><br>
+          <input type="text" id="password" disabled />
+        </div>
+        <div class="setting-per-row">
+          <label>Company</label><br>
+          <input type="text" id="fullName" disabled />
+        </div>
+      </div>
     </div>
 
-    <div class="manageUserList-wrapper">
-        <div class="manageUser-ListTop">
+    <div class="settings-container">
+        <div class="settings-TopContainer">
             <h2>User List</h2>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th class="manageUserList-Username">Username</th>
-              <th class="manageUserList-Password">Password</th>
-              <th>Company</th>
-              <th class="manageUserList-Status">Status</th>
-              <th>Last Login Date</th>
-              <th class="manageUserList-Action">Action</th>
-            </tr>
-          </thead>
-          <tbody id="dataTable">
-          </tbody>
-        </table>
+        <div class="settings-bankContainer userlist-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="manageUserList-Username">Username</th>
+                <th class="manageUserList-Password">Password</th>
+                <th>Company</th>
+                <th class="manageUserList-Status">Status</th>
+                <th>Last Login Date</th>
+                <th class="manageUserList-Action">Action</th>
+              </tr>
+            </thead>
+            <tbody id="dataTable">
+            </tbody>
+          </table>
+          <div class="providersLink-loading">
+            <div id="loading" class="gameLogLoading">
+                <img src="../Element/loading.png!bw700" class="userList-loading">
+            </div>
+          </div>
+        </div>
 
         <!-- Popup Window -->
         <div id="overlay"></div>
@@ -156,7 +163,7 @@
 
                 <div class="userList-popupSaveButton">
                     <button type="button" id="cancelButton" class="userList-cencelButton">Cancel</button>
-                    <button type="submit" class="userList-SaveButton">Save</button>
+                    <button type="submit" class="userList-SaveButton">Update</button>
                 </div>
             </form>
         </div>
