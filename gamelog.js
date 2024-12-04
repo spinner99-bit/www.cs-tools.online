@@ -259,7 +259,7 @@ const tableData = [];
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${row.isRed ? '<span class="red-text">-</span>' : row.gameName}</td>
-                        <td>${row.isTableIDRed ? '<span class="red-text">' + row.tableID + '</span>' : row.tableID === 0 ? `<span class="bg-gray">${row.tableID}</span>` : row.tableID}</td>
+                        <td>${row.isTableIDRed ? '<span class="red-text">' + row.tableID + '</span>' : row.tableID === 0 ? `<span class="badge bg-gray">${row.tableID}</span>` : row.tableID}</td>
                         <td>${row.isRed ? '<span class="red-text">-</span>' : row.bet}</td>
                         <td>${row.isRed ? '<span class="red-text">-</span>' : row.win}</td>
                         <td>${row.isRed ? '<span class="red-text">-</span>' : parseFloat(row.beginMoney).toFixed(2)}</td>
