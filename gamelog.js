@@ -323,10 +323,10 @@ document.getElementById('generateButton').addEventListener('click', function () 
                 </div>
                 <div class="mbb-detail-cover">
                     <div class="mbb-per-detail"><label>Recipient's bank</label><span>Maybank / Maybank Islamic</span></div>
-                    <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-1">0</span></div>
-                    <div class="mbb-per-detail"><label>Recipient's Reference</label><input type="text" value="payment"></div>
+                    <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-1" class="mbbDetail-trap">0</span></div>
+                    <div class="mbb-per-detail"><label>Recipient Reference</label><input type="text" value="payment"></div>
                     <div class="mbb-per-detail"><label>Status</label><span>Successful</span></div>
-                    <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-1">0</span></div>
+                    <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-1" class="mbbDetail-trap">0</span></div>
                 </div>
                 <div class="mbb-bottom-detail">
                     <label>Total Amount</label><span id="rst-amount-2">0</span>
@@ -352,10 +352,10 @@ document.getElementById('generateButton').addEventListener('click', function () 
                     <div class="mbb-per-detail"><label>Recipient's bank</label><span id="rst-bank-2"  class="mbbBankName">0</span></div>
                     <div class="mbb-per-detail"><label>Transaction Type</label><span>Funds Transfer</span></div>
                     <div class="mbb-per-detail"><label>Transfer Mode</label><span>DuitNow Transfer</span></div>
-                    <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-2">0</span></div>
-                    <div class="mbb-per-detail"><label>Recipient's Reference</label><input type="text" value="payment"></div>
+                    <div class="mbb-per-detail"><label>Effective date</label><span id="rst-Date-2" class="mbbDetail-trap">0</span></div>
+                    <div class="mbb-per-detail"><label>Recipient Reference</label><input type="text" value="payment"></div>
                     <div class="mbb-per-detail"><label>Status</label><span>Successful</span></div>
-                    <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-2">0</span></div>
+                    <div class="mbb-per-detail"><label>Reference ID</label><span id="rst-reference-2" class="mbbDetail-trap">0</span></div>
                 </div>
                 <div class="mbb-bottom-detail">
                     <label>Total Amount</label><span id="rst-amount-4">0</span>
