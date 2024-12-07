@@ -345,7 +345,7 @@ footer{
 
 .bg-gray {
     background-color: #d2d6de !important;
-    color: black;
+    color: #000;
     border-radius: 50%;
     padding: 3px 7px;
     font-weight: 800;
@@ -431,12 +431,12 @@ footer{
     cursor: pointer;
 }
 
-.header-918Kiss th { background-color: #605ca8; }
-.header-Mega888 th { background-color: #3c8dbc; }
-.header-Pussy888 th { background-color: #3c8dbc; }
-.header-918Kaya th { background-color: #ff9800; }
-.header-Xe88 th { background-color: #9c27b0; }
-.header-Evo888 th { background-color: #2196f3; }
+.header-918Kiss th { background-color: #605ca8; color: #ffffff; }
+.header-Mega888 th { background-color: #3c8dbc; color: #ffffff; }
+.header-Pussy888 th { background-color: #3c8dbc; color: #ffffff; }
+.header-918Kaya th { background-color: #ff9800; color: #ffffff; }
+.header-Xe88 th { background-color: #9c27b0; color: #ffffff; }
+.header-Evo888 th { background-color: #2196f3; color: #ffffff; }
 
 .resit-container-wrapper{
     display: grid;
@@ -518,12 +518,12 @@ footer{
 
 .mbb-name{
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 5px;
 }
 
 .mbb-acc, .mbb-amount{
-    font-size: 13px;
+    font-size: 13.5px;
 }
 
 .mbb-tick{
@@ -538,7 +538,7 @@ footer{
 }
 
 .mbb-detail-cover{
-    font-size: 17px;
+    font-size: 15px;
     color: #171717;
     padding: 10px 0;
     border-top: 2px solid #ffc83d;
@@ -550,6 +550,10 @@ footer{
     border-bottom: 0.5px solid #e2e2e2;
 }
 
+.mbbDetail-trap{
+    font-size: 16px;
+}
+
 .mbb-detail-cover span,
 .mbb-detail-cover input{
     color: #7D7D7D;
@@ -559,7 +563,7 @@ footer{
     border: none;
     font-family: "Lato", "Calibri", Helvetica, Arial, sans-serif;
     text-align: right;
-    font-size: 17px;
+    font-size: 15px;
     background-color: transparent;
     padding: 0;
 }
@@ -567,7 +571,7 @@ footer{
 .mbb-per-detail{
     display: flex;
     justify-content: space-between;
-    padding: 5px 20px;
+    padding: 7px 20px;
 }
 
 .mbbBankName{
@@ -580,7 +584,7 @@ footer{
 }
 
 .mbb-bottom-detail{
-    font-size: 17px;
+    font-size: 16px;
     display: flex;
     justify-content: space-between;
     padding: 15px 20px;
