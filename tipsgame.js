@@ -31,7 +31,7 @@ function checkCompanyName() {
 };
 
     // Google Apps Script 部署的 API URL
-    const apiUrl = 'https://script.google.com/macros/s/AKfycbwmkWcv84RNd9ObMLs294jHK4kfxcq79UyVzZg0CyD1ybTyNY8kwb6rhfDTykJhaNvO/exec';
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbzujJppHzW1yazgGAm7d2AxGJSKPvnVsrnZDkG-Z7OQftlz8y4S4FqrF0df3y7wbrq6/exec';
 
     // 检查用户登录状态
     function checkLoginStatus() {
@@ -89,7 +89,8 @@ function checkCompanyName() {
     function fetchGames() {
         const loadingIndicator = document.getElementById('loading'); // 获取加载指示器
         loadingIndicator.style.display = 'block'; // 显示加载指示器
-        console.log("Loading indicator shown."); // 调试信息
+        const gameList = document.getElementById('game-list');
+        gameList.style.display = 'none';
     
         fetch(apiUrl)
             .then(response => {
@@ -99,8 +100,7 @@ function checkCompanyName() {
                 return response.json();
             })
             .then(data => {
-                const gameList = document.getElementById('game-list');
-                gameList.innerHTML = '';  // 清空游戏列表
+                gameList.innerHTML = '';
     
                 data.forEach(game => {
                     const gameItem = document.createElement('div');
@@ -207,6 +207,18 @@ switch (game.gameType) {
     case "Fa Chai":
         imageURL = "Element/GameLogo/FaChai.png";
         break;
+    case "CQ9":
+        imageURL = "Element/GameLogo/CQ9.png";
+        break;
+    case "BBin":
+        imageURL = "Element/GameLogo/BBin.png";
+        break;
+    case "EvoPlay":
+        imageURL = "Element/GameLogo/EvoPlay.png";
+        break;
+    case "Habanero":
+        imageURL = "Element/GameLogo/Habanero.png";
+        break;
     default:
         imageURL = "Element/GameLogo/default.png"; // 默认图片
 }
@@ -274,7 +286,7 @@ gameTitle.innerHTML = `<img src="${imageURL}" alt="${game.gameType} Logo" style=
     
     // 隐藏加载指示器
     loadingIndicator.style.display = 'none';
-        console.log("Loading indicator hidden."); // 调试信息
+    gameList.style.display = 'flex';
     })
     .catch(error => {
         console.error('Error fetching games:', error);
