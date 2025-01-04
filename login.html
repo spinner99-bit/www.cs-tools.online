@@ -13,7 +13,7 @@
 
   <div class="loginForm-wrapper">
     <h1>LOGIN</h1>
-    <div class="loginForm-container">
+    <form class="loginForm-container" onsubmit="submitLogin()">
       <div class="input-container">
         <input type="text" id="loginUsername" required placeholder=" " />
         <span class="bar"></span>
@@ -26,8 +26,8 @@
         <label for="loginPassword" class="loginPage-Label">Password</label>
         <i class='bx bx-lock'></i>
       </div>
-    </div>
-    <button onclick="submitLogin()" class="submit-btn">LOGIN<i class='bx bx-log-in-circle'></i></button>
+      <button type="submit" onclick="submitLogin()" class="submit-btn">LOGIN<i class='bx bx-log-in-circle'></i></button>
+    </form>
     <div>
       <p id="loginMessage"></p>
     </div>
