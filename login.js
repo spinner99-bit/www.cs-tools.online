@@ -54,7 +54,7 @@ async function submitLogin() {
     localStorage.setItem('hlbNo', result.hlbNo);
     localStorage.setItem('rhbNo', result.rhbNo);
 
-    alert("Login successful! Redirecting...");
+    // alert("Login successful! Redirecting...");
 
     // 登录成功后跳转到 index.html
     window.location.href = 'index';
