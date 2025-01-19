@@ -53,6 +53,31 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
     });
 
+    // 无操作时间限制（秒）
+    const IDLE_TIMEOUT = 14400; // 4小时
+    let idleTime = 0; // 计时器
+
+    // 重置计时器的函数
+    function resetIdleTime() {
+        idleTime = 0; // 每次用户操作时重置计时器
+    }
+
+    // 定时器每秒检查用户无操作时间
+    setInterval(() => {
+        idleTime++;
+        if (idleTime >= IDLE_TIMEOUT) {
+          alert("Session expired please login again.");
+          logout();
+        }
+    }, 1000); // 每秒递增计时器
+
+    // 监听用户操作的事件，重置计时器
+    document.addEventListener("mousemove", resetIdleTime);
+    document.addEventListener("keydown", resetIdleTime);
+    document.addEventListener("scroll", resetIdleTime);
+    document.addEventListener("click", resetIdleTime);
+    document.addEventListener("touchstart", resetIdleTime);
+
     // 退出登录功能
     function logout() {
         // 清除登录信息
@@ -66,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem('rhbNo');
 
         // 跳转回登录页面
-        window.location.href = 'login.html';
+        window.location.href = 'login';
     }
     
     // 控制侧边栏的显示和隐藏
